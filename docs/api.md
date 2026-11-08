@@ -101,6 +101,8 @@ wooddust apikey revoke <prefix>
 
 ## Home Assistant
 
+Step-by-step setup with the production key, a new-submission notification and troubleshooting: [`home-assistant.md`](home-assistant.md). The minimal stats-only version:
+
 A `stats:read` key is enough. In `secrets.yaml`:
 
 ```yaml
