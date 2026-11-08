@@ -1,6 +1,6 @@
 # Deployment
 
-Interim host: `wooddust.sstools.co` on the existing EC2 instance (`ssh photon`), behind Apache with the `sstools.co-wildcard` certificate. Nothing here has been deployed yet; this is the intended setup.
+Interim host: `wooddust.sstools.co` on the existing EC2 instance (`ssh photon`), behind Apache with the `sstools.co-wildcard` certificate. First deployed 2026-11-08 as a pre-production site.
 
 ## Layout on the host
 
@@ -10,11 +10,12 @@ Interim host: `wooddust.sstools.co` on the existing EC2 instance (`ssh photon`),
 | `/opt/wooddust/current` | Symlink to the live release |
 | `/etc/wooddust/config.env` | Environment (see `deploy/config.env.example`) |
 | `/etc/systemd/system/wooddust.service` | From `deploy/systemd/wooddust.service` |
-| `/etc/httpd/conf.d/wooddust.sstools.co-le-ssl.conf` | From `deploy/apache/` |
+| `/etc/httpd/conf.d/001-wooddust.sstools.co{,-le-ssl}.conf` | From `deploy/apache/` (HTTPS vhost and the HTTP redirect) |
+| `/etc/photon/ports.conf` | photon's port registry; the `wooddust` row sets the port |
 
 The service reads `data/`, `content/` and `images/` from its working directory (`/opt/wooddust/current`), so a release is self-contained and rollback is a symlink flip.
 
-Port: **8084** (8080–8083 are taken by other services on the host). The app always binds `127.0.0.1`.
+Port: **8112**, registered in photon's port registry (`/etc/photon/ports.conf`, `sstools.co tools` block). `sudo photon-ports render` writes `PORT` into a systemd drop-in and `PORT_WOODDUST` into Apache's `000-ports.conf`, so `PORT` is never set in `config.env` or the unit. The app always binds `127.0.0.1`.
 
 ## One-time setup
 
@@ -26,9 +27,14 @@ sudo -u postgres createdb -O wooddust wooddust
 # pg_trgm and unaccent are trusted extensions (PG 13+): the owner can create them.
 sudo install -m 0640 -o root -g wooddust deploy/config.env.example /etc/wooddust/config.env   # then edit
 sudo install -m 0644 deploy/systemd/wooddust.service /etc/systemd/system/
-sudo install -m 0644 deploy/apache/wooddust.sstools.co-le-ssl.conf /etc/httpd/conf.d/
-sudo systemctl daemon-reload && sudo systemctl enable wooddust
+sudo install -m 0644 deploy/apache/001-wooddust.sstools.co-le-ssl.conf deploy/apache/001-wooddust.sstools.co.conf /etc/httpd/conf.d/
+sudo install -d -m 0700 /var/log/httpd/sites/wooddust.sstools.co
+# Add to /etc/photon/ports.conf under "8110-8119: sstools.co tools":
+#   8112    wooddust               loopback  wooddust.sstools.co
+sudo photon-ports render          # drop-in + Apache define, daemon-reload, configtest
+sudo systemctl enable wooddust
 sudo httpd -t && sudo systemctl reload httpd
+sudo photon-ports check
 ```
 
 DNS: `wooddust.sstools.co` is covered by the wildcard record and certificate; no new certificate is needed. The existing certbot deploy hook reloads Apache on renewal.
@@ -106,7 +112,7 @@ Build locally (or in CI) for linux/arm64 or amd64 as the instance requires:
 
 ```sh
 make web                                       # npm ci && npm run build -> web/dist
-GOOS=linux GOARCH=arm64 go build -trimpath -o bin/wooddust ./cmd/wooddust
+GOOS=linux GOARCH=arm64 CGO_ENABLED=0 go build -trimpath -o bin/wooddust-linux-arm64 ./cmd/wooddust   # photon is aarch64
 ```
 
 On the host:

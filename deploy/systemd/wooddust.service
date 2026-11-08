@@ -19,6 +19,12 @@ ExecStartPre=/opt/wooddust/current/bin/wooddust seed
 ExecStart=/opt/wooddust/current/bin/wooddust serve
 Restart=on-failure
 RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=20
+
+Environment=GOMEMLIMIT=200MiB
+MemoryMax=320M
+CPUQuota=150%
 
 NoNewPrivileges=true
 PrivateTmp=true
@@ -29,8 +35,13 @@ ProtectKernelTunables=true
 ProtectKernelModules=true
 ProtectControlGroups=true
 RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
 LockPersonality=true
 MemoryDenyWriteExecute=true
+# Postgres is reached over its Unix socket; the only TCP peer is Apache on
+# loopback. Widen this when SMTP for one-time codes is configured.
+IPAddressDeny=any
+IPAddressAllow=localhost
 
 [Install]
 WantedBy=multi-user.target
