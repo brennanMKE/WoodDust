@@ -1,0 +1,12 @@
+{{define "body_page"}}{{template "header" .}}
+<main id="main">
+{{template "breadcrumbs" .Breadcrumbs}}
+{{with .Body}}<article class="page" aria-labelledby="page-title">
+  <h1 id="page-title">{{.Title}}</h1>
+  {{if .TOC}}<nav class="toc" aria-label="On this page"><ul>{{range .TOC}}<li class="toc-{{.Level}}"><a href="#{{.ID}}">{{.Text}}</a></li>{{end}}</ul></nav>{{end}}
+  {{.HTML}}
+  {{template "sourcelist" .Sources}}
+  {{if .LastReviewed}}<p class="reviewed">Last reviewed <time datetime="{{.LastReviewed}}">{{.LastReviewed}}</time>.</p>{{end}}
+</article>{{end}}
+</main>
+{{template "footer" .}}{{end}}

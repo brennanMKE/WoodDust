@@ -1,0 +1,23 @@
+{{define "body_home"}}{{template "header" .}}
+<main id="main">
+  <h1>All wood dust is hazardous</h1>
+  <p class="lede">Breathing any wood dust over years raises the risk of nose and sinus cancer, and some woods also cause asthma or skin allergies. Look up a wood to see what the evidence says, then <a href="/protection">protect yourself</a>.</p>
+  {{template "searchform" .Body.Query}}
+  {{if .Body.Query}}
+  <section aria-labelledby="results-heading">
+    <h2 id="results-heading">Results for “{{.Body.Query}}”</h2>
+    {{if .Body.Results}}<ol class="results">{{range .Body.Results}}<li><a href="{{.URL}}">{{.Name}}</a> <i lang="la">{{.BotanicalName}}</i>{{if ne .MatchedName .Name}} (matched “{{.MatchedName}}”){{end}}</li>{{end}}</ol>
+    {{else}}<p>Not listed yet. <a href="/submit?name={{.Body.Query}}">Suggest it</a>.</p>{{end}}
+  </section>
+  {{end}}
+  <section aria-labelledby="featured-heading">
+    <h2 id="featured-heading">Most-asked-about woods</h2>
+    <ol class="species-list">{{range .Body.Featured}}{{template "speciesrow" .}}{{end}}</ol>
+    <p><a href="/browse">Browse all {{.Body.Total}} woods</a></p>
+  </section>
+  <section aria-labelledby="why-heading">
+    <h2 id="why-heading">Why every wood matters</h2>
+    <p>The International Agency for Research on Cancer classifies wood dust as a cause of cancer in people. Fine dust you cannot see does the most harm, and the effects add up over years. Read about <a href="/risks">the risks</a> and <a href="/protection">how to protect yourself</a>.</p>
+  </section>
+</main>
+{{template "footer" .}}{{end}}

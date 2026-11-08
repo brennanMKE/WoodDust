@@ -1,0 +1,10 @@
+{{define "body_not_found"}}{{template "header" .}}
+<main id="main">
+  <h1>Page not found</h1>
+  {{if .Body.Candidates}}<p>“{{.Body.Name}}” is a name for more than one wood:</p>
+  <ul>{{range .Body.Candidates}}<li><a href="{{.URL}}">{{.Name}}</a> <i lang="la">{{.BotanicalName}}</i></li>{{end}}</ul>
+  {{else}}<p>We could not find that page. Try searching for the wood you are interested in.</p>{{end}}
+  {{template "searchform" ""}}
+  <p><a href="/">Go to the home page</a> or <a href="/browse">browse all woods</a>.</p>
+</main>
+{{template "footer" .}}{{end}}

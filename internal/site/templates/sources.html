@@ -1,0 +1,10 @@
+{{define "body_sources"}}{{template "header" .}}
+<main id="main">
+{{template "breadcrumbs" .Breadcrumbs}}
+  <h1>Sources</h1>
+  <p>Every hazard on this site cites at least one of these {{len .Body.Sources}} sources. Tier A is primary research and official agency documents; tier D is used only for non-health facts. See <a href="/methodology">our methodology</a>.</p>
+  <ul class="source-registry">
+  {{range .Body.Sources}}<li id="src-{{.Key}}"><strong>{{.Key}}</strong> (tier {{.Tier}}{{if not .Verified}}, not yet verified{{end}}): {{.Citation}}{{if .Link}} <a href="{{.Link}}" rel="noopener">{{.LinkText}}</a>{{end}}</li>
+  {{end}}</ul>
+</main>
+{{template "footer" .}}{{end}}

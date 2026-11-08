@@ -10,7 +10,10 @@ coverage.*
 
 # Svelte / Node
 node_modules/
-web/dist/
+# web/dist/ is build output, but .gitkeep is tracked so `go build` works
+# before any npm build (see web/embed.go).
+web/dist/*
+!web/dist/.gitkeep
 web/.svelte-kit/
 .vite/
 npm-debug.log*

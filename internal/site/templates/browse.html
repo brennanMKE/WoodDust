@@ -1,0 +1,20 @@
+{{define "body_browse"}}{{template "header" .}}
+<main id="main">
+{{template "breadcrumbs" .Breadcrumbs}}
+  <h1>All woods</h1>
+  <p>{{len .Body.Rows}} woods with sourced hazard information. Every wood dust can cause cancer with long exposure; the table lists hazards found for each wood.</p>
+  <table class="browse">
+    <caption>Woods and their reported hazards</caption>
+    <thead><tr><th scope="col">Wood</th><th scope="col">Botanical name</th><th scope="col">Type</th><th scope="col">Hazards</th><th scope="col">Strongest evidence</th></tr></thead>
+    <tbody>
+    {{range .Body.Rows}}<tr>
+      <th scope="row"><a href="{{.URL}}">{{.Name}}</a></th>
+      <td><i lang="la">{{.BotanicalName}}</i></td>
+      <td>{{.WoodType}}</td>
+      <td>{{join .HazardNames ", "}}</td>
+      <td>{{if .MaxLabel}}{{.MaxLabel}}{{else}}{{evidenceLabel 0}}{{end}}</td>
+    </tr>
+    {{end}}</tbody>
+  </table>
+</main>
+{{template "footer" .}}{{end}}

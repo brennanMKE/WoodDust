@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 6 * * 1" # Mondays: source link check
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  go:
+    name: Go vet + tests (Postgres)
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: wooddust
+          POSTGRES_PASSWORD: wooddust
+          POSTGRES_DB: wooddust_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U wooddust" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgres://wooddust:wooddust@localhost:5432/wooddust_test?sslmode=disable
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: gofmt
+        run: test -z "$(gofmt -l cmd internal migrations web/*.go)"
+      - run: go vet ./...
+      # web/dist/.gitkeep is tracked, so this builds with the fallback shell.
+      - run: go test -p 1 -count=1 ./...
+      - name: Seed against a real database
+        env:
+          DATABASE_URL: ${{ env.TEST_DATABASE_URL }}
+        run: go run ./cmd/wooddust seed
+
+  data:
+    name: Data schema + integrity
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Validate species against JSON Schema
+        run: npx --yes -p ajv-cli@5 -p ajv-formats@3 ajv validate --spec=draft2020 -c ajv-formats -s data/schema/species.schema.json -d "data/species/*.json"
+      - name: Validate sources against JSON Schema
+        run: npx --yes -p ajv-cli@5 -p ajv-formats@3 ajv validate --spec=draft2020 -c ajv-formats -s data/schema/sources.schema.json -d data/sources.json
+      - name: Cross-file integrity (source keys, slugs, aliases, content citations and anchors)
+        run: go run ./cmd/wooddust seed -check
+
+  web:
+    name: SPA check + build
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+
+  links:
+    name: Source link check
+    # Scheduled or manual; on PRs it runs but never blocks (external sites flake).
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect source URLs
+        run: |
+          jq -r '.[] | (.url // empty), (if .doi then "https://doi.org/" + .doi else empty end)' data/sources.json | sort -u > source-urls.txt
+          wc -l source-urls.txt
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress --max-retries 2 --timeout 30 --accept 200..=299,403,429
+            --user-agent "Mozilla/5.0 (DustAlmanac link check)"
+            source-urls.txt
+          fail: ${{ github.event_name != 'pull_request' }}

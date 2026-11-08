@@ -1,0 +1,20 @@
+{{define "head"}}<title>{{.Title}}</title>
+<meta name="description" content="{{.Description}}">
+{{if .NoIndex}}<meta name="robots" content="noindex">
+{{end}}{{if .Canonical}}<link rel="canonical" href="{{.Canonical}}">
+{{end}}<meta property="og:site_name" content="{{.SiteName}}">
+<meta property="og:type" content="{{.OGType}}">
+<meta property="og:title" content="{{.OGTitle}}">
+<meta property="og:description" content="{{.Description}}">
+{{if .Canonical}}<meta property="og:url" content="{{.Canonical}}">
+{{end}}<meta property="og:image" content="{{.Image.URL}}">
+<meta property="og:image:width" content="{{.Image.Width}}">
+<meta property="og:image:height" content="{{.Image.Height}}">
+<meta property="og:image:alt" content="{{.Image.Alt}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{.OGTitle}}">
+<meta name="twitter:description" content="{{.Description}}">
+<meta name="twitter:image" content="{{.Image.URL}}">
+<meta name="twitter:image:alt" content="{{.Image.Alt}}">
+{{range .JSONLD}}<script type="application/ld+json">{{.}}</script>
+{{end}}{{end}}

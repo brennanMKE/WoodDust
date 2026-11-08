@@ -30,7 +30,9 @@ Vite builds `web/dist/index.html`. It contains three markers that Go replaces on
 | `/wood/{slug}` | `species` | `GET /api/v1/species/{slug}` |
 | `/browse` | `browse` | `GET /api/v1/species` |
 | `/risks`, `/protection`, `/protection/{sub}`, `/symptoms`, `/limits`, `/glossary`, `/methodology` | `page` | `GET /api/v1/pages/{path}` |
+| `/print/shop-poster` | `page` | `GET /api/v1/pages/print/shop-poster` (SPA shows `images/art/poster-header.png` and uses a one-page print layout) |
 | `/sources` | `sources` | `GET /api/v1/sources` |
+| `/submit`, `/submit/{slug}` | `submit` | `{}` with HTTP 200 and `noindex`. Placeholder until submissions ship |
 | anything else | `not_found` | `{}` with HTTP 404 |
 
 - Alias URLs (any normalized common name, trade name, botanical name or synonym, e.g. `/wood/wrc`, `/wood/thuja-plicata`) get a **301** to `/wood/{slug}`, from Go.

@@ -1,0 +1,36 @@
+[Unit]
+Description=Dust Almanac (wooddust) web service
+Documentation=https://github.com/brennanMKE/WoodDust
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=wooddust
+Group=wooddust
+# Release layout: /opt/wooddust/releases/<sha>/ with /opt/wooddust/current
+# symlinked to the live one (docs/deployment.md). The working directory holds
+# data/, content/ and images/; the binary has the SPA embedded.
+WorkingDirectory=/opt/wooddust/current
+EnvironmentFile=/etc/wooddust/config.env
+# Seed on every start so the published tables always match the release's
+# data/. Seed is idempotent and runs in one transaction.
+ExecStartPre=/opt/wooddust/current/bin/wooddust seed
+ExecStart=/opt/wooddust/current/bin/wooddust serve
+Restart=on-failure
+RestartSec=5
+
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target

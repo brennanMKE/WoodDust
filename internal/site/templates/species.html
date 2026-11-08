@@ -1,0 +1,60 @@
+{{define "body_species"}}{{template "header" .}}
+<main id="main">
+{{template "breadcrumbs" .Breadcrumbs}}
+{{with .Body}}<article class="species" aria-labelledby="species-title">
+  <header>
+    <h1 id="species-title">{{.Name}}</h1>
+    <p class="botanical"><i lang="la">{{.Species.BotanicalName}}</i> · {{.Species.Family}} · {{.Species.WoodType}}</p>
+    {{if .AlsoKnownAs}}<p class="aka">Also known as: {{join .AlsoKnownAs ", "}}</p>{{end}}
+    <p class="region">Region: {{.Species.Region}}</p>
+  </header>
+  {{if .Image}}<img src="{{.Image.URL}}" alt="{{.Image.Alt}}" width="{{.Image.Width}}" height="{{.Image.Height}}">{{end}}
+  {{if .Species.Description}}<p>{{.Species.Description}}</p>{{end}}
+
+  <section aria-labelledby="hazards-heading">
+    <h2 id="hazards-heading">Health hazards</h2>
+    <ul class="hazards">
+    {{range .Hazards}}<li class="hazard">
+      <h3>{{.TypeName}}</h3>
+      <p>{{template "evidence" .}}</p>
+      <p>{{.Summary}}{{range .Refs}}<sup class="cite"><a href="#src-{{.Key}}" aria-label="Source {{.N}}">{{.N}}</a></sup>{{end}}</p>
+      <dl>
+        <dt>Effects</dt><dd>{{join .Effects ", "}}</dd>
+        <dt>Exposure route</dt><dd>{{join .Routes ", "}}</dd>
+        {{if .Parts}}<dt>From</dt><dd>{{join .Parts ", "}}</dd>{{end}}
+      </dl>
+    </li>
+    {{end}}</ul>
+    <p>Not finding a hazard listed here does not mean this wood is safe. <a href="/risks">All wood dust is hazardous</a>; see <a href="/protection">how to protect yourself</a>.</p>
+  </section>
+
+  {{if or .Species.ExposureLimits .Regulatory}}<section aria-labelledby="limits-heading">
+    <h2 id="limits-heading">Exposure limits</h2>
+    <table>
+      <caption>Workplace exposure limits (8-hour average, mg/m³)</caption>
+      <thead><tr><th scope="col">Body</th><th scope="col">Limit</th><th scope="col">Notes</th></tr></thead>
+      <tbody>
+      {{range .Species.ExposureLimits}}<tr><th scope="row">{{.Body}}</th><td>{{num .ValueMgM3}} mg/m³{{if .Fraction}} ({{.Fraction}}){{end}}</td><td>{{.Note}} <a href="#src-{{.Source}}">source</a></td></tr>
+      {{end}}{{range .Regulatory}}<tr><th scope="row">{{.Body}}</th><td>{{num .Value}} mg/m³</td><td>{{.Note}}</td></tr>
+      {{end}}</tbody>
+    </table>
+    <p><a href="/limits">Compare limits across agencies</a>.</p>
+  </section>{{end}}
+
+  {{if .Species.CarcinogenClass}}<section aria-labelledby="carc-heading">
+    <h2 id="carc-heading">Cancer classifications</h2>
+    <ul>{{range .Species.CarcinogenClass}}<li>{{.Body}}: {{.Class}} <a href="#src-{{.Source}}">source</a></li>{{end}}</ul>
+  </section>{{end}}
+
+  {{if .Species.KnownCompounds}}<section aria-labelledby="compounds-heading">
+    <h2 id="compounds-heading">Known compounds</h2>
+    <ul>{{range .Species.KnownCompounds}}<li>{{.Name}}{{if .Role}}: {{.Role}}{{end}} <a href="#src-{{.Source}}">source</a></li>{{end}}</ul>
+  </section>{{end}}
+
+  {{if .Species.RelatedSpeciesNote}}<p class="related">{{.Species.RelatedSpeciesNote}}</p>{{end}}
+
+  {{template "sourcelist" .Sources}}
+  <p class="reviewed">Last reviewed <time datetime="{{.Species.LastReviewed}}">{{.Species.LastReviewed}}</time>.</p>
+</article>{{end}}
+</main>
+{{template "footer" .}}{{end}}

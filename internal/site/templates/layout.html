@@ -1,0 +1,41 @@
+{{define "header"}}<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="site-name" href="/">{{.Site.Name}}</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="/browse">All woods</a></li>
+      <li><a href="/risks">Risks</a></li>
+      <li><a href="/protection">Protection</a></li>
+      <li><a href="/limits">Exposure limits</a></li>
+      <li><a href="/sources">Sources</a></li>
+    </ul>
+  </nav>
+</header>{{end}}
+
+{{define "footer"}}<footer class="site-footer">
+  <p>All wood dust is hazardous. This site summarizes published evidence; it is not medical advice. See <a href="/methodology">how we rate evidence</a>.</p>
+</footer>{{end}}
+
+{{define "searchform"}}<form class="search" role="search" action="/" method="get">
+  <label for="search-q">Search for a wood</label>
+  <input id="search-q" name="q" type="search" autocomplete="off" value="{{.}}" placeholder="e.g. walnut, WRC, Thuja plicata">
+  <button type="submit">Search</button>
+</form>{{end}}
+
+{{define "breadcrumbs"}}{{if .}}<nav class="breadcrumbs" aria-label="Breadcrumb"><ol>{{range $i, $c := .}}<li>{{if $c.URL}}<a href="{{$c.URL}}">{{$c.Name}}</a>{{else}}<span aria-current="page">{{$c.Name}}</span>{{end}}</li>{{end}}</ol></nav>{{end}}{{end}}
+
+{{define "evidence"}}<span class="evidence evidence-{{.Level}}">Evidence: <strong>{{.Label}}</strong></span>{{end}}
+
+{{define "sourcelist"}}{{if .}}<section aria-labelledby="sources-heading" class="sources">
+  <h2 id="sources-heading">Sources</h2>
+  <ol>
+  {{range .}}<li id="src-{{.Key}}">{{.Citation}}{{if .Link}} <a href="{{.Link}}" rel="noopener">{{.LinkText}}</a>{{end}}{{if .Missing}} (source details unavailable){{end}}</li>
+  {{end}}</ol>
+</section>{{end}}{{end}}
+
+{{define "speciesrow"}}<li class="species-item">
+  <a href="{{.URL}}"><strong>{{.Name}}</strong></a>
+  <i lang="la">{{.BotanicalName}}</i>
+  {{if .HazardNames}}<span class="hazard-types">{{join .HazardNames ", "}}</span>{{end}}
+  {{if .MaxLabel}}<span class="evidence">Strongest evidence: {{.MaxLabel}}</span>{{end}}
+</li>{{end}}

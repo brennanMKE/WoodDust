@@ -1,0 +1,8 @@
+{{define "body_submit"}}{{template "header" .}}
+<main id="main">
+  <h1>Suggest a wood or a correction</h1>
+  <p>Contributions are not open yet. Soon you will be able to suggest a missing wood, correct an entry, or point us to a better source. Every hazard claim will need a citation, and we write everything in our own words.</p>
+  {{if .Body.Slug}}<p>You asked about <a href="/wood/{{.Body.Slug}}">this wood</a>.</p>{{end}}
+  <p>Until then, see <a href="/methodology">how we rate evidence</a> or <a href="/browse">browse all woods</a>.</p>
+</main>
+{{template "footer" .}}{{end}}
