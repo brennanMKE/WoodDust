@@ -20,7 +20,7 @@ Vite builds `web/dist/index.html`. It contains three markers that Go replaces on
 - The SPA reads `#initial` (`{ "route": "...", "data": {...} }`, where `data` matches the API response for that route), clears `#app`, and mounts. It never refetches the initial route's data.
 - Client-side navigation uses the History API and fetches from `/api/v1/*`. Each navigation updates `document.title`, meta description and canonical.
 - Go serves `web/dist` (embedded via `//go:embed`) for `/assets/*`, with an immutable cache for hashed files.
-- Site name comes from config (`SITE_NAME`, default `Wood Dust`). Go exposes it to the SPA in `#initial` as `site: { name, base_url }`.
+- Site name comes from config (`SITE_NAME`, default `Dust Almanac`). Go exposes it to the SPA in `#initial` as `site: { name, base_url }`.
 
 ## 2. Routes
 

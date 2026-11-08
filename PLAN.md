@@ -197,7 +197,7 @@ rest:
 
 ## 10. Open questions
 
-- Site name: candidates being researched in `docs/naming.md`. Paul Bunyan and Babe the Blue Ox will be mascots, drawn as original art, not copied from any specific illustration.
+- Site name: **Dust Almanac** (decided; see `docs/naming.md`). Buy a domain (dustalmanac.com appeared available) after a TSDR/lawyer check. Paul Bunyan and Babe the Blue Ox will be mascots, drawn as original art, not copied from any specific illustration.
 - Hosting: interim at `wooddust.sstools.co` on the existing EC2 instance; a purchased domain later. Only the owner signs in (as admin), so re-enrolling one passkey after the domain move is fine. Canonical URLs move with a 301 redirect from the old host.
 - Outbound email for Portiko's one-time codes: SMTP or SES?
 - License confirmation: MIT (code), CC BY 4.0 (data).

@@ -1,5 +1,7 @@
 # Site naming
 
+> **Decision (2026-11-07):** the site is named **Dust Almanac**. Paul Bunyan and Babe appear as original art styled after the 1914–1922 Red River Lumber Co. pamphlets (US public domain), avoiding any protected depiction. Prompts: `images/prompts/site-art.md`. Interim host: `wooddust.sstools.co`.
+
 Status: proposal, 2026-11-07. Not legal advice. **Check with a trademark lawyer before buying a domain you intend to brand on, and before filing any trademark application.**
 
 ## What the site is
