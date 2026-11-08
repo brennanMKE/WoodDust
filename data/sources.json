@@ -289,6 +289,106 @@
     "verified": true,
     "verification_note": "Read via WebFetch; sections Standards, Hazard Recognition, Evaluating Exposure, Possible Solutions; no dedicated wood dust standard named."
   },
+  "CambridgeFD-2023": {
+    "tier": "A",
+    "citation": "Cambridge Fire Department (City of Cambridge, Massachusetts). Dirty, oily rags bundled closely together can spontaneously ignite. News release, July 14, 2023.",
+    "title": "Dirty, Oily Rags bundled closely together can Spontaneously Ignite",
+    "url": "https://www.cambridgema.gov/cfd/news/2023/07/oilyragsspontaneouscombustion",
+    "accessed": "2026-11-07",
+    "license": "not stated on page - cite facts only",
+    "verified": true,
+    "verification_note": "Read via WebFetch: rags used with natural oil paints, varnishes, stains and turpentine give off heat as they dry and can smolder and ignite when piled or boxed. Gives no disposal steps; points to Massachusetts DFS 'Disposing of oily rags' (mass.gov/info-details/disposing-of-oily-rags), which returned HTTP 403 and was not read."
+  },
+  "HSE-HSG262": {
+    "tier": "A",
+    "citation": "Health and Safety Executive. Managing skin exposure risks at work. HSG262 (Second edition). HSE Books; 2015. ISBN 978 0 7176 6649 2.",
+    "title": "Managing skin exposure risks at work (HSG262)",
+    "url": "https://www.hse.gov.uk/pubns/books/hsg262.htm",
+    "accessed": "2026-11-07",
+    "license": "Crown copyright 2015; Open Government Licence (stated in the PDF, version not given)",
+    "verified": true,
+    "verification_note": "PDF https://www.hse.gov.uk/pubns/priced/hsg262.pdf downloaded and read: irritant vs allergic contact dermatitis (paras 9-11), urticaria (para 12), wood dust from sanding named as a skin hazard (para 16), pre-work 'barrier' creams are not a substitute for gloves (para 74)."
+  },
+  "HSE-INDG172": {
+    "tier": "A",
+    "citation": "Health and Safety Executive. Breathe freely: A workers' information card on occupational asthma. INDG172(rev1). HSE; 2012.",
+    "title": "Breathe freely: occupational asthma card (INDG172)",
+    "url": "https://www.hse.gov.uk/pubns/indg172.pdf",
+    "accessed": "2026-11-07",
+    "license": "Crown copyright; PDF points to HSE copyright page (HSE site footer: OGL v3.0) - own wording",
+    "verified": true,
+    "verification_note": "PDF downloaded and read: sensitisation symptoms (runny/itchy eyes and nose, then wheeze, chest tightness, breathlessness, cough); not on first exposure; most cases in first two years, sometimes after decades; often worse evening/night; improvement on weekends and holidays suggests occupational cause; wood dusts listed; see doctor."
+  },
+  "NCI-PDQ-Sinonasal": {
+    "tier": "A",
+    "citation": "PDQ Adult Treatment Editorial Board. Paranasal Sinus and Nasal Cavity Cancer Treatment (PDQ) - Patient Version. National Cancer Institute. Updated November 8, 2024.",
+    "title": "Paranasal Sinus and Nasal Cavity Cancer Treatment (PDQ) - Patient Version",
+    "url": "https://www.cancer.gov/types/head-and-neck/patient/adult/paranasal-sinus-treatment-pdq",
+    "accessed": "2026-11-07",
+    "license": "US federal government work (NCI); PDQ text reusable per NCI terms - cite facts only, own wording",
+    "verified": true,
+    "verification_note": "Read via WebFetch: signs include sinus blockage that does not clear, nosebleeds, a sore inside the nose that does not heal, facial numbness, eye swelling; early stages may have no symptoms; woodworking, furniture making and sawmill work listed among risk factors. NCI reuse terms not re-read this session."
+  },
+  "NIOSH-Elastomeric": {
+    "tier": "A",
+    "citation": "National Institute for Occupational Safety and Health. Elastomeric Respirators. Updated October 28, 2026.",
+    "title": "Elastomeric Respirators",
+    "url": "https://www.cdc.gov/niosh/ppe/respirators/elastomeric.html",
+    "accessed": "2026-11-07",
+    "license": "US public domain (US federal government work)",
+    "verified": true,
+    "verification_note": "Read via WebFetch: reusable, can be cleaned; quarter, half and full facepiece; need fit testing; use particulate filters or gas/vapor cartridges/canisters; full facepieces can take cartridges for gases, vapors and particles."
+  },
+  "NIOSH-EyeSafety": {
+    "tier": "A",
+    "citation": "National Institute for Occupational Safety and Health. Eye Safety for Workers. Updated October 28, 2026.",
+    "title": "Eye Safety for Workers",
+    "url": "https://www.cdc.gov/niosh/ppe/eye-safety/index.html",
+    "accessed": "2026-11-07",
+    "license": "US public domain (US federal government work)",
+    "verified": true,
+    "verification_note": "Read via WebFetch: small particles including wood chips cause most eye injuries; wood slivers can penetrate the eye; eye protection types are spectacles, goggles, face shields, full facepiece respirators; choose by hazard and fit for coverage."
+  },
+  "NIOSH-FFR": {
+    "tier": "A",
+    "citation": "National Institute for Occupational Safety and Health. Filtering Facepiece Respirators. Updated October 28, 2026.",
+    "title": "Filtering Facepiece Respirators",
+    "url": "https://www.cdc.gov/niosh/ppe/respirators/ffr.html",
+    "accessed": "2026-11-07",
+    "license": "US public domain (US federal government work)",
+    "verified": true,
+    "verification_note": "Read via WebFetch: protect against particles, not gases or vapors; nine classes (N/R/P x 95/99/99.97, 99.97 labeled 100); NIOSH approval marking and TC number; user seal check each time donned, not a substitute for fit testing; replace when damaged, soiled or breathing resistance rises."
+  },
+  "NIOSH-FitTesting": {
+    "tier": "A",
+    "citation": "National Institute for Occupational Safety and Health. Fit Testing. Updated October 28, 2026.",
+    "title": "Fit Testing",
+    "url": "https://www.cdc.gov/niosh/ppe/respirators/fit-testing.html",
+    "accessed": "2026-11-07",
+    "license": "US public domain (US federal government work)",
+    "verified": true,
+    "verification_note": "Read via WebFetch: qualitative vs quantitative tests; OSHA requires annual fit test and retest for new model/size; retest after weight or facial/dental change; tight-fitting respirators need clean-shaven seal area; loose-fitting respirators need no fit test and can be worn with facial hair."
+  },
+  "NIOSH-PAPR": {
+    "tier": "A",
+    "citation": "National Institute for Occupational Safety and Health. Powered Air-Purifying Respirators. Updated October 28, 2026.",
+    "title": "Powered Air-Purifying Respirators",
+    "url": "https://www.cdc.gov/niosh/ppe/respirators/papr.html",
+    "accessed": "2026-11-07",
+    "license": "US public domain (US federal government work)",
+    "verified": true,
+    "verification_note": "Read via WebFetch: battery blower pushes filtered air; tight- or loose-fitting; only tight-fitting PAPRs need fit testing; loose-fitting PAPRs suit people with facial hair; hoods/helmets also cover the eyes; HE and PAPR100 filters 99.97%."
+  },
+  "NIOSH-TakeHome": {
+    "tier": "A",
+    "citation": "National Institute for Occupational Safety and Health. About Take-Home Exposures. Updated October 28, 2026.",
+    "title": "About Take-Home Exposures",
+    "url": "https://www.cdc.gov/niosh/reproductive-health/about/take-home.html",
+    "accessed": "2026-11-07",
+    "license": "US public domain (US federal government work)",
+    "verified": true,
+    "verification_note": "Read via WebFetch: contaminants travel on skin, hair, clothes and shoes to floors, furniture and cars; change clothes and shoes before leaving, store and launder work clothes separately, wash hands. Examples on page are lead, pesticides, beryllium, asbestos - wood dust not named."
+  },
   "Baatjies-2023": {
     "tier": "B",
     "citation": "Baatjies R, Chamba P, Jeebhay MF. Wood dust and asthma. Curr Opin Allergy Clin Immunol. 2023;23(2):76-84.",

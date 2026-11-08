@@ -78,9 +78,9 @@ Each is used as the page's share image (`images/pages/<file>.jpg`, cropped to 12
 > [Style block] Scene: a shaft of window light crossing a woodshop, full of fine floating dust specks. Paul Bunyan, wearing his respirator, holds a large magnifying glass up to the sunbeam to show how much fine dust is in the air. Babe looks at the beam with a wary, wrinkled nose. Wide composition, margin on all sides, cream paper background.
 
 ### `/protection` — `images/pages/protection.jpg`
-**Alt:** Paul Bunyan and Babe stand at a workbench with a dust collector, an air cleaner, and a respirator, glasses and earmuffs laid out.
+**Alt:** Paul Bunyan and Babe stand at a workbench with a dust collector hose, a respirator, safety glasses and gloves laid out.
 
-> [Style block] Scene: a tidy workbench. Laid out on it in order from left to right: a dust collector hose, a ceiling air cleaner box shown hanging above, and a half-face respirator, safety glasses, earmuffs and gloves. Paul Bunyan stands behind the bench gesturing at the gear like a proud instructor. Babe nods along. Wide composition, margin on all sides, cream paper background.
+> [Style block] Scene: a tidy workbench. Laid out on it in order from left to right: a dust collector hose, then a half-face respirator, safety glasses and gloves. Paul Bunyan stands behind the bench gesturing at the gear like a proud instructor. Babe nods along. Wide composition, margin on all sides, cream paper background.
 
 ### `/protection/dust-collection` — `images/pages/protection-dust-collection.jpg`
 **Alt:** Babe the Blue Ox pulls a wagon carrying a giant dust collector while Paul connects a hose to a table saw.
