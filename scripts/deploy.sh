@@ -72,7 +72,7 @@ hdr "activate"
 remote "
 SHA=$SHA
 R=\$ROOT/releases/\$SHA
-test -f \$ETC/config.env || { echo 'not provisioned: run scripts/provision.sh '\$ENV_NAME >&2; exit 1; }
+sudo test -f \$ETC/config.env || { echo 'not provisioned: run scripts/provision.sh '\$ENV_NAME >&2; exit 1; }
 PREV=\$(readlink \$ROOT/current 2>/dev/null || true)
 if [ \"\$PREV\" = \"\$R\" ]; then echo \"·· \$SHA is already live; restarting it\"; fi
 sudo rm -rf \$R.new && sudo install -d -m 0755 \$R.new \$R.new/bin
