@@ -118,7 +118,7 @@ WoodDust runs its own Portiko provider in-process. No `accounts.*` host and no d
 
 **Authorization stays in WoodDust:** a local `users` row keyed by Portiko subject holds `display_name`, `is_admin`, `is_moderator`, `active`. Portiko provides identity only, per its own design.
 
-Browsing, search and the data download stay anonymous. Only submitting, the account page and the admin console need sign-in.
+**Only the owner signs in.** Sign-in exists solely for the admin console. Browsing, search, downloads and submissions are all anonymous. There is no public account page. Portiko registration is closed after the owner enrolls with `BOOTSTRAP_CODE`.
 
 ## 6. Submissions (additions and corrections)
 
@@ -134,9 +134,16 @@ Kinds:
 Form rules (enforce the handoff's data policy at input time):
 - Hazard claims require a citation with DOI, PMID or an official URL. The form validates DOI/PMID format and warns when the URL is a leads-only domain (Wood Database, Haz-Map, forums), as listed in `CONTRIBUTING.md`.
 - A plain-language notice: write in your own words; do not paste abstracts or charts.
-- Rate limit per user and per IP; size limits; no file uploads in v1.
+- **Anonymous, no account.** Abuse controls, all server-side:
+  - Per-IP rate limit (e.g. 5 per hour, 20 per day) and a global ceiling (e.g. 200 per day) that switches to "try again later".
+  - A honeypot field, and a minimum time on the form (a signed timestamp token issued with the form, so no cookie is needed).
+  - Size limits and link-count limits. No file uploads.
+  - No third-party CAPTCHA.
+- **Optional email** for follow-up questions only. It is never shown publicly and is deleted when the submission is closed.
+- **Privacy:** store a keyed hash of the IP with a daily-rotating salt, for rate limiting and abuse review only, never the raw IP. The form states what is kept.
+- After submitting, the person gets a reference number and an unguessable status link (`/submit/status/{token}`) showing the status and any moderator questions. That link is the only way to see it.
 
-Workflow: `new → triaging → needs_info → accepted | rejected → exported → merged`. Each change is recorded in an audit log, and the submitter can see the status on `/account`. Moderators can comment, and `needs_info` comments are shown to the submitter.
+Workflow: `new → triaging → needs_info → accepted | rejected → exported → merged`, plus `spam`. Each change is recorded in an audit log. The owner can add notes; a note marked "visible to submitter" appears on the status page.
 
 ## 7. REST API
 
