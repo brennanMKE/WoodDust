@@ -12,7 +12,7 @@ web/dist (embedded) ──► page shell with <!--ssr-*--> markers ────�
 
 | Package | Role |
 |---|---|
-| `cmd/wooddust` | Subcommands `serve`, `seed [-check] [-strict]`, `migrate up\|down [N]\|version`; wires config, store, middleware |
+| `cmd/wooddust` | Subcommands `serve`, `seed [-check] [-strict]`, `migrate up\|down [N]\|version`, `apikey create\|list\|revoke`, `users list\|admin\|unadmin`, `identity <portiko cmd>`; wires config, stores, identity, middleware |
 | `internal/config` | Environment config (`.env.example`). Bind host is fixed to `127.0.0.1` |
 | `internal/model` | Types mirroring `data/schema`, display labels (contract §5), `Normalize` and the search score formula |
 | `internal/data` | Loads `data/` strictly (unknown fields fail) and runs cross-file integrity checks |
@@ -21,6 +21,8 @@ web/dist (embedded) ──► page shell with <!--ssr-*--> markers ────�
 | `internal/store` | Postgres catalog: queries, search SQL, and the transactional `Seed` |
 | `internal/memstore` | In-memory catalog from a `data.Dataset`: the handler-test fake, and `serve` without `DATABASE_URL` |
 | `internal/site` | Handlers for the API (contract §3) and server-rendered pages (contract §1–2), sitemap, robots, images, assets |
+| `internal/contrib` | Anonymous submissions (validation, form tokens, honeypot, IP hashing, submission limiter), admin API, API keys, stats, export drafts, the auth layer (session or key, scopes, Origin CSRF check), and the Postgres store for migration `000002` incl. the `rp/session` store |
+| `internal/identity` | Embedded Portiko provider and the site's `rp` client; mounts identity paths, `/auth/*`, the bootstrap enrollment gate; `wooddust identity` passthrough. See `docs/portiko-integration.md` |
 | `internal/middleware` | Security headers/CSP, gzip, request logging, client IP via `TRUSTED_PROXIES`, per-IP API rate limit |
 | `web` | `//go:embed all:dist` (see `web/embed.go` for the `.gitkeep` arrangement) |
 
@@ -50,8 +52,8 @@ Content pages: the leading `# Title` in a Markdown file is dropped (the title co
 
 ## Security
 
-CSP is same-origin only, with no inline script allowance: the only inline scripts are JSON blocks (`application/json`, `application/ld+json`), which browsers never execute; `json.Marshal` escapes `<`, `>` and `&` so data cannot close the tag. Also `frame-ancestors 'none'`, `nosniff`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`. `/api/` is rate-limited per client IP (in memory); the client IP comes from `X-Forwarded-For` only when the peer is in `TRUSTED_PROXIES`.
+CSP is same-origin only, with no inline script allowance: the only inline scripts are JSON blocks (`application/json`, `application/ld+json`), which browsers never execute; `json.Marshal` escapes `<`, `>` and `&` so data cannot close the tag. Also `frame-ancestors 'none'`, `nosniff`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`. `/api/` is rate-limited per client IP (in memory); the client IP comes from `X-Forwarded-For` only when the peer is in `TRUSTED_PROXIES`. The one CSP exception is Portiko's own pages (`/signin`, `/u/`, …), whose templates need inline script and style; they get a separate same-origin policy with `'unsafe-inline'` (docs/portiko-integration.md §2).
 
-## Seams for later phases
+## Contributions, sign-in and API keys
 
-Portiko sign-in, submissions and API keys (PLAN §5–7) are not built. They will mount routes on the mux from `site.Server.Routes()` (`/auth/*`, `/login`, `/submit`, `/account`, `/admin/*`, authenticated `/api/v1/*`) and add migrations `000002+`. `robots.txt` already disallows `/submit`, `/account`, `/admin` and `/auth/`.
+Migration `000002` adds `users`, `rp_sessions`, `submissions`, `submission_events`, `api_keys` and `audit_log` (species referenced by slug text). `internal/contrib` registers the submission and admin endpoints on the site mux (contract §6–7); `internal/site` renders `/submit`, `/submit/status/{token}` and `/admin*` with their `#initial` data. The Portiko provider runs in-process against its own database (`IDENTITY_DATABASE_URL`) and is mounted only on its identity paths; see `docs/portiko-integration.md`. Without `DATABASE_URL`, submission endpoints answer 503; without `IDENTITY_DATABASE_URL`, sign-in is disabled and `/admin` answers 503 while API keys keep working. API docs: `docs/api.md`.

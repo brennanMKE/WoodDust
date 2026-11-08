@@ -11,7 +11,9 @@
 # script defaults it to the local wooddust_test database when psql can reach
 # it, and says loudly when it cannot, because a green run without it does not
 # cover SQL. The DB tests migrate that database down and up: never point
-# TEST_DATABASE_URL at data you care about.
+# TEST_DATABASE_URL at data you care about. The Portiko sign-in test also
+# needs TEST_IDENTITY_DATABASE_URL (default: wooddust_identity_test), whose
+# public schema it DROPS.
 
 set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -30,8 +32,15 @@ run_go() {
      && psql -d wooddust_test -Atc 'select 1' >/dev/null 2>&1; then
     export TEST_DATABASE_URL="postgres://${USER}@localhost/wooddust_test?sslmode=disable"
   fi
+  if [ -z "${TEST_IDENTITY_DATABASE_URL:-}" ] && command -v psql >/dev/null 2>&1 \
+     && psql -d wooddust_identity_test -Atc 'select 1' >/dev/null 2>&1; then
+    export TEST_IDENTITY_DATABASE_URL="postgres://${USER}@localhost/wooddust_identity_test?sslmode=disable"
+  fi
   if [ -z "${TEST_DATABASE_URL:-}" ]; then
     echo "WARNING: TEST_DATABASE_URL unset — DB-backed tests will SKIP."
+  fi
+  if [ -z "${TEST_IDENTITY_DATABASE_URL:-}" ]; then
+    echo "WARNING: TEST_IDENTITY_DATABASE_URL unset — the Portiko sign-in test will SKIP (createdb wooddust_identity_test)."
   fi
   step "gofmt"
   unformatted="$(gofmt -l cmd internal migrations web/*.go)"

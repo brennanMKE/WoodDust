@@ -33,6 +33,73 @@ sudo httpd -t && sudo systemctl reload httpd
 
 DNS: `wooddust.sstools.co` is covered by the wildcard record and certificate; no new certificate is needed. The existing certbot deploy hook reloads Apache on renewal.
 
+## Sign-in and submissions (one-time, owner to approve)
+
+Written for the owner to review and run. Nothing here has been done on the host.
+
+Sign-in uses the Portiko provider embedded in the binary (PLAN §5, `docs/portiko-integration.md`). Portiko's tables live in a **separate database** on the same Postgres server. `wooddust serve` applies Portiko's migrations to it on every start, as it does for the site database.
+
+1. Create the identity database:
+
+   ```sh
+   sudo -u postgres createdb -O wooddust wooddust_identity
+   ```
+
+2. Generate the secrets, one `openssl rand -hex 32` each, and put them in `/etc/wooddust/config.env` (see `deploy/config.env.example`):
+
+   | Variable | Purpose |
+   |---|---|
+   | `IDENTITY_CRYPTO_KEY` | Portiko: seals the signing keys at rest and encrypts authorization codes. Must stay stable; losing it means re-enrolling |
+   | `IDENTITY_CLIENT_SECRET` | The site's client secret with its own provider |
+   | `COOKIE_KEY` | Protects the sign-in redirect cookies (state, PKCE, nonce) |
+   | `FORM_TOKEN_KEY` | Signs submit-form tokens; also derives the daily IP-hash salt unless `IP_HASH_KEY` is set |
+   | `IDENTITY_BOOTSTRAP_CODE` | Opens passkey enrollment at `/auth/enroll`. Use another long random value |
+
+   Also set `IDENTITY_DATABASE_URL`, and the `IDENTITY_SMTP_*`/`IDENTITY_EMAIL_FROM` settings for one-time codes (until SMTP is configured, codes go to the journal, which is fine for the one owner enrollment but must not stay that way). Do **not** set `DEV_INSECURE` in production. `TRUSTED_PROXIES=127.0.0.1,::1` is shared with Portiko's rate limits.
+
+3. Register the site as the provider's single first-party client. This is a one-time command, run as the service user with the service's environment file (`systemd-run` reads it exactly as the unit does, including values with spaces):
+
+   ```sh
+   wd() { sudo systemd-run --pipe --wait --quiet -p User=wooddust \
+     -p EnvironmentFile=/etc/wooddust/config.env -p WorkingDirectory=/opt/wooddust/current \
+     /opt/wooddust/current/bin/wooddust "$@"; }
+   wd identity register-site
+   ```
+
+   The `wd` helper is used for the other operator commands below too.
+
+   `register-site` is shorthand for Portiko's own command with this site's values:
+
+   ```sh
+   wooddust identity register-client -first-party wooddust https://wooddust.sstools.co \
+     https://wooddust.sstools.co/auth/callback "$IDENTITY_CLIENT_SECRET"
+   ```
+
+   Optional, so a sign-out at the provider also ends the site session:
+   `wooddust identity set-logout-uri wooddust https://wooddust.sstools.co/auth/backchannel-logout`.
+
+4. Restart the service. The log should say `sign-in enabled`.
+
+5. **Enroll the owner** (once, from your own browser):
+   1. Open `https://wooddust.sstools.co/auth/enroll` and enter `IDENTITY_BOOTSTRAP_CODE`. That sets a 30-minute cookie that opens Portiko's registration endpoints for this browser only. Without it they answer 403, so nobody else can create an account.
+   2. You are sent to sign in. Choose "sign in with your email", enter the code from the email (or from `journalctl -u wooddust` before SMTP is set up), and create a passkey.
+   3. You land on `/admin`. **The first subject ever to sign in becomes the admin** (the local `users.is_admin`). Anyone who signs in later gets 403 on every admin route.
+   4. Check with `wd users list`. Afterwards you may remove `IDENTITY_BOOTSTRAP_CODE`, which closes enrollment completely. Keep it in your password manager to re-open enrollment for a new device or recovery.
+
+   If the wrong subject became admin: `wd users unadmin <subject>` and `wd users admin <subject>`.
+
+6. API keys (e.g. for Home Assistant, see `docs/api.md`):
+
+   ```sh
+   wd apikey create -name home-assistant -scopes stats:read
+   wd apikey list
+   wd apikey revoke <prefix>
+   ```
+
+The RP ID is the host of `BASE_URL`. A passkey is bound to it forever, so moving to a purchased domain means enrolling again (PLAN §10), and re-running `register-site` for the new `BASE_URL`.
+
+Backups: once submissions exist, dump both `wooddust` and `wooddust_identity` nightly.
+
 ## Each release
 
 Build locally (or in CI) for linux/arm64 or amd64 as the instance requires:
@@ -64,5 +131,4 @@ Apache serves `/images/` directly from `current/images/` with a 30-day cache; th
 ## Later
 
 - Moving to a purchased domain: add a vhost for it, set `BASE_URL`, and 301 the old host (PLAN §10).
-- Portiko sign-in will need its own database (`wooddust_identity`) and secrets in `config.env` (PLAN §5).
-- Backups: dump the `wooddust` database nightly once it holds submissions; published tables are rebuildable from git.
+- Backups: dump the `wooddust` and `wooddust_identity` databases nightly once they hold submissions; published tables are rebuildable from git.

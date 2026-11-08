@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS audit_log;
+DROP TABLE IF EXISTS api_keys;
+DROP TABLE IF EXISTS submission_events;
+DROP TABLE IF EXISTS submissions;
+DROP TABLE IF EXISTS rp_sessions;
+DROP TABLE IF EXISTS users;

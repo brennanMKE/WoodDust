@@ -76,6 +76,11 @@ func (s *Server) robots(w http.ResponseWriter, r *http.Request) {
 		"Disallow: /account\n" +
 		"Disallow: /admin\n" +
 		"Disallow: /auth/\n" +
+		"Disallow: /login\n" +
+		"Disallow: /signin\n" +
+		"Disallow: /u/\n" +
+		"Disallow: /oauth/\n" +
+		"Disallow: /accounts/\n" +
 		"Disallow: /api/\n" +
 		"Disallow: /*?q=\n" +
 		"\nSitemap: " + s.absURL("/sitemap.xml") + "\n"))

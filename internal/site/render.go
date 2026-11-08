@@ -269,7 +269,9 @@ func (s *Server) render(w http.ResponseWriter, r *http.Request, v view) {
 
 	h := w.Header()
 	h.Set("Content-Type", "text/html; charset=utf-8")
-	h.Set("Cache-Control", "no-cache")
+	if h.Get("Cache-Control") == "" {
+		h.Set("Cache-Control", "no-cache")
+	}
 	if v.Head.NoIndex {
 		h.Set("X-Robots-Tag", "noindex")
 	}
@@ -678,21 +680,4 @@ func (s *Server) renderNotFound(w http.ResponseWriter, r *http.Request, name str
 		NoIndex:     true,
 	}
 	s.render(w, r, view{Status: http.StatusNotFound, Route: "not_found", Head: head, Template: "body_not_found", Body: body})
-}
-
-// pageSubmit is the contributions placeholder (contract §2, route "submit").
-func (s *Server) pageSubmit(w http.ResponseWriter, r *http.Request) {
-	slug := r.PathValue("slug")
-	if slug != "" {
-		if _, ok, err := s.cat.GetSpecies(r.Context(), slug); err != nil || !ok {
-			slug = ""
-		}
-	}
-	head := headData{
-		Title:       "Suggest a wood or a correction | " + s.siteName,
-		Description: "Suggest a missing wood, a correction, or a better source for " + s.siteName + ".",
-		Canonical:   s.absURL("/submit"),
-		NoIndex:     true,
-	}
-	s.render(w, r, view{Route: "submit", Head: head, Template: "body_submit", Body: struct{ Slug string }{slug}})
 }

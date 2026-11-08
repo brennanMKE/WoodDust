@@ -1,8 +1,36 @@
 {{define "body_submit"}}{{template "header" .}}
 <main id="main">
   <h1>Suggest a wood or a correction</h1>
-  <p>Contributions are not open yet. Soon you will be able to suggest a missing wood, correct an entry, or point us to a better source. Every hazard claim will need a citation, and we write everything in our own words.</p>
-  {{if .Body.Slug}}<p>You asked about <a href="/wood/{{.Body.Slug}}">this wood</a>.</p>{{end}}
-  <p>Until then, see <a href="/methodology">how we rate evidence</a> or <a href="/browse">browse all woods</a>.</p>
+  {{if .Body.Target}}<p>About <a href="{{.Body.Target.URL}}">{{.Body.Target.Name}}</a>.</p>{{end}}
+  {{if .Body.Available}}
+  <p>Suggest a missing wood, correct an entry, point us to a better source, or tell us about a reaction. No account is needed.</p>
+  <ul>
+    <li>Every hazard claim needs a source with a DOI, a PubMed ID or an official URL. Sites like the Wood Database and Haz-Map are leads, not sources.</li>
+    <li>Write in your own words. Do not paste abstracts or charts.</li>
+    <li>Reaction reports are never published. This is not a medical service: if you are unwell, see a doctor.</li>
+  </ul>
+  <p><strong>What we keep:</strong> your suggestion, an optional email address (only to ask follow-up questions; deleted when we close the suggestion), and a keyed hash of your IP address that changes daily, used only to stop abuse. We never store your IP address itself.</p>
+  <p>The form needs JavaScript. You will get a reference number and a private link to check the status.</p>
+  {{else}}
+  <p>Suggestions are not open on this server yet. See <a href="/methodology">how we rate evidence</a> or <a href="/browse">browse all woods</a>.</p>
+  {{end}}
+</main>
+{{template "footer" .}}{{end}}
+
+{{define "body_submission_status"}}{{template "header" .}}
+<main id="main">
+  <h1>Suggestion {{.Body.Reference}}</h1>
+  <p>Status: <strong>{{.Body.Status}}</strong></p>
+  <p>Received {{.Body.CreatedAt.Format "2 January 2006"}}; last updated {{.Body.UpdatedAt.Format "2 January 2006"}}.</p>
+  {{if .Body.Notes}}<h2>Notes from the editor</h2>
+  <ul>{{range .Body.Notes}}<li><time datetime="{{.At.Format "2006-01-02"}}">{{.At.Format "2 January 2006"}}</time>: {{.Text}}</li>{{end}}</ul>{{end}}
+  <p>Keep this link private: anyone with it can see this page.</p>
+</main>
+{{template "footer" .}}{{end}}
+
+{{define "body_admin"}}{{template "header" .}}
+<main id="main">
+  <h1>Admin</h1>
+  {{if .Body.Message}}<p role="alert">{{.Body.Message}}</p>{{else}}<p>The admin console needs JavaScript.</p>{{end}}
 </main>
 {{template "footer" .}}{{end}}

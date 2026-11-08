@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io/fs"
 	"net/url"
 	"strings"
 	"time"
@@ -38,7 +39,11 @@ func Open(ctx context.Context, databaseURL string) (*pgxpool.Pool, error) {
 }
 
 func newMigrate(databaseURL string) (*migrate.Migrate, error) {
-	src, err := iofs.New(migrations.FS, ".")
+	return newMigrateFS(databaseURL, migrations.FS)
+}
+
+func newMigrateFS(databaseURL string, fsys fs.FS) (*migrate.Migrate, error) {
+	src, err := iofs.New(fsys, ".")
 	if err != nil {
 		return nil, err
 	}
@@ -59,6 +64,21 @@ func newMigrate(databaseURL string) (*migrate.Migrate, error) {
 // MigrateUp applies every pending migration.
 func MigrateUp(databaseURL string) error {
 	m, err := newMigrate(databaseURL)
+	if err != nil {
+		return err
+	}
+	defer m.Close()
+	if err := m.Up(); err != nil && !errors.Is(err, migrate.ErrNoChange) {
+		return err
+	}
+	return nil
+}
+
+// MigrateUpFS applies every pending migration in fsys (golang-migrate
+// NNNNNN_name.up.sql files). It migrates the separate identity database
+// with Portiko's embedded migrations, which Portiko does not apply itself.
+func MigrateUpFS(databaseURL string, fsys fs.FS) error {
+	m, err := newMigrateFS(databaseURL, fsys)
 	if err != nil {
 		return err
 	}

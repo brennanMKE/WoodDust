@@ -482,17 +482,27 @@ func TestMethodNotAllowed(t *testing.T) {
 	}
 }
 
-func TestSubmitPlaceholder(t *testing.T) {
+func TestSubmitPages(t *testing.T) {
 	env := newEnv(t, nil)
-	for _, p := range []string{"/submit", "/submit/oak", "/submit/unknown"} {
+	for _, p := range []string{"/submit", "/submit/oak", "/submit?name=Bubinga"} {
 		rec := get(t, env.h, p)
 		body := rec.Body.String()
 		if rec.Code != 200 || !strings.Contains(body, `<meta name="robots" content="noindex">`) {
 			t.Errorf("%s: %d noindex=%v", p, rec.Code, strings.Contains(body, "noindex"))
 		}
 		init := initial(t, body)
-		if init["route"] != "submit" || len(init["data"].(map[string]any)) != 0 {
+		data, _ := init["data"].(map[string]any)
+		if init["route"] != "submit" || data == nil || len(data["kinds"].([]any)) != 4 {
 			t.Errorf("%s: initial %v", p, init)
 		}
+		if p == "/submit/oak" && data["target"].(map[string]any)["slug"] != "oak" {
+			t.Errorf("target: %v", data["target"])
+		}
+		if p == "/submit?name=Bubinga" && data["prefill_name"] != "Bubinga" {
+			t.Errorf("prefill: %v", data["prefill_name"])
+		}
+	}
+	if rec := get(t, env.h, "/submit/unknown"); rec.Code != 404 {
+		t.Errorf("/submit/unknown: %d", rec.Code)
 	}
 }

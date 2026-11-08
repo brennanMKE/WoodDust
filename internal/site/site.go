@@ -4,9 +4,9 @@
 // (docs/contract.md). Handlers depend only on the narrow Catalog interface,
 // so tests run against internal/memstore with no database.
 //
-// Seams for later phases (PLAN §5–7): sign-in (Portiko), submissions and API
-// keys mount extra routes on the mux returned by Routes; robots.txt already
-// disallows /submit, /account and /admin.
+// Submissions, the admin API and API keys come from internal/contrib
+// (Options.Contrib); Portiko's identity routes are mounted on the same mux
+// by internal/identity.
 package site
 
 import (
@@ -19,6 +19,7 @@ import (
 	"strings"
 
 	"github.com/brennanMKE/WoodDust/internal/content"
+	"github.com/brennanMKE/WoodDust/internal/contrib"
 	"github.com/brennanMKE/WoodDust/internal/model"
 )
 
@@ -45,6 +46,9 @@ type Options struct {
 	// the built-in shell is used.
 	Dist   fs.FS
 	Logger *slog.Logger
+	// Contrib serves submissions, admin and API keys (contract §6–7). Nil
+	// leaves those routes unregistered (tests of the public site).
+	Contrib *contrib.API
 }
 
 // Server serves the site.
@@ -58,6 +62,7 @@ type Server struct {
 	dist      fs.FS
 	shell     shell
 	log       *slog.Logger
+	contrib   *contrib.API
 }
 
 // New builds a Server.
@@ -73,6 +78,7 @@ func New(o Options) *Server {
 		imagesDir: o.ImagesDir,
 		dist:      o.Dist,
 		log:       o.Logger,
+		contrib:   o.Contrib,
 	}
 	if s.siteName == "" {
 		s.siteName = DefaultSiteName
@@ -119,9 +125,17 @@ func (s *Server) Routes() *http.ServeMux {
 	}
 	mux.HandleFunc("GET /protection/{sub}", s.pageContent)
 	mux.HandleFunc("GET /print/{sub}", s.pageContent)
-	// Placeholder until submissions ship (PLAN §6); sign-in will wrap these.
+	// Contributions (contract §2, §6) and the admin console (§7).
 	mux.HandleFunc("GET /submit", s.pageSubmit)
 	mux.HandleFunc("GET /submit/{slug}", s.pageSubmit)
+	mux.HandleFunc("GET /submit/status/{token}", s.pageSubmissionStatus)
+	mux.HandleFunc("GET /admin", s.pageAdmin)
+	mux.HandleFunc("GET /admin/submissions", s.pageAdmin)
+	mux.HandleFunc("GET /admin/submissions/{id}", s.pageAdmin)
+	mux.HandleFunc("GET /admin/api-keys", s.pageAdmin)
+	if s.contrib != nil {
+		s.contrib.Register(mux)
+	}
 
 	// SEO and static.
 	mux.HandleFunc("GET /sitemap.xml", s.sitemap)
