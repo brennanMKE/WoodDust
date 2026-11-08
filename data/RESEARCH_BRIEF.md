@@ -5,7 +5,7 @@ Read `wood-dust-site-handoff.md` sections 1-5 first. That file is the authority 
 ## Output files (only write your own files; other agents run in parallel)
 
 - `data/species/<slug>.json` — one per species, must validate against `data/schema/species.schema.json`.
-- `data/sources/<batch-name>.json` — Tier C and D sources YOU introduce, keyed by source key, validating against `data/schema/sources.schema.json`.
+- `data/sources.json` — the single source registry (batch files were merged into it). New Tier C and D sources you introduce go here, keyed by source key, validating against `data/schema/sources.schema.json`.
 - `data/verify/<batch-name>.md` — every item you could not verify (citation, DOI, botanical name, claim). Never fill gaps from memory.
 
 ## Shared source keys (defined by the `agency` agent — reference, do not define)

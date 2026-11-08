@@ -104,5 +104,12 @@
   "image_alt": "Planed board of African ebony with dense, nearly uniform jet-black heartwood and a subtle satin sheen.",
   "images": [],
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Maestrelli-1987 is the only reviewed primary paper that names D. crassiflora; KopferschmittKubler-1992 abstract says only 'ebony'. HSE-WIS30 'Ebony' is not species-specific. Ebony skin case reports (Wlodek 2014, Kuner 2004, Rouyer 2026) found but not cited because species and test details could not be confirmed from abstracts; see data/verify/african-tropicals.md. 'Gaboon ebony' is a trade name for this wood; do not confuse with gaboon/okoume (slug okoume)."
+  "notes_internal": "Maestrelli-1987 is the only reviewed primary paper that names D. crassiflora; KopferschmittKubler-1992 abstract says only 'ebony'. HSE-WIS30 'Ebony' is not species-specific. Ebony skin case reports (Wlodek 2014, Kuner 2004, Rouyer 2026) found but not cited because species and test details could not be confirmed from abstracts; see data/verify/african-tropicals.md. 'Gaboon ebony' is a trade name for this wood; do not confuse with gaboon/okoume (slug okoume).",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

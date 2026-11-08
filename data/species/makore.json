@@ -129,5 +129,12 @@
   "image_alt": "Planed board of makore with fine-textured pinkish to reddish-brown heartwood and a narrow pale sapwood edge.",
   "images": [],
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Name conflict resolved: SENSOR-2017 maps Obata-2000's 'makore' to Prunus africana. The Obata paper (full text read) never gives a binomial, calls the wood 'African cherry (Makore)', and uses Hausen's chapter titled 'Tieghemella heckelii, Makore' (Woods Injurious to Human Health, 1981, pp 89-91) as its background reference, plus Sandermann & Barghoorn 1955 on 'Makore- und Peroba-Holz'. Makore is the standard trade name for T. heckelii; Prunus africana is not a common furniture timber. Conclusion: tested wood was almost certainly T. heckelii, but it was identified by trade name only (no botanical verification of the sample). Hausen-1978 abstract names Makore without a binomial."
+  "notes_internal": "Name conflict resolved: SENSOR-2017 maps Obata-2000's 'makore' to Prunus africana. The Obata paper (full text read) never gives a binomial, calls the wood 'African cherry (Makore)', and uses Hausen's chapter titled 'Tieghemella heckelii, Makore' (Woods Injurious to Human Health, 1981, pp 89-91) as its background reference, plus Sandermann & Barghoorn 1955 on 'Makore- und Peroba-Holz'. Makore is the standard trade name for T. heckelii; Prunus africana is not a common furniture timber. Conclusion: tested wood was almost certainly T. heckelii, but it was identified by trade name only (no botanical verification of the sample). Hausen-1978 abstract names Makore without a binomial.",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

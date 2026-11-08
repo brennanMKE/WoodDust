@@ -100,5 +100,12 @@
   "image_alt": "Planed board of okoume with even light pinkish-brown wood and a faint ribbon stripe.",
   "images": [],
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Schlunssen-2018 lists 'Gaboon, Aucoumea spec.' with Kersten 1994 (Allergologie 17:55-60) only; not in PubMed/Crossref and not read. No PubMed primary report found for okoume asthma or dermatitis. Exposure is mostly via plywood, where glue resins add their own hazards. Slug 'okoume' chosen to avoid clash with 'Gaboon ebony' (Diospyros)."
+  "notes_internal": "Schlunssen-2018 lists 'Gaboon, Aucoumea spec.' with Kersten 1994 (Allergologie 17:55-60) only; not in PubMed/Crossref and not read. No PubMed primary report found for okoume asthma or dermatitis. Exposure is mostly via plywood, where glue resins add their own hazards. Slug 'okoume' chosen to avoid clash with 'Gaboon ebony' (Diospyros).",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

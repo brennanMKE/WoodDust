@@ -1,0 +1,133 @@
+{
+  "_meta": {
+    "accessed": "2026-11-07",
+    "purpose": "Confirmed exposure-limit and classification facts for site-wide use (Exposure limits page, species pages). Values are restated facts; quoted strings in 'official_text' are short verbatim labels from the cited page for audit only - do not publish them as prose.",
+    "source_registry": "data/sources/agency.json"
+  },
+  "acgih_via_osha": {
+    "source": "OSHA-CSI",
+    "url": "https://www.osha.gov/chemicaldata/798",
+    "page_last_updated": "2023-06-23",
+    "tlv_twa": [
+      { "applies_to": "Western red cedar", "value_mg_m3": 0.5, "fraction": "inhalable" },
+      { "applies_to": "All other species", "value_mg_m3": 1, "fraction": "inhalable" }
+    ],
+    "tlv_year_on_page": "2014",
+    "carcinogen_classes": {
+      "A1": ["oak", "beech"],
+      "A2": ["birch", "mahogany", "teak", "walnut"],
+      "A4": "all other wood dusts, including Western red cedar"
+    },
+    "sensitizer_notations": { "Western red cedar": ["DSEN", "RSEN"] },
+    "other_classifications_on_page": ["NIOSH-Ca", "NTP-K", "MAK-1", "IARC-1"],
+    "official_text": {
+      "tlv": "Western red cedar: 0.5 mg/m3 (inhalable fraction), All other species: 1 mg/m3 (inhalable fraction) [2014]",
+      "carcinogen_line": "TLV-A1 (oak and beech), TLV-A2 (birch, mahogany, teak, walnut), TLV-A4 (all other wood dusts, including Western red cedar)",
+      "synonyms_field": "beech; birch; mahogany; maple; oak; sapele; walnut - hardwoods, redwood; teak - softwoods; western red cedar"
+    },
+    "notes": [
+      "Species names on the OSHA page are common names only; no botanical names are given anywhere on the page.",
+      "The page's synonyms field groups teak under 'softwoods' (as written; teak is botanically a hardwood). Report as-is; do not rely on that field for wood_type."
+    ]
+  },
+  "mahogany_resolution": {
+    "handoff_task": "5 (ACGIH 'mahogany': Swietenia vs Khaya)",
+    "finding": "UNRESOLVED from official text. The OSHA chemical database page lists 'mahogany' as a plain common name in the TLV-A2 list and in its synonyms field, with no genus, species, or qualifier (e.g. no 'American', 'African', 'Honduras', Swietenia, or Khaya). Nothing on the page indicates which timber ACGIH means.",
+    "other_official_texts_checked": [
+      "HSE EH40/2005 para 40 lists 'mahogany' only as an example of a hardwood, no botanical name.",
+      "HSE WIS30 Table 2 lists 'Mahogany' as a trade name, no botanical name."
+    ],
+    "recommendation": "Apply the ACGIH A2 entry to the project's 'mahogany' file only with wording that ACGIH (via OSHA) lists 'mahogany' without naming a species. Do not attach it to African mahogany (Khaya) or Swietenia as a botanical claim. The ACGIH TLV Documentation for wood dust (paywalled) may specify; not checked.",
+    "source": "OSHA-CSI"
+  },
+  "osha_pel": {
+    "current_status": "No substance-specific federal OSHA PEL for wood dust. OSHA lists wood dust under the particulates-not-otherwise-regulated (PNOR) limits.",
+    "current_values": [
+      { "value_mg_m3": 15, "fraction": "total", "basis": "8-hour TWA, PNOR (29 CFR 1910.1000 Table Z-1)" },
+      { "value_mg_m3": 5, "fraction": "respirable", "basis": "8-hour TWA, PNOR (29 CFR 1910.1000 Table Z-1)" }
+    ],
+    "construction_and_maritime": "PNOR 15 mg/m3 total dust 8-hour TWA (as stated on OSHA-CSI page)",
+    "evidence": [
+      "OSHA-CSI: OSHA PEL-TWA '15 mg/m3 (total dust), 5 mg/m3 (respirable dust)'.",
+      "NIOSH-REL page: OSHA PEL 'TWA 15 mg/m3 (total) TWA 5 mg/m3 (resp) [See Appendix G]'.",
+      "OSHA-AnnotatedZ1: no 'Wood dust' row in annotated Table Z-1; PNOR row 15 total / 5 respirable."
+    ],
+    "vacated_1989": {
+      "values": [
+        { "applies_to": "all wood dusts except Western red cedar", "twa_mg_m3": 5, "stel_15min_mg_m3": 10 },
+        { "applies_to": "Western red cedar", "twa_mg_m3": 2.5 }
+      ],
+      "history": "Set in the 19 January 1989 Air Contaminants final rule (54 FR 2332, Table Z-1-A); in place 1 March 1989 to 22 March 1993 per OSHA's 1993 letter; vacated after AFL-CIO v. OSHA, 965 F.2d 962 (11th Cir. 1992). Before the 1989 rule OSHA had no wood dust PEL (a 1985 Review Commission decision held the 15 mg/m3 nuisance dust standard covered only inorganic dusts, per the NIOSH 1988 PEL project page).",
+      "enforceable": false,
+      "sources": ["NIOSH-NPG-AppG", "NIOSH-PEL88-WoodDust", "OSHA-Interp-1993-04-22"]
+    },
+    "sources": ["OSHA-CSI", "NIOSH-REL", "OSHA-AnnotatedZ1"]
+  },
+  "cal_osha_pel": {
+    "values": [
+      { "applies_to": "all soft and hardwoods except Western red cedar", "twa_mg_m3": 2, "stel_mg_m3": 5 },
+      { "applies_to": "Western red cedar", "twa_mg_m3": 0.5 }
+    ],
+    "note": "California only (Title 8 §5155), shown on the OSHA-CSI page under the CAL/OSHA PEL heading; not federal.",
+    "source": "OSHA-CSI"
+  },
+  "niosh_rel": {
+    "value_mg_m3": 1,
+    "basis": "TWA (NIOSH RELs are up to 10-hour TWA in a 40-hour week)",
+    "fraction": "not specified on the Pocket Guide page",
+    "carcinogen": "Ca - potential occupational carcinogen (Appendix A); IDLH not determined",
+    "official_text": "Ca TWA 1 mg/m3 [See Appendix A]",
+    "sources": ["NIOSH-REL", "OSHA-CSI"]
+  },
+  "eu_binding_limit": {
+    "substance": "Hardwood dusts",
+    "value_mg_m3": 2,
+    "basis": "8-hour limit value",
+    "fraction": "inhalable",
+    "mixtures": "If hardwood dusts are mixed with other wood dusts, the limit applies to all wood dusts in the mixture.",
+    "transitional": "3 mg/m3 until 17 January 2023 (so 2 mg/m3 applies from 17 January 2023)",
+    "introduced_by": "Directive (EU) 2017/2398 of 12 December 2017, OJ L 345, 27.12.2017, p. 87-95; Member State transposition deadline 17 January 2020",
+    "current_consolidation_checked": "CELEX 02004L0037-20240408; Directive (EU) 2026/2450 (OJ 30.10.2026, applies from 19.11.2026) does not change the hardwood entry",
+    "softwood": "No EU binding limit for softwood dust in Annex III (only hardwood dusts listed; softwood counts only when mixed with hardwood).",
+    "sources": ["EU-CMRD", "EU-2017-2398"]
+  },
+  "uk_eh40": {
+    "edition": "EH40/2005 Fourth Edition 2020 (in force from 17 January 2020); HSE page updated 2026-02-26 still lists this as the latest edition",
+    "hardwood_dust": { "value_mg_m3": 3, "basis": "long-term (8-hr TWA)", "fraction": "inhalable", "notations": ["Carc", "Sen"], "mixtures": "If hardwood dusts are mixed with other wood dusts, the WEL applies to all wood dusts in the mixture." },
+    "softwood_dust": { "value_mg_m3": 5, "basis": "long-term (8-hr TWA)", "notations": ["Sen"], "mixtures": "If mixed with hardwood dusts, the hardwood WEL applies to all wood dusts in the mixture." },
+    "note": "The 2020 edition reduced the hardwood WEL (listed under 'reductions to existing WELs'). Great Britain did not adopt the EU 2 mg/m3 value in EH40. The HSE publication page says HSE will introduce revised limits for three outstanding EU limits but does not name them; not confirmed whether hardwood dust is one.",
+    "licence": "PDF states Crown copyright 2020, licensed under the Open Government Licence v3.0",
+    "sources": ["HSE-EH40"]
+  },
+  "hse_wis30": {
+    "current_live_url": null,
+    "status": "Withdrawn from hse.gov.uk. www.hse.gov.uk/pubns/wis30.pdf and /wis30.htm return 404 (checked 2026-11-07); Internet Archive shows the PDF served until at least 2019-11-13 and a 404/redirect from January 2020. WIS30 is absent from HSE's woodworking publications index (www.hse.gov.uk/pubns/woodindx.htm) and the HSE woodworking hazards page links only WIS23 and WIS14.",
+    "revision": "WIS30(rev1), first published 11/12 (PDF created 6 Nov 2012)",
+    "archived_url": "https://web.archive.org/web/20191113084445/https://www.hse.gov.uk/pubns/wis30.pdf",
+    "licence_conclusion": "Probably reusable under the Open Government Licence, but OGL v3 is NOT explicitly confirmed for WIS30. Keep treating it as facts-only with our own wording.",
+    "licence_evidence": [
+      "WIS30 itself carries only '© Crown copyright' and tells readers to see www.hse.gov.uk/copyright.htm for reuse terms; it names no licence.",
+      "HSE copyright page as archived 2013-03-01 (contemporary with WIS30): Crown material on the website and in HSE print/multimedia products may be reused free of charge under the Open Government Licence, with acknowledgement wording naming 'Open Government Licence v1.0'; exclusions were HSE logos, third-party images, and the 'Health and Safety Law' posters.",
+      "Current HSE copyright page (www.hse.gov.uk/help/copyright.htm) says the same with no version number; HSE site footer says 'All content is available under the Open Government Licence v3.0, except where otherwise stated'. But WIS30 is no longer on the site, so the footer does not clearly cover it.",
+      "WIS30 cites Hausen (1981) as its reference for trade-name confusion; it does not mark Table 2 as third-party material, but its content likely draws on copyrighted compilations - another reason to stick to facts."
+    ],
+    "do_not_use_for": "Exposure limits (it states 5 mg/m3 for both hardwood and softwood; superseded).",
+    "facts_file": "data/wis30-facts.json",
+    "source": "HSE-WIS30"
+  },
+  "iarc": {
+    "group": "1 (carcinogenic to humans)",
+    "vol62_1995": "Sufficient evidence in humans; inadequate in experimental animals; studies consistently link occupational wood dust exposure to adenocarcinoma of the nasal cavities and paranasal sinuses.",
+    "vol100C_2012": "Sufficient evidence in humans; causes cancer of the nasal cavity and paranasal sinuses and of the nasopharynx; inadequate evidence in animals; Group 1.",
+    "sources": ["IARC-62", "IARC-100C"]
+  },
+  "comparison_table_mg_m3": [
+    { "body": "OSHA PEL (federal, current)", "hardwood": "15 total / 5 respirable (PNOR)", "softwood": "15 total / 5 respirable (PNOR)", "western_red_cedar": "15 total / 5 respirable (PNOR)", "source": "OSHA-CSI" },
+    { "body": "OSHA 1989 (vacated, not enforceable)", "hardwood": "5 (STEL 10)", "softwood": "5 (STEL 10)", "western_red_cedar": "2.5", "source": "NIOSH-NPG-AppG" },
+    { "body": "Cal/OSHA PEL", "hardwood": "2 (STEL 5)", "softwood": "2 (STEL 5)", "western_red_cedar": "0.5", "source": "OSHA-CSI" },
+    { "body": "NIOSH REL", "hardwood": "1", "softwood": "1", "western_red_cedar": "1", "source": "NIOSH-REL" },
+    { "body": "ACGIH TLV (inhalable)", "hardwood": "1", "softwood": "1", "western_red_cedar": "0.5", "source": "OSHA-CSI" },
+    { "body": "EU binding OEL (inhalable)", "hardwood": "2", "softwood": "none (mixtures with hardwood: 2)", "western_red_cedar": "none specific", "source": "EU-CMRD" },
+    { "body": "UK EH40 WEL", "hardwood": "3 (inhalable)", "softwood": "5", "western_red_cedar": "5 (softwood; no specific entry)", "source": "HSE-EH40" }
+  ]
+}

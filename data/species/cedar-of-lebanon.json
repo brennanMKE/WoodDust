@@ -65,5 +65,12 @@
   "image_prompt": "Photorealistic studio photograph of a freshly planed cedar of Lebanon (Cedrus libani) board, shot at a low three-quarter angle so the face grain fills most of the frame. Light brown to warm yellowish-brown heartwood with a slightly darker reddish tone in places, and paler cream sapwood along one edge. Distinct growth rings with a fairly sharp earlywood-to-latewood contrast, medium texture, occasional small tight knots, a soft satin luster, and no visible pores. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
   "image_alt": "Planed board of cedar of Lebanon with light brown heartwood, distinct growth rings and a small tight knot.",
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Greenberg-1972 has no abstract on PubMed; claim relies on its title and the Schlunssen-2018 Table 1 classification (RS, not sIgE-mediated). Paper itself not read. Greenberg's title uses the misspelling 'Cedra libani'. Level 2 comes from HSE-WIS30."
+  "notes_internal": "Greenberg-1972 has no abstract on PubMed; claim relies on its title and the Schlunssen-2018 Table 1 classification (RS, not sIgE-mediated). Paper itself not read. Greenberg's title uses the misspelling 'Cedra libani'. Level 2 comes from HSE-WIS30.",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

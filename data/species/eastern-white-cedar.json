@@ -62,7 +62,13 @@
       "source": "OSHA-CSI"
     }
   ],
-  "carcinogen_class": [],
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ],
   "known_compounds": [
     {
       "name": "plicatic acid",

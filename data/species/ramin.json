@@ -103,5 +103,12 @@
   "image_alt": "Planed board of ramin with uniform pale straw-colored wood and a fine, even, straight grain.",
   "images": [],
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Beck-1982 and Bruynzeel-1987 have no abstracts; titles verified only. Whether they used patch testing is unknown, so the skin hazard stays at level 2 (HSE) and is typed skin_irritant (HSE says 'dermatitis' without stating allergic). Upgrade to skin_sensitizer level 1 if full text shows positive patch tests."
+  "notes_internal": "Beck-1982 and Bruynzeel-1987 have no abstracts; titles verified only. Whether they used patch testing is unknown, so the skin hazard stays at level 2 (HSE) and is typed skin_irritant (HSE says 'dermatitis' without stating allergic). Upgrade to skin_sensitizer level 1 if full text shows positive patch tests.",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

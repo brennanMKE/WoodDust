@@ -109,5 +109,12 @@
   "image_prompt": "Photorealistic studio photograph of a freshly planed red meranti (Shorea spp.) board, shot at a low three-quarter angle so the face grain fills most of the frame. Heartwood a medium pinkish-red to light reddish-brown, fairly even in tone; a band of paler pinkish-grey sapwood along one edge that is only moderately distinct. Shallowly interlocked grain with a faint, irregular ribbon stripe, moderately coarse texture with visible open pores, scattered fine white resin-canal lines running along the grain, and a modest luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
   "image_alt": "Planed board of red meranti with pinkish reddish-brown heartwood, coarse open grain and fine pale resin lines.",
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Genus-level entry. WFO (checked 2026-11-07) now treats Shorea pauciflora as a synonym of Rubroshorea pauciflora; many red meranti species moved to Rubroshorea, and some lauan species to Pentacme. Kept 'Shorea spp.' as the familiar name; a reviewer may prefer 'Shorea, Rubroshorea and related spp.'. Asthma rests on Schlunssen-2018 Table 1 (S. pauciflora, citing Vandenplas 1996 Thorax 51:472-478 and Kersten 1994). The Vandenplas abstract mentions wood dust only generically; species not confirmed, so it is not cited. Koh-2016 and Goransson-1980 have no PubMed abstracts; testing details not confirmed."
+  "notes_internal": "Genus-level entry. WFO (checked 2026-11-07) now treats Shorea pauciflora as a synonym of Rubroshorea pauciflora; many red meranti species moved to Rubroshorea, and some lauan species to Pentacme. Kept 'Shorea spp.' as the familiar name; a reviewer may prefer 'Shorea, Rubroshorea and related spp.'. Asthma rests on Schlunssen-2018 Table 1 (S. pauciflora, citing Vandenplas 1996 Thorax 51:472-478 and Kersten 1994). The Vandenplas abstract mentions wood dust only generically; species not confirmed, so it is not cited. Koh-2016 and Goransson-1980 have no PubMed abstracts; testing details not confirmed.",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

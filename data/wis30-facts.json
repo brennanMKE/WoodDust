@@ -1,0 +1,934 @@
+{
+  "_meta": {
+    "source_key": "HSE-WIS30",
+    "document": "HSE Woodworking Information Sheet No 30 (Revision 1), 'Toxic woods', first published 11/12",
+    "read_from": "Internet Archive capture https://web.archive.org/web/20130213131629id_/http://www.hse.gov.uk/pubns/wis30.pdf (same content digest as captures through 2019-11-13); HSE no longer hosts the document (404)",
+    "accessed": "2026-11-07",
+    "how_to_read": "Keys are the timber names exactly as WIS30 Table 2 prints them. WIS30 Table 2 gives TRADE NAMES ONLY - it gives no botanical names (the only botanical name in the whole sheet is Tectona grandis, in the precautions section, for teak). Effects are restated in our own words. 'categories' maps each effect to the species-schema hazard type enum (plus 'other' where nothing fits); the mapping is our interpretation, and WIS30 does not distinguish irritant from allergic for most entries - treat 'skin_irritant' as 'skin effect reported', not as a finding that it is non-allergic. 'asthma' is mapped to respiratory_sensitizer by convention; WIS30 Table 2 does not itself say whether the asthma is allergic.",
+    "project_mapping_note": "project_species_file / project_botanical_name / project_name_verified come from this repo's data/species/*.json (assigned by the species agents, verified against WFO in their files where flagged). They are NOT stated by WIS30. Trade names like 'mahogany', 'ebony', 'rosewood', 'walnut (not African)', 'padauk' cover several species and WIS30 does not say which; the project file may be narrower than WIS30 intended.",
+    "flags": "plywood = WIS30 marks the timber '#' (used for plywood); softwood = WIS30 marks it '$'.",
+    "general_text_facts": [
+      "WIS30 general text names western red cedar and iroko as examples where rare extrinsic allergic alveolitis has been seen.",
+      "WIS30 names western red cedar as an example of wood dust causing allergic asthma.",
+      "WIS30 names South African boxwood as an example of rare whole-body effects from inhaled dust (not in Table 2).",
+      "WIS30 names greenheart and mansonia as examples of slow-healing, often septic splinter wounds.",
+      "WIS30 notes nasal cancer as a very rare effect associated with hardwood dust.",
+      "WIS30 states WELs of 5 mg/m3 for both hardwood and softwood dust - SUPERSEDED (EH40 2020: hardwood 3, softwood 5). Do not cite WIS30 for limits.",
+      "WIS30 states inclusion in its table does not mean use will necessarily cause ill health, and woods not listed may also be toxic."
+    ]
+  },
+  "timbers": {
+    "Abura/bahia": {
+      "wis30_timber_name": "Abura/bahia",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "vomiting reported"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Afrormosia": {
+      "wis30_timber_name": "Afrormosia",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "splinter_infection",
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "skin irritation",
+        "splinter wounds prone to infection",
+        "effects on the nervous system"
+      ],
+      "project_species_file": "data/species/afrormosia.json",
+      "project_botanical_name": "Pericopsis elata",
+      "project_name_verified": true
+    },
+    "Afzelia/doussie": {
+      "wis30_timber_name": "Afzelia/doussie",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "sneezing"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Agba/tola": {
+      "wis30_timber_name": "Agba/tola",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "skin irritation"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Alder": {
+      "wis30_timber_name": "Alder",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "rhinitis",
+        "effects on the airways (bronchi)"
+      ],
+      "project_species_file": "data/species/alder.json",
+      "project_botanical_name": "Alnus spp.",
+      "project_name_verified": true
+    },
+    "Andiroba/crabwood": {
+      "wis30_timber_name": "Andiroba/crabwood",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "respiratory_irritant",
+        "eye_irritant"
+      ],
+      "effects_own_words": [
+        "sneezing",
+        "eye irritation"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Ash": {
+      "wis30_timber_name": "Ash",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "reduced lung function"
+      ],
+      "project_species_file": "data/species/ash.json",
+      "project_botanical_name": "Fraxinus spp.",
+      "project_name_verified": true
+    },
+    "Avodire": {
+      "wis30_timber_name": "Avodire",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "nosebleeds"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Ayan/movingui": {
+      "wis30_timber_name": "Ayan/movingui",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Basralocus/angelique": {
+      "wis30_timber_name": "Basralocus/angelique",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "other"
+      ],
+      "effects_own_words": [
+        "non-specific general effects (not detailed)"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Beech": {
+      "wis30_timber_name": "Beech",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant",
+        "eye_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "reduced lung function",
+        "eye irritation (WIS30 suggests bark lichens may be a cause)"
+      ],
+      "project_species_file": "data/species/beech.json",
+      "project_botanical_name": "Fagus sylvatica",
+      "project_name_verified": true
+    },
+    "Birch": {
+      "wis30_timber_name": "Birch",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis reported when sawing lumber"
+      ],
+      "project_species_file": "data/species/birch.json",
+      "project_botanical_name": "Betula spp.",
+      "project_name_verified": true
+    },
+    "Bubinga": {
+      "wis30_timber_name": "Bubinga",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "possible skin lesions"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Cedar of Lebanon": {
+      "wis30_timber_name": "Cedar of Lebanon",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": true,
+      "categories": [
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "respiratory disorders",
+        "rhinitis"
+      ],
+      "project_species_file": "data/species/cedar-of-lebanon.json",
+      "project_botanical_name": "Cedrus libani",
+      "project_name_verified": true
+    },
+    "Cedar (cent/s American)": {
+      "wis30_timber_name": "Cedar (cent/s American)",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "skin_sensitizer"
+      ],
+      "effects_own_words": [
+        "allergic contact dermatitis"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Cedar (western red)": {
+      "wis30_timber_name": "Cedar (western red)",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": true,
+      "categories": [
+        "respiratory_sensitizer",
+        "respiratory_irritant",
+        "skin_irritant",
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "asthma",
+        "rhinitis",
+        "dermatitis",
+        "irritation of mucous membranes",
+        "central nervous system effects"
+      ],
+      "project_species_file": "data/species/western-red-cedar.json",
+      "project_botanical_name": "Thuja plicata",
+      "project_name_verified": true
+    },
+    "Chestnut (sweet)": {
+      "wis30_timber_name": "Chestnut (sweet)",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis (WIS30 suggests bark lichens may be a cause)"
+      ],
+      "project_species_file": "data/species/sweet-chestnut.json",
+      "project_botanical_name": "Castanea sativa",
+      "project_name_verified": true
+    },
+    "Douglas fir": {
+      "wis30_timber_name": "Douglas fir",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": true,
+      "categories": [
+        "skin_irritant",
+        "splinter_infection",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "splinter wounds prone to infection",
+        "rhinitis",
+        "effects on the airways (bronchi)"
+      ],
+      "project_species_file": "data/species/douglas-fir.json",
+      "project_botanical_name": "Pseudotsuga menziesii",
+      "project_name_verified": true
+    },
+    "Ebony": {
+      "wis30_timber_name": "Ebony",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "respiratory_irritant",
+        "skin_irritant",
+        "skin_sensitizer"
+      ],
+      "effects_own_words": [
+        "irritation of mucous membranes",
+        "dermatitis",
+        "possible skin sensitiser"
+      ],
+      "project_species_file": "data/species/ebony.json",
+      "project_botanical_name": "Diospyros crassiflora",
+      "project_name_verified": true
+    },
+    "Freijo/cordia": {
+      "wis30_timber_name": "Freijo/cordia",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_sensitizer"
+      ],
+      "effects_own_words": [
+        "possible skin sensitiser"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Gaboon/okoume": {
+      "wis30_timber_name": "Gaboon/okoume",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "respiratory_sensitizer",
+        "respiratory_irritant",
+        "eye_irritant",
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "asthma",
+        "cough",
+        "eye irritation",
+        "skin effects on hands and eyelids"
+      ],
+      "project_species_file": "data/species/okoume.json",
+      "project_botanical_name": "Aucoumea klaineana",
+      "project_name_verified": true
+    },
+    "Gedu nohor/edinam": {
+      "wis30_timber_name": "Gedu nohor/edinam",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis (described as rare)"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Greenheart": {
+      "wis30_timber_name": "Greenheart",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "splinter_infection",
+        "cardiac",
+        "systemic_toxic",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "splinter wounds prone to infection",
+        "heart disorders",
+        "intestinal disorders",
+        "severe throat irritation"
+      ],
+      "project_species_file": "data/species/greenheart.json",
+      "project_botanical_name": "Chlorocardium rodiei",
+      "project_name_verified": false
+    },
+    "Guarea": {
+      "wis30_timber_name": "Guarea",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "irritation of skin and mucous membranes"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Gum (southern blue)": {
+      "wis30_timber_name": "Gum (southern blue)",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Hemlock (western)": {
+      "wis30_timber_name": "Hemlock (western)",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": true,
+      "categories": [
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "effects on the airways (bronchi)",
+        "rhinitis"
+      ],
+      "project_species_file": "data/species/western-hemlock.json",
+      "project_botanical_name": "Tsuga heterophylla",
+      "project_name_verified": true
+    },
+    "Idigbo": {
+      "wis30_timber_name": "Idigbo",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "other"
+      ],
+      "effects_own_words": [
+        "possible irritant (route not stated)"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Iroko": {
+      "wis30_timber_name": "Iroko",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "respiratory_sensitizer",
+        "skin_irritant",
+        "hypersensitivity_pneumonitis"
+      ],
+      "effects_own_words": [
+        "asthma",
+        "dermatitis",
+        "nettle rash (urticaria)",
+        "WIS30 general text names iroko as an example for rare extrinsic allergic alveolitis"
+      ],
+      "project_species_file": "data/species/iroko.json",
+      "project_botanical_name": "Milicia excelsa",
+      "project_name_verified": true
+    },
+    "Larch": {
+      "wis30_timber_name": "Larch",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": true,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "nettle rash (urticaria)",
+        "dermatitis (WIS30 suggests bark lichens may be a cause)"
+      ],
+      "project_species_file": "data/species/larch.json",
+      "project_botanical_name": "Larix spp.",
+      "project_name_verified": true
+    },
+    "Limba": {
+      "wis30_timber_name": "Limba",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "splinter_infection",
+        "skin_irritant",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "splinter wounds prone to infection",
+        "nettle rash (urticaria)",
+        "bleeding from nose and gums",
+        "reduced lung function"
+      ],
+      "project_species_file": "data/species/limba.json",
+      "project_botanical_name": "Terminalia superba",
+      "project_name_verified": true
+    },
+    "Mahogany": {
+      "wis30_timber_name": "Mahogany",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "respiratory disorders",
+        "irritation of mucous membranes"
+      ],
+      "project_species_file": "data/species/mahogany.json",
+      "project_botanical_name": "Swietenia spp.",
+      "project_name_verified": true
+    },
+    "Makore": {
+      "wis30_timber_name": "Makore",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant",
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "irritation of mucous membranes and airways",
+        "central nervous system effects",
+        "blood effects"
+      ],
+      "project_species_file": "data/species/makore.json",
+      "project_botanical_name": "Tieghemella heckelii",
+      "project_name_verified": true
+    },
+    "Mansonia": {
+      "wis30_timber_name": "Mansonia",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "splinter_infection",
+        "skin_sensitizer",
+        "skin_irritant",
+        "respiratory_irritant",
+        "systemic_toxic",
+        "cardiac"
+      ],
+      "effects_own_words": [
+        "splinter wounds prone to infection",
+        "skin sensitisation",
+        "irritation",
+        "respiratory disorders",
+        "nosebleeds",
+        "headache",
+        "heart disorders"
+      ],
+      "project_species_file": "data/species/mansonia.json",
+      "project_botanical_name": "Mansonia altissima",
+      "project_name_verified": true
+    },
+    "Maple": {
+      "wis30_timber_name": "Maple",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "reduced lung function"
+      ],
+      "project_species_file": "data/species/maple.json",
+      "project_botanical_name": "Acer spp.",
+      "project_name_verified": true
+    },
+    "Meranti/lauan (various)": {
+      "wis30_timber_name": "Meranti/lauan (various)",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "skin irritation"
+      ],
+      "project_species_file": "data/species/meranti.json",
+      "project_botanical_name": "Shorea spp.",
+      "project_name_verified": true
+    },
+    "Oak (various)": {
+      "wis30_timber_name": "Oak (various)",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "respiratory_sensitizer",
+        "respiratory_irritant",
+        "eye_irritant"
+      ],
+      "effects_own_words": [
+        "asthma",
+        "sneezing",
+        "eye irritation"
+      ],
+      "project_species_file": "data/species/oak.json",
+      "project_botanical_name": "Quercus spp.",
+      "project_name_verified": true
+    },
+    "Obeche": {
+      "wis30_timber_name": "Obeche",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant",
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "irritation of skin and airways",
+        "nettle rash (urticaria)",
+        "dermatitis from handling finished articles",
+        "feverishness",
+        "sneezing",
+        "wheezing"
+      ],
+      "project_species_file": "data/species/obeche.json",
+      "project_botanical_name": "Triplochiton scleroxylon",
+      "project_name_verified": true
+    },
+    "Opepe": {
+      "wis30_timber_name": "Opepe",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant",
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "irritation of mucous membranes",
+        "central nervous system effects such as giddiness and visual effects",
+        "nosebleeds and coughing up blood"
+      ],
+      "project_species_file": "data/species/opepe.json",
+      "project_botanical_name": "Nauclea diderrichii",
+      "project_name_verified": true
+    },
+    "Padauk": {
+      "wis30_timber_name": "Padauk",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "eye_irritant",
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "effects depend on species: itching",
+        "eye irritation",
+        "vomiting",
+        "swelling e.g. of eyelids"
+      ],
+      "project_species_file": "data/species/padauk.json",
+      "project_botanical_name": "Pterocarpus soyauxii",
+      "project_name_verified": true
+    },
+    "Peroba": {
+      "wis30_timber_name": "Peroba",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant",
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "irritation of skin and mucous membranes",
+        "systemic effects such as headache, nausea, stomach cramps, weakness",
+        "blisters"
+      ],
+      "project_species_file": "data/species/peroba.json",
+      "project_botanical_name": "Aspidosperma polyneuron",
+      "project_name_verified": false
+    },
+    "Pine (many species)": {
+      "wis30_timber_name": "Pine (many species)",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": true,
+      "categories": [
+        "skin_irritant",
+        "photosensitization",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "skin irritation",
+        "possible photosensitisation",
+        "reduced lung function"
+      ],
+      "project_species_file": "data/species/pine.json",
+      "project_botanical_name": "Pinus spp.",
+      "project_name_verified": true
+    },
+    "Poplar": {
+      "wis30_timber_name": "Poplar",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "respiratory_irritant",
+        "eye_irritant",
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "sneezing",
+        "eye irritation",
+        "possible blisters"
+      ],
+      "project_species_file": "data/species/poplar.json",
+      "project_botanical_name": "Populus spp.",
+      "project_name_verified": true
+    },
+    "Ramin": {
+      "wis30_timber_name": "Ramin",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis (WIS30 suggests bark may be a cause)"
+      ],
+      "project_species_file": "data/species/ramin.json",
+      "project_botanical_name": "Gonystylus bancanus",
+      "project_name_verified": true
+    },
+    "Rosewood (many species)": {
+      "wis30_timber_name": "Rosewood (many species)",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "respiratory disorders",
+        "effects may come from handling the wood"
+      ],
+      "project_species_file": "data/species/rosewood.json",
+      "project_botanical_name": "Dalbergia spp.",
+      "project_name_verified": true
+    },
+    "Sapele": {
+      "wis30_timber_name": "Sapele",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "skin irritation"
+      ],
+      "project_species_file": "data/species/sapele.json",
+      "project_botanical_name": "Entandrophragma cylindricum",
+      "project_name_verified": true
+    },
+    "Spruce (several species)": {
+      "wis30_timber_name": "Spruce (several species)",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": true,
+      "categories": [
+        "respiratory_irritant",
+        "photosensitization"
+      ],
+      "effects_own_words": [
+        "respiratory disorders",
+        "possible photosensitisation"
+      ],
+      "project_species_file": "data/species/spruce.json",
+      "project_botanical_name": "Picea spp.",
+      "project_name_verified": true
+    },
+    "Teak": {
+      "wis30_timber_name": "Teak",
+      "botanical_name_in_wis30": "Tectona grandis (precautions section)",
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant",
+        "respiratory_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis described as potent and persisting after seasoning",
+        "nettle rash (urticaria)",
+        "respiratory disorders"
+      ],
+      "project_species_file": "data/species/teak.json",
+      "project_botanical_name": "Tectona grandis",
+      "project_name_verified": true
+    },
+    "Utile": {
+      "wis30_timber_name": "Utile",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "skin irritation"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Walnut (not African)": {
+      "wis30_timber_name": "Walnut (not African)",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "respiratory_irritant",
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "sneezing",
+        "rhinitis",
+        "dermatitis attributed to nut shells and roots"
+      ],
+      "project_species_file": "data/species/walnut.json",
+      "project_botanical_name": "Juglans spp.",
+      "project_name_verified": true
+    },
+    "Wenge": {
+      "wis30_timber_name": "Wenge",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": false,
+      "categories": [
+        "splinter_infection",
+        "skin_irritant",
+        "systemic_toxic"
+      ],
+      "effects_own_words": [
+        "splinter wounds prone to infection",
+        "dermatitis",
+        "central nervous system effects such as giddiness, drowsiness, visual disturbance",
+        "abdominal cramps"
+      ],
+      "project_species_file": "data/species/wenge.json",
+      "project_botanical_name": "Millettia laurentii",
+      "project_name_verified": true
+    },
+    "Whitewood (American)": {
+      "wis30_timber_name": "Whitewood (American)",
+      "botanical_name_in_wis30": null,
+      "plywood": true,
+      "softwood": false,
+      "categories": [
+        "skin_irritant"
+      ],
+      "effects_own_words": [
+        "dermatitis"
+      ],
+      "project_species_file": null,
+      "project_botanical_name": null,
+      "project_name_verified": null
+    },
+    "Yew": {
+      "wis30_timber_name": "Yew",
+      "botanical_name_in_wis30": null,
+      "plywood": false,
+      "softwood": true,
+      "categories": [
+        "skin_irritant",
+        "systemic_toxic",
+        "cardiac"
+      ],
+      "effects_own_words": [
+        "dermatitis",
+        "systemic effects such as headache and a fall in blood pressure",
+        "heart effects"
+      ],
+      "project_species_file": "data/species/yew.json",
+      "project_botanical_name": "Taxus baccata",
+      "project_name_verified": true
+    }
+  }
+}

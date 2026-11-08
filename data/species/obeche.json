@@ -145,5 +145,12 @@
   "image_alt": "Planed board of obeche with pale creamy-yellow wood and a faint ribbon stripe from interlocked grain.",
   "images": [],
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Trip s 1 primary characterization is Kespohl-2005 (Allergy 2005;60:808-814). Baatjies-2023 and Schlunssen-2018 not cited because primaries were reachable. Quirce-2000 (PMID 10932087, J Allergy Clin Immunol 106:400-1, obeche allergens) and Krawczyk-Szulc-2014 (PMID 24840887, SIC-confirmed) also support level 1 but were not added to keep the list short; can be added. Hinojosa papers call obeche 'African maple' - it is not a maple."
+  "notes_internal": "Trip s 1 primary characterization is Kespohl-2005 (Allergy 2005;60:808-814). Baatjies-2023 and Schlunssen-2018 not cited because primaries were reachable. Quirce-2000 (PMID 10932087, J Allergy Clin Immunol 106:400-1, obeche allergens) and Krawczyk-Szulc-2014 (PMID 24840887, SIC-confirmed) also support level 1 but were not added to keep the list short; can be added. Hinojosa papers call obeche 'African maple' - it is not a maple.",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

@@ -79,7 +79,13 @@
       "source": "OSHA-CSI"
     }
   ],
-  "carcinogen_class": [],
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ],
   "known_compounds": [],
   "related_species_note": "Giant sequoia (Sequoiadendron giganteum) and dawn redwood (Metasequoia) are different trees. In European timber trade 'redwood' often means Scots pine (see the pine page).",
   "image_prompt": "Photorealistic studio photograph of a freshly planed coast redwood (Sequoia sempervirens) board, shot at a low three-quarter angle so the face grain fills most of the frame. Light cherry-red to deep reddish-brown heartwood with a narrow strip of pale yellowish-white sapwood along one edge. Straight grain with clearly defined growth rings in alternating lighter and darker bands, coarse open texture, no visible pores, and a soft low luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",

@@ -117,5 +117,12 @@
   "image_alt": "Planed board of limba with pale yellowish-brown wood crossed by a few irregular dark streaks.",
   "images": [],
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Asthma primaries listed by Schlunssen-2018 (Oertmann 1993 Allergologie 16:334-340; Kersten 1994 Allergologie 17:55-60; Wirtz 1997 Arbeitsmed Sozialmed Umweltmed 32:257-260, 'Asthmaanfalle durch Abachi- und Limbaholz') are not in PubMed or Crossref and were not read, so Tier B is cited at level 3. Upgrade if a library copy of Wirtz-1997 confirms challenge testing."
+  "notes_internal": "Asthma primaries listed by Schlunssen-2018 (Oertmann 1993 Allergologie 16:334-340; Kersten 1994 Allergologie 17:55-60; Wirtz 1997 Arbeitsmed Sozialmed Umweltmed 32:257-260, 'Asthmaanfalle durch Abachi- und Limbaholz') are not in PubMed or Crossref and were not read, so Tier B is cited at level 3. Upgrade if a library copy of Wirtz-1997 confirms challenge testing.",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

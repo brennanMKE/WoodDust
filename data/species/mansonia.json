@@ -142,5 +142,12 @@
   "image_alt": "Planed board of mansonia with greyish to purplish-brown heartwood and a pale sapwood strip along one edge.",
   "images": [],
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Cardiac evidence in people is from the HSE listing only; Beretta-1970 (animal, title only) and Guede-1977 (bark extract, Na/K-ATPase, abstract read) are supporting lab studies, not human cases. Nava-1975 ('Mansonia altissima disease', 30 cases, Med Lav, PMID 131905), Sigg-1968 (PMID 4387523), Reinl-1965 (PMID 14305268) have no abstracts and were not cited; full text could clarify skin and respiratory findings. Noferi-1966 title only."
+  "notes_internal": "Cardiac evidence in people is from the HSE listing only; Beretta-1970 (animal, title only) and Guede-1977 (bark extract, Na/K-ATPase, abstract read) are supporting lab studies, not human cases. Nava-1975 ('Mansonia altissima disease', 30 cases, Med Lav, PMID 131905), Sigg-1968 (PMID 4387523), Reinl-1965 (PMID 14305268) have no abstracts and were not cited; full text could clarify skin and respiratory findings. Noferi-1966 title only.",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }

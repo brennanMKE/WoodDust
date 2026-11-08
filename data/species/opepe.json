@@ -105,5 +105,12 @@
   "image_alt": "Planed board of opepe with golden orange-brown heartwood and a broad ribbon stripe from interlocked grain.",
   "images": [],
   "last_reviewed": "2026-11-07",
-  "notes_internal": "Only source is HSE-WIS30. PubMed and Europe PMC searches for opepe / Nauclea diderrichii health effects found no primary reports. Common names other than 'opepe' (bilinga, badi, kusia) are trade-name knowledge not checked against a cited source; verify against BS EN 13556 or USDA FPL."
+  "notes_internal": "Only source is HSE-WIS30. PubMed and Europe PMC searches for opepe / Nauclea diderrichii health effects found no primary reports. Common names other than 'opepe' (bilinga, badi, kusia) are trade-name knowledge not checked against a cited source; verify against BS EN 13556 or USDA FPL.",
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ]
 }
