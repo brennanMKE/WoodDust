@@ -1,0 +1,24 @@
+{
+  "name": "wooddust-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:fixtures": "VITE_FIXTURES=1 vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "tsc -p tsconfig.node.json --noEmit && svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@tsconfig/svelte": "^5.0.4",
+    "@types/node": "^22.20.2",
+    "svelte": "^5.20.0",
+    "svelte-check": "^4.1.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vitest": "^4.1.7"
+  }
+}

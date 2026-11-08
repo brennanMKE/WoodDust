@@ -1,0 +1,369 @@
+/* Dust Almanac: an early-1900s lumber-pamphlet look. Aged cream paper, warm
+   black ink, a brick-red second colour and Babe blue (#4a78a8). Every
+   text/background pair meets WCAG 2.2 AA; --babe is a fill colour (white text
+   on it is 4.6:1) and --blue is its darker ink for links and text on cream.
+   --border meets 3:1 for UI component outlines. */
+
+:root {
+  color-scheme: light dark;
+
+  --bg: #f5ecd7; /* aged cream paper */
+  --surface: #faf4e6;
+  --surface-2: #ebdfc2;
+  --text: #231a14; /* warm black ink */
+  --muted: #5b4636;
+  --wood: #6b4524;
+  --accent: #9b3324; /* brick red */
+  --on-accent: #ffffff;
+  --babe: #4a78a8; /* Babe blue, fills only */
+  --on-babe: #ffffff;
+  --blue: #2f5a87; /* Babe blue ink: links, focus */
+  --on-blue: #ffffff;
+  --blue-soft: #dde6ee;
+  --border: #8a7254;
+  --rule: #d6c49f;
+  --ink-rule: #231a14;
+  --focus: #2f5a87;
+  --shadow: 0 1px 0 rgb(35 26 20 / 0.12), 0 3px 10px rgb(35 26 20 / 0.08);
+
+  --ev1-bg: #f6ddd6;
+  --ev1-fg: #8a2c1e;
+  --ev2-bg: #dde6ee;
+  --ev2-fg: #234a72;
+  --ev3-bg: #f0e2c2;
+  --ev3-fg: #654410;
+  --ev0-bg: #e6dccb;
+  --ev0-fg: #463b31;
+
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, ui-serif, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --radius: 6px;
+  --radius-sm: 4px;
+  --wrap: 72rem;
+  --gutter: clamp(1rem, 4vw, 2rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1e1712;
+    --surface: #271e17;
+    --surface-2: #2e241b;
+    --text: #f2e6d0;
+    --muted: #cbb89f;
+    --wood: #d9a46c;
+    --accent: #e8836f;
+    --on-accent: #1e1712;
+    --babe: #4a78a8;
+    --on-babe: #ffffff;
+    --blue: #8fb3d9;
+    --on-blue: #1e1712;
+    --blue-soft: #1d3247;
+    --border: #8a735b;
+    --rule: #43362a;
+    --ink-rule: #cbb89f;
+    --focus: #8fb3d9;
+    --shadow: 0 1px 0 rgb(0 0 0 / 0.3), 0 3px 10px rgb(0 0 0 / 0.25);
+
+    --ev1-bg: #4a1f1b;
+    --ev1-fg: #ffc9c1;
+    --ev2-bg: #1d3247;
+    --ev2-fg: #c4dcf3;
+    --ev3-bg: #43331a;
+    --ev3-fg: #f3d9a4;
+    --ev0-bg: #35302b;
+    --ev0-fg: #e6ddd3;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 1.4rem + 2vw, 2.75rem);
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  font-size: clamp(1.35rem, 1.2rem + 0.7vw, 1.7rem);
+  margin: 2rem 0 0.75rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--blue);
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+[tabindex='-1']:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.wrap {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--blue);
+  color: var(--on-blue);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wood);
+  margin: 0 0 0.25rem;
+}
+
+.botanical {
+  font-style: italic;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--surface-2);
+}
+
+.button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.button.primary:hover {
+  filter: brightness(1.08);
+}
+
+.notice {
+  border-left: 4px solid var(--blue);
+  background: var(--blue-soft);
+  padding: 0.85rem 1rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 1.5rem 0;
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+/* Pamphlet-style double rule: a heavy ink line over a hairline, with a brick-red stripe. */
+.double-rule {
+  height: 9px;
+  border-top: 4px solid var(--ink-rule);
+  border-bottom: 1px solid var(--ink-rule);
+  background: linear-gradient(var(--accent), var(--accent)) center / 100% 2px no-repeat;
+}
+
+/* Rendered Markdown from the server (content pages). */
+.prose {
+  max-width: 44rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4rem;
+  margin: 0 0 1rem;
+}
+
+.prose li {
+  margin: 0.25rem 0;
+}
+
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+  border-left: 4px solid var(--rule);
+  color: var(--muted);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.prose h2,
+.prose h3 {
+  scroll-margin-top: 1rem;
+}
+
+sup a {
+  text-decoration: none;
+  padding: 0 0.1em;
+}
+
+sup a::before {
+  content: '[';
+}
+
+sup a::after {
+  content: ']';
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+    --bg: #fff;
+    --surface: #fff;
+    --surface-2: #f4f4f4;
+    --text: #000;
+    --muted: #333;
+    --blue: #000;
+    --rule: #bbb;
+  }
+
+  html {
+    font-size: 11px; /* scales every rem-based size (badges, spacing) for the shop card */
+  }
+
+  body {
+    font-size: 9pt;
+    line-height: 1.3;
+  }
+
+  .no-print,
+  .skip-link {
+    display: none !important;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+}
