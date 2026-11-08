@@ -2,9 +2,10 @@
   "id": "chlorocardium-rodiei",
   "slug": "greenheart",
   "botanical_name": "Chlorocardium rodiei",
-  "botanical_name_verified": false,
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0000603136",
   "synonyms": [
-    "Ocotea rodiaei",
+    "Ocotea rodiei",
     "Nectandra rodiei"
   ],
   "family": "Lauraceae",

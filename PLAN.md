@@ -197,7 +197,8 @@ rest:
 
 ## 10. Open questions
 
-- Domain name and site name (handoff: TBD). Needed for the Portiko issuer, WebAuthn RP ID, canonical URLs and OG tags.
+- Site name: candidates being researched in `docs/naming.md`. Paul Bunyan and Babe the Blue Ox will be mascots, drawn as original art, not copied from any specific illustration.
+- Hosting: interim at `wooddust.sstools.co` on the existing EC2 instance; a purchased domain later. **Passkeys are bound to the WebAuthn RP ID (the domain)**, so accounts created on the interim host won't work on the new domain. Either open sign-ups only after the final domain is chosen, or build a re-enrollment path, e.g. an email code on the new domain that re-links the Portiko subject. Canonical URLs then move with a 301 redirect from the old host.
 - Outbound email for Portiko's one-time codes: SMTP or SES?
 - License confirmation: MIT (code), CC BY 4.0 (data).
 - Who moderates besides you, and should accepted contributors be credited on species pages?

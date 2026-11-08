@@ -2,7 +2,8 @@
   "id": "myrocarpus-fastigiatus",
   "slug": "cabreuva",
   "botanical_name": "Myrocarpus fastigiatus",
-  "botanical_name_verified": false,
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0001055406",
   "synonyms": [],
   "family": "Fabaceae",
   "common_names": [

@@ -2,7 +2,8 @@
   "id": "hymenaea-courbaril",
   "slug": "jatoba",
   "botanical_name": "Hymenaea courbaril",
-  "botanical_name_verified": false,
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0000168642",
   "synonyms": [],
   "family": "Fabaceae",
   "common_names": [

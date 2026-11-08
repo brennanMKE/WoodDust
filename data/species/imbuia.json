@@ -2,7 +2,8 @@
   "id": "ocotea-porosa",
   "slug": "imbuia",
   "botanical_name": "Ocotea porosa",
-  "botanical_name_verified": false,
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0000383291",
   "synonyms": [
     "Phoebe porosa"
   ],

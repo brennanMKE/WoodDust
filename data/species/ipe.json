@@ -2,7 +2,8 @@
   "id": "handroanthus-spp",
   "slug": "ipe",
   "botanical_name": "Handroanthus spp.",
-  "botanical_name_verified": false,
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-4000016828",
   "synonyms": [
     "Tabebuia spp. (in part)",
     "Tabebuia serratifolia",

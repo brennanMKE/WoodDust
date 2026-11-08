@@ -3,21 +3,21 @@
 Batch species: ipe, jatoba, imbuia, cabreuva, greenheart, peroba, australian-blackwood.
 Reviewed 2026-11-07.
 
-## Botanical names (all set `botanical_name_verified: false`)
+## Botanical names (RESOLVED 2026-11-07: all verified on WFO)
 
-POWO (403) and WFO / wfoplantlist (TLS certificate error) could not be reached in this session. Names were checked against the GBIF backbone only (api.gbif.org species/match), which is not an approved verification source:
+Rechecked via the WFO Plant List matching API (list.worldfloraonline.org, classification 2026-06). All seven names are accepted on WFO and `botanical_name_verified` is now `true`, with `botanical_name_source` set to the WFO taxon URL. No accepted-name changes.
 
-| Slug | Name used | GBIF result |
+| Slug | Name used | WFO result |
 |---|---|---|
-| ipe | Handroanthus spp. | H. serratifolius (Vahl) S.O.Grose ACCEPTED; H. impetiginosus ACCEPTED; *Tabebuia serratifolia* Rolfe also returned as ACCEPTED (GBIF inconsistency, check POWO) |
-| jatoba | Hymenaea courbaril | ACCEPTED, Fabaceae |
-| imbuia | Ocotea porosa | ACCEPTED, Lauraceae (Schlunssen-2018 uses *Phoebe porosa*) |
-| cabreuva | Myrocarpus fastigiatus | ACCEPTED, Fabaceae |
-| greenheart | Chlorocardium rodiei | ACCEPTED, Lauraceae |
-| peroba | Aspidosperma polyneuron | ACCEPTED, Apocynaceae; *A. peroba* = SYNONYM |
-| australian-blackwood | Acacia melanoxylon | ACCEPTED, Fabaceae |
+| ipe | Handroanthus spp. | Genus *Handroanthus* Mattos accepted (wfo-4000016828), Bignoniaceae. *H. serratifolius* (Vahl) S.O.Grose and *H. impetiginosus* (Mart. ex DC.) Mattos accepted. *Tabebuia serratifolia* (Vahl) G.Nicholson = syn. of *H. serratifolius*; *T. serratifolia* Rolfe is unplaced (explains GBIF result). *T. impetiginosa* and *Tecoma avellanedae* = syn. of *H. impetiginosus* |
+| jatoba | Hymenaea courbaril | Accepted, *H. courbaril* L. (wfo-0000168642), Fabaceae |
+| imbuia | Ocotea porosa | Accepted, (Nees & Mart.) Barroso (wfo-0000383291), Lauraceae. *Phoebe porosa* (Nees & Mart.) Mez = synonym |
+| cabreuva | Myrocarpus fastigiatus | Accepted, Allemão (wfo-0001055406), Fabaceae |
+| greenheart | Chlorocardium rodiei | Accepted, (R.H.Schomb.) Rohwer, H.G.Richt. & van der Werff (wfo-0000603136), Lauraceae. *Ocotea rodiei* (R.H.Schomb.) Mez and *Nectandra rodiei* R.H.Schomb. ex Meisn. = synonyms |
+| peroba | Aspidosperma polyneuron | Accepted, Müll.Arg. (wfo-0000291421), Apocynaceae. *A. peroba* Saldanha = synonym |
+| australian-blackwood | Acacia melanoxylon | Accepted, R.Br. (wfo-0000204086), Fabaceae |
 
-- Synonyms entered from general knowledge and need POWO confirmation: *Tabebuia impetiginosa*, *Tecoma avellanedae* (ipe); *Ocotea rodiaei*, *Nectandra rodiei* (greenheart).
+- ~~Synonyms entered from general knowledge need confirmation~~ RESOLVED: all confirmed as WFO synonyms. Greenheart synonym spelling corrected from "Ocotea rodiaei" to *Ocotea rodiei* (WFO spelling).
 - Ipe: which Handroanthus species are traded as ipe. A search summary of CITES CoP18 Doc.105.3 said H. serratifolius and H. impetiginosus are the most traded, but the PDF returned 403. CITES CoP19 Prop. 44 (Handroanthus, Tabebuia, Roseodendron to Appendix II) also returned 403. Confirm and consider adding as a Tier D source.
 - Peroba: HSE-WIS30 says only "Peroba" with no botanical name. Mapping to *A. polyneuron* (peroba rosa) is assumed. "Peroba de campos" is a different tree (usually *Paratecoma peroba*).
 - Greenheart: WIS30 gives no botanical name. Mapping to *Chlorocardium rodiei* is assumed.

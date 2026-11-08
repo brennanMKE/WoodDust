@@ -2,7 +2,8 @@
   "id": "acacia-melanoxylon",
   "slug": "australian-blackwood",
   "botanical_name": "Acacia melanoxylon",
-  "botanical_name_verified": false,
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0000204086",
   "synonyms": [],
   "family": "Fabaceae",
   "common_names": [

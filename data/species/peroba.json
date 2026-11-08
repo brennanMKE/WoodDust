@@ -2,7 +2,8 @@
   "id": "aspidosperma-polyneuron",
   "slug": "peroba",
   "botanical_name": "Aspidosperma polyneuron",
-  "botanical_name_verified": false,
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0000291421",
   "synonyms": [
     "Aspidosperma peroba"
   ],
