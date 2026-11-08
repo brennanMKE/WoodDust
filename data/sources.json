@@ -1845,6 +1845,28 @@
     "verified": true,
     "verification_note": "Live FPL site returned 'Service unavailable' on 2026-11-07; content confirmed from Wayback Machine snapshot 20260123111501 of the same URL (names, uses, colour, dermatitis note)."
   },
+  "Mehta-2007": {
+    "tier": "C",
+    "citation": "Mehta AJ, Statham BN. Allergic contact dermatitis to purpleheart and padauk wood (Pterocarpus dalbergiodes). Contact Dermatitis. 2007;56(4):245.",
+    "title": "Allergic contact dermatitis to purpleheart and padauk wood (Pterocarpus dalbergiodes)",
+    "doi": "10.1111/j.1600-0536.2007.00981.x",
+    "pmid": "17343633",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17343633/",
+    "accessed": "2026-11-08",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PMID, DOI, authors, volume/issue/page confirmed on PubMed and Crossref (2026-11-08). One-page letter, Case Reports; PubMed has no abstract. Full text not read (Wiley 403, closed access). NLM MeSH indexing lists Patch Tests, Music, Dermatitis Allergic Contact, adult male; a Semantic Scholar machine-generated summary says patch tests were positive to padauk and purpleheart. Neither is a human reading of the paper, so the testing is NOT confirmed here. The botanical name of the purpleheart in the paper is not known (title names a botanical only for padauk). Also mentioned in data/species/padauk.json related_species_note."
+  },
+  "FPL-Peltogyne": {
+    "tier": "D",
+    "citation": "Chudnoff M. Peltogyne spp. (purpleheart). In: Tropical Timbers of the World. USDA Forest Service Agriculture Handbook 607; 1984. Tech sheet hosted by USDA Forest Products Laboratory.",
+    "title": "Peltogyne spp. - Purpleheart (FPL tech sheet)",
+    "url": "https://www.fpl.fs.usda.gov/documnts/TechSheets/Chudnoff/TropAmerican/html_files/peltog1new.html",
+    "accessed": "2026-11-08",
+    "license": "US public domain",
+    "verified": true,
+    "verification_note": "Live FPL URL returned HTTP 502 on 2026-11-08; content read from the Wayback Machine capture of the same URL (2023-06-01, HTTP 200; also archived at fpl.fs.fed.us). Read: family Leguminosae, common names (purpleheart, amaranth, violetwood, palo morado, morado, amarante, pau roxo, guarabu, etc.), distribution, colour change, working properties, uses. The sheet has no health or dermatitis note."
+  },
   "POWO": {
     "tier": "D",
     "citation": "POWO. Plants of the World Online. Facilitated by the Royal Botanic Gardens, Kew. Published on the Internet; https://powo.science.kew.org/ (cite with retrieval date; prefer the 'How to cite this page' line on each taxon page).",

@@ -1,0 +1,82 @@
+{
+  "id": "peltogyne-spp",
+  "slug": "purpleheart",
+  "botanical_name": "Peltogyne spp.",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-4000028510",
+  "synonyms": [
+    "Peltogyne pubescens"
+  ],
+  "family": "Fabaceae",
+  "common_names": [
+    "purpleheart",
+    "purple heart",
+    "amaranth",
+    "violetwood",
+    "amarante",
+    "palo morado",
+    "pau roxo",
+    "guarabu",
+    "purperhart",
+    "koroboreli",
+    "Peltogyne"
+  ],
+  "wood_type": "hardwood",
+  "region": "Tropical America, from Mexico through Central America to southern Brazil, centred on the Brazilian Amazon",
+  "description": "Purpleheart is a heavy, very hard tropical American hardwood from several Peltogyne species, such as P. paniculata, P. venosa, P. purpurea and P. mexicana. Its heartwood is brownish when first cut, turns a vivid purple within hours, and slowly darkens to brown over the years. Woodworkers use it for turning, inlay and marquetry, furniture, flooring, tool handles and colourful accents; it dulls cutters and can turn gummy when tools run hot.",
+  "hazards": [
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "allergic contact dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "summary": "A UK dermatology report described an allergic skin rash from purpleheart in a man who also reacted to Andaman padauk. Indexing suggests patch testing was done, but we could not read the paper to confirm the results, so treat this as a reported effect.",
+      "evidence_level": 3,
+      "sources": [
+        "Mehta-2007"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "All wood dust is classified as carcinogenic to humans, mainly linked to cancers of the nose and sinuses after long-term exposure. This applies to this wood like any other.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "note": "Applies to wood dust generally; this species has no separate ACGIH value.",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [],
+  "related_species_note": "Purpleheart is sold under the genus name and the trade does not usually say which Peltogyne species a board came from. The only purpleheart health report found (Mehta-2007) does not give a botanical name. Its patient also reacted to Andaman padauk (Pterocarpus dalbergioides), a different genus; African padauk has its own page.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed purpleheart (Peltogyne spp.) board, shot at a low three-quarter angle so the face grain fills most of the frame. Heartwood a vivid, saturated violet-purple after exposure to air, with a faint grey-brown cast where the surface was most recently cut and slightly deeper brown-purple tones toward one end where it has aged; a narrow edge of off-white sapwood sharply set off along one side. Mostly straight grain with a gently interlocked, wavy zone, fine to medium even texture with small scattered pores, and a medium to high natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of purpleheart with vivid violet-purple heartwood and a narrow edge of off-white sapwood.",
+  "notes_internal": "Names verified on WFO via the matching API and GraphQL (2026-11-08): genus Peltogyne Vogel accepted, family Fabaceae; P. paniculata Benth., P. venosa (Vahl) Benth., P. purpurea Pittier and P. mexicana Martinez accepted; P. pubescens Benth. is a synonym of P. paniculata on WFO, so it is listed in synonyms. POWO could not be checked (Cloudflare challenge). Which species dominate the trade is not verified; the description names species in the genus, not 'the main traded' ones. Common names come from FPL-Peltogyne; 'purple heart' (two words) is the user-facing spelling variant, kept for search. FPL also gives 'morado' (Panama, Venezuela) and 'tananeo' (Colombia); 'morado' is left out because it is also a trade name for Santos rosewood/pau ferro (Machaerium), a lead not checked here. The only health paper found is Mehta-2007 (PubMed, no abstract, full text closed). MeSH lists Patch Tests and a Semantic Scholar machine summary says purpleheart patch-tested positive; upgrade to level 1 if the letter confirms a positive patch test to purpleheart. HSE-WIS30 Table 2 does not list purpleheart, Peltogyne or amaranth. Schlunssen-2018, Baatjies-2023 and SENSOR-2017 do not mention it. No respiratory report was found on PubMed or Europe PMC. Peltomexicanin, a quinone methide pigment from P. mexicana heartwood (Gutierrez-Macias 2016, PMID 26861267), is not linked to any health effect in that paper, so it is not listed as a compound. The FPL color description (brown when cut, deep purple on exposure, eventually dark brown) supports the image prompt.",
+  "last_reviewed": "2026-11-08"
+}
