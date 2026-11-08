@@ -99,7 +99,7 @@ Sign-in uses the Portiko provider embedded in the binary (PLAN §5, `docs/portik
    | `FORM_TOKEN_KEY` | Signs submit-form tokens; also derives the daily IP-hash salt unless `IP_HASH_KEY` is set |
    | `IDENTITY_BOOTSTRAP_CODE` | Opens passkey enrollment at `/auth/enroll`. Use another long random value |
 
-   Also set `IDENTITY_DATABASE_URL`, and the `IDENTITY_SMTP_*`/`IDENTITY_EMAIL_FROM` settings for one-time codes (until SMTP is configured, codes go to the journal, which is fine for the one owner enrollment but must not stay that way). Do **not** set `DEV_INSECURE` in production. `TRUSTED_PROXIES=127.0.0.1,::1` is shared with Portiko's rate limits.
+   Also set `IDENTITY_DATABASE_URL`, and the `IDENTITY_SMTP_*`/`IDENTITY_EMAIL_FROM` settings for one-time codes; see Email (Amazon SES) below. Without SMTP, codes go to the journal. Do **not** set `DEV_INSECURE` in production. `TRUSTED_PROXIES=127.0.0.1,::1` is shared with Portiko's rate limits.
 
 3. Register the site as the provider's single first-party client. This is a one-time command, run as the service user with the service's environment file (`systemd-run` reads it exactly as the unit does, including values with spaces):
 
@@ -143,6 +143,20 @@ Sign-in uses the Portiko provider embedded in the binary (PLAN §5, `docs/portik
 The RP ID is the host of `BASE_URL`. A passkey is bound to it forever, so moving to a purchased domain means enrolling again (PLAN §10), and re-running `register-site` for the new `BASE_URL`.
 
 Backups: once submissions exist, dump both `wooddust` and `wooddust_identity` nightly.
+
+## Email (Amazon SES)
+
+Sign-in codes go through Amazon SES SMTP (set up 2026-11-08, following `~/Developer/AWS/SES.md`):
+
+- **Identity:** `dustalmanac.com` (DKIM, custom MAIL FROM `mail.dustalmanac.com`, SPF, DMARC `p=quarantine`; records in its Route 53 zone). The account is out of the SES sandbox.
+- **Credentials:** IAM user `ses-smtp-dustalmanac`, whose inline policy allows only `ses:SendRawEmail`/`SendEmail` on that identity with `ses:FromAddress = noreply@dustalmanac.com`. Its SMTP username and password are in both `config.env` files (`IDENTITY_SMTP_*`) and nowhere else.
+- **From address:** `IDENTITY_EMAIL_FROM=noreply@dustalmanac.com` for pre-prod and prod. It must be a bare address, because Portiko uses it for the header and the SMTP envelope.
+- **Network:** the unit no longer sets `IPAddressDeny`, since SES endpoints have no fixed IPs.
+- **Rotating the key:**
+  1. `aws iam create-access-key --user-name ses-smtp-dustalmanac`.
+  2. Derive the SMTP password with `~/Developer/AWS/ses/derive-smtp-password.py <secret> us-east-1`.
+  3. Update both config files and restart both units.
+  4. Delete the old key.
 
 ## Each release
 

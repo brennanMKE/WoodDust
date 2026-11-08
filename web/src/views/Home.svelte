@@ -16,8 +16,18 @@
   const initialQuery = new URLSearchParams(app.search).get('q') ?? '';
 </script>
 
+<!-- Hero: title, lede and search in one column with the illustration beside
+     them on wide screens, so the featured woods start above the fold. On
+     phones the search comes first and the picture follows, smaller. -->
 <section class="hero" aria-labelledby="home-title">
-  <div class="wrap hero-inner">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 id="home-title">Is this wood dust bad for me?</h1>
+      <p class="lede">Look up a wood to see its known health hazards, how strong the evidence is, and where it comes from.</p>
+      <div class="search-wrap">
+        <SearchBox variant="hero" id="home-search" {initialQuery} labelHidden />
+      </div>
+    </div>
     <!-- Art slot: images/mascots/hero.png (images/prompts/site-art.md §1). -->
     <Art
       src={asset('/images/mascots/hero.png')}
@@ -28,33 +38,32 @@
       fallback="hide"
       class="hero-art"
     />
-    <h1 id="home-title">Is this wood dust bad for me?</h1>
-    <p class="lede">Look up a wood to see its known health hazards, how strong the evidence is, and where it comes from.</p>
-    <div class="search-wrap">
-      <SearchBox variant="hero" id="home-search" {initialQuery} />
-    </div>
   </div>
 </section>
 
 {#if featured.length}
   <section class="wrap featured" aria-labelledby="featured-title">
-    <h2 id="featured-title">Most looked-up woods</h2>
+    <div class="featured-head">
+      <h2 id="featured-title">Most looked-up woods</h2>
+      <a class="more" href="/browse">Browse all woods →</a>
+    </div>
     <ul class="tiles">
       {#each featured as s (s.slug)}
         <li><SpeciesTile species={s} /></li>
       {/each}
     </ul>
-    <p class="more"><a href="/browse">Browse all woods →</a></p>
   </section>
 {/if}
 
 <section class="wrap" aria-labelledby="all-dust-title">
   <div class="band">
-    <h2 id="all-dust-title">All wood dust is hazardous</h2>
-    <p>
-      Whatever the species, breathing wood dust over years can cause asthma and is linked to nasal cancer. The fine
-      dust you can't see matters most. The good news: a few habits cut your exposure a lot.
-    </p>
+    <div class="band-intro">
+      <h2 id="all-dust-title">All wood dust is hazardous</h2>
+      <p>
+        Whatever the species, breathing wood dust over years can cause asthma and is linked to nasal cancer. The fine
+        dust you can't see matters most. The good news: a few habits cut your exposure a lot.
+      </p>
+    </div>
     <ul class="steps">
       <li>
         <Art src={asset('/images/art/spot-dust-collector.png')} alt="A barrel dust collector." width={72} height={72} fallback="hide" />
@@ -77,36 +86,78 @@
 </section>
 
 <style>
+  /* ---- Hero ---- */
+
   .hero {
-    padding: clamp(0.75rem, 2.5vw, 1.75rem) 0 2rem;
-    text-align: center;
+    padding: clamp(0.75rem, 2vw, 1.5rem) 0 clamp(1rem, 2.5vw, 1.75rem);
   }
 
-  .hero-inner {
-    max-width: 46rem;
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem 2.5rem;
+    align-items: center;
   }
 
-  /* Small enough that the search box stays above the fold: at most 400px
-     wide and never taller than about a quarter of the window (3:2 art). */
-  .hero :global(.hero-art) {
-    width: min(100%, 400px, 40vh);
-    margin: 0 auto 0.25rem;
+  .hero-copy {
+    max-width: 42rem;
+  }
+
+  .hero h1 {
+    margin-bottom: 0.4rem;
   }
 
   .lede {
     color: var(--muted);
-    font-size: 1.12rem;
-    max-width: 36rem;
-    margin: 0 auto 1.5rem;
+    font-size: 1.1rem;
+    max-width: 34rem;
+    margin: 0 0 1.1rem;
   }
 
   .search-wrap {
-    max-width: 38rem;
-    margin: 0 auto;
+    max-width: 34rem;
   }
 
-  .featured h2 {
-    text-align: center;
+  /* Phone: the picture follows the search, small, so it never pushes the
+     search or the featured woods down. */
+  .hero :global(.hero-art) {
+    width: min(100%, 15rem);
+    justify-self: center;
+    margin-top: 0.25rem;
+  }
+
+  @media (min-width: 48rem) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr) clamp(13rem, 30vw, 24rem);
+    }
+
+    .hero :global(.hero-art) {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+
+  /* ---- Featured woods ---- */
+
+  .featured-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .featured-head h2 {
+    margin: 0;
+  }
+
+  .more {
+    font-weight: 600;
+    white-space: nowrap;
+    /* 44px tap target without changing the inline look. */
+    padding: 0.55rem 0;
+    margin: -0.55rem 0;
   }
 
   .tiles {
@@ -114,7 +165,7 @@
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
     gap: 1rem;
   }
 
@@ -126,14 +177,18 @@
     flex: 1;
   }
 
-  .more {
-    text-align: center;
-    margin-top: 1rem;
+  /* Five featured woods in one row on a laptop. */
+  @media (min-width: 64rem) {
+    .tiles {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
   }
 
+  /* ---- "All wood dust is hazardous" band ---- */
+
   .band {
-    margin-top: 2.5rem;
-    padding: 1.5rem clamp(1rem, 4vw, 2rem);
+    margin-top: 2rem;
+    padding: 1.25rem clamp(1rem, 3vw, 1.75rem) 1.5rem;
     background: var(--surface);
     border: 1px solid var(--rule);
     border-left: 6px solid var(--wood);
@@ -142,12 +197,20 @@
 
   .band h2 {
     margin-top: 0;
+    margin-bottom: 0.4rem;
+  }
+
+  .band-intro p {
+    max-width: 50rem;
+    margin-bottom: 1rem;
   }
 
   .steps {
     list-style: none;
     padding: 0;
     margin: 0 0 1.25rem;
+    display: grid;
+    gap: 0.75rem 1.5rem;
   }
 
   .steps li {
@@ -155,17 +218,28 @@
     grid-template-columns: auto 1fr;
     gap: 0.75rem;
     align-items: center;
-    gap: 1rem;
-    margin: 0.75rem 0;
-    min-height: 72px;
   }
 
   .steps li > :global(.art) {
-    width: 72px;
+    width: 56px;
   }
 
   .steps li:not(:has(:global(.art))) {
     grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 52rem) {
+    .steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .steps li {
+      align-items: start;
+    }
+
+    .steps li > :global(.art) {
+      margin-top: -0.2rem;
+    }
   }
 
   .links {
@@ -173,5 +247,21 @@
     flex-wrap: wrap;
     gap: 0.75rem;
     margin: 0;
+  }
+
+  @media print {
+    .hero :global(.hero-art),
+    .steps li > :global(.art),
+    .more {
+      display: none;
+    }
+
+    .steps li {
+      grid-template-columns: 1fr;
+    }
+
+    .band {
+      border-left-width: 1px;
+    }
   }
 </style>

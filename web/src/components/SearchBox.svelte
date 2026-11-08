@@ -18,6 +18,7 @@
     id = 'search',
     mode = 'navigate',
     label = 'Search by common, trade or botanical name',
+    labelHidden = false,
     onpick,
     describedby,
     invalid = false,
@@ -28,6 +29,8 @@
     id?: string;
     mode?: 'navigate' | 'pick';
     label?: string;
+    /** Keep the label for assistive tech but don't show it (the placeholder carries the hint). */
+    labelHidden?: boolean;
     onpick?: (r: SearchResult) => void;
     /** Extra ids for aria-describedby (hints, errors). */
     describedby?: string;
@@ -181,7 +184,10 @@
   action={picking ? undefined : '/'}
   method={picking ? undefined : 'get'}
 >
-  <label for={id} class={variant === 'compact' ? 'visually-hidden' : variant === 'field' ? 'field-label' : 'label'}>
+  <label
+    for={id}
+    class={variant === 'compact' || labelHidden ? 'visually-hidden' : variant === 'field' ? 'field-label' : 'label'}
+  >
     {label}
   </label>
   <div class="field">
