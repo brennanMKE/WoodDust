@@ -19,7 +19,9 @@
   );
   const reg = $derived(s.regulatory ?? {});
   const hasSkin = $derived(s.hazards.some((h) => /^(skin|eye)_/.test(h.type) || h.type === 'photosensitization'));
-  const cardUrl = $derived(`${(app.site.base_url || location.origin).replace(/\/$/, '')}/wood/${s.slug}`);
+  const siteBase = $derived((app.site.base_url || location.origin).replace(/\/$/, ''));
+  const cardUrl = $derived(`${siteBase}/wood/${s.slug}`);
+  const generalCancer = $derived(s.hazards.find((h) => h.type === 'carcinogen' && h.evidence_level === 0));
 
   const fractionText = (f?: string) => (f ? `${f} fraction` : '');
   const fmt = (n: number) => `${n} mg/m³`;
@@ -74,12 +76,16 @@
   {/if}
 
   <div class="notice absence">
-    <p>
+    <p class="no-print">
       <strong>No wood is “safe” to breathe.</strong> All wood dust can cause irritation, asthma and cancer. A hazard
       missing from this card means we found no reports, not that the wood is safe. Absence of reports is not evidence
       of safety.
     </p>
-    <p class="print-only">This card lists hazards reported for this wood; the general hazards of all wood dust are on the website.</p>
+    <p class="print-only">
+      <strong>All wood dust: cancer risk.</strong> IARC classifies all wood dust as carcinogenic to humans (mainly nasal
+      and sinus cancer){#if generalCancer}{@render cites(generalCancer.sources)}{/if}; it can also cause asthma and
+      irritation. No wood is “safe”: absence of reports is not evidence of safety. More: {siteBase}/risks
+    </p>
   </div>
 
   <section aria-labelledby="hazards-title">
@@ -88,6 +94,7 @@
       Evidence levels: {#each [1, 2, 3, 0] as l, i (l)}{i ? ' · ' : ''}<EvidenceBadge level={l} short />{/each}
       <a href="/methodology">What these mean</a>
     </p>
+    <div class="hazard-cols">
     {#each groups as g (g.type)}
       <section class="hazard-group" class:all-general={g.hazards.every((h) => h.evidence_level === 0)} aria-labelledby="hz-{g.type}">
         <h3 id="hz-{g.type}">{hazardName(g.type)}</h3>
@@ -105,6 +112,7 @@
         </ul>
       </section>
     {/each}
+    </div>
   </section>
 
   <section aria-labelledby="limits-title" class="limits">
@@ -483,6 +491,15 @@
 
     .facts {
       display: none;
+    }
+
+    .hazard-cols {
+      columns: 2;
+      column-gap: 14pt;
+    }
+
+    .hazard-group h3:first-child {
+      margin-top: 0;
     }
 
     /* General (all-wood-dust) hazards are the same on every card and are

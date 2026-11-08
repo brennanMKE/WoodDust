@@ -7,6 +7,7 @@
   import Species from './views/Species.svelte';
   import Browse from './views/Browse.svelte';
   import Page from './views/Page.svelte';
+  import Poster from './views/Poster.svelte';
   import Sources from './views/Sources.svelte';
   import Submit from './views/Submit.svelte';
   import NotFound from './views/NotFound.svelte';
@@ -51,6 +52,8 @@
       <Species species={app.data as SpeciesDetail} />
     {:else if app.match.id === 'browse'}
       <Browse data={app.data as SpeciesList} />
+    {:else if app.match.id === 'page' && app.match.params.page?.startsWith('print/')}
+      <Poster page={app.data as ContentPage} />
     {:else if app.match.id === 'page'}
       <Page page={app.data as ContentPage} />
     {:else if app.match.id === 'sources'}

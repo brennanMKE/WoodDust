@@ -9,7 +9,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "tsc -p tsconfig.node.json --noEmit && svelte-check --tsconfig ./tsconfig.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "postbuild": "node -e \"require('node:fs').writeFileSync('dist/.gitkeep', '')\""
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^5.0.3",

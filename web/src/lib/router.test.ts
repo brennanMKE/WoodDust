@@ -43,7 +43,16 @@ describe('matchRoute', () => {
     expect(matchRoute('/risks/more').id).toBe('not_found');
   });
 
-  it('matches client-only submit routes without an API call', () => {
+  it('matches the printable shop poster as a page', () => {
+    expect(matchRoute('/print/shop-poster')).toMatchObject({
+      id: 'page',
+      params: { page: 'print/shop-poster' },
+      api: '/api/v1/pages/print/shop-poster',
+    });
+    expect(matchRoute('/print').id).toBe('not_found');
+  });
+
+  it('matches submit routes (route id "submit") without an API call', () => {
     expect(matchRoute('/submit')).toMatchObject({ id: 'submit', api: null });
     expect(matchRoute('/submit/oak').params.slug).toBe('oak');
   });
@@ -60,6 +69,8 @@ describe('isSpaLink', () => {
   it('handles known routes on the same origin', () => {
     expect(isSpaLink(u('/wood/oak'), origin)).toBe(true);
     expect(isSpaLink(u('/protection/respirators'), origin)).toBe(true);
+    expect(isSpaLink(u('/print/shop-poster'), origin)).toBe(true);
+    expect(isSpaLink(u('/submit/oak'), origin)).toBe(true);
   });
   it('leaves other links to the browser', () => {
     expect(isSpaLink(u('/sitemap.xml'), origin)).toBe(false);

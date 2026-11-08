@@ -4,7 +4,8 @@
 
 <footer class="site-footer">
   <!-- Art slot: images/art/border-forest.png (site-art.md §7), decorative; nothing shows if missing. -->
-  <div class="forest" aria-hidden="true" style="background-image: url('/images/art/border-forest.png')"></div>
+  <!-- style: directive, not a style="" attribute: Svelte sets it through CSSOM, which CSP style-src 'self' allows. -->
+  <div class="forest" aria-hidden="true" style:background-image="url('/images/art/border-forest.png')"></div>
   <div class="double-rule" aria-hidden="true"></div>
   <div class="wrap cols">
     <section aria-labelledby="footer-medical">

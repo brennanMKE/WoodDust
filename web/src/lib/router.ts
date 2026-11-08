@@ -52,6 +52,15 @@ export function matchRoute(rawPath: string): RouteMatch {
       return second ? notFound : { id: 'sources', path, params: {}, api: '/api/v1/sources' };
     case 'submit':
       return { id: 'submit', path, params: second ? { slug: second } : {}, api: null };
+    case 'print':
+      // Printable pages (contract §2: /print/shop-poster), served by the page API.
+      if (!second) return notFound;
+      return {
+        id: 'page',
+        path,
+        params: { page: `print/${second}` },
+        api: `/api/v1/pages/print/${encodeURIComponent(second)}`,
+      };
     case 'protection':
       return {
         id: 'page',

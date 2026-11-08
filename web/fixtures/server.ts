@@ -52,7 +52,15 @@ function regulatory(): Json {
   }
 }
 
-const titleCase = (s: string) => s.replace(/(^|[\s-])(\p{L})/gu, (_m, a, b) => a + b.toUpperCase());
+// Display names: capitalize words except small joining words (unless first),
+// e.g. "cedar of lebanon" -> "Cedar of Lebanon". Matches the Go server.
+const SMALL_WORDS = new Set(['of', 'the', 'and', 'de', 'du', 'la']);
+const titleCase = (s: string) =>
+  s.replace(/(^|[\s-])(\p{L}[\p{L}']*)/gu, (m, sep: string, word: string) =>
+    m.length !== word.length + sep.length || (sep !== '' && SMALL_WORDS.has(word.toLowerCase()))
+      ? m
+      : sep + word[0].toUpperCase() + word.slice(1),
+  );
 const norm = (s: string) =>
   s
     .normalize('NFD')
@@ -167,7 +175,15 @@ function inline(md: string, foot: Map<string, number>): string {
 function renderPage(pagePath: string): Json | null {
   const file = path.join(pagesDir, `${pagePath.replace(/\//g, '-')}.md`);
   const alt = path.join(pagesDir, `${pagePath}.md`);
-  const src = fs.existsSync(file) ? file : fs.existsSync(alt) ? alt : null;
+  // Files may name their URL in front matter (e.g. shop-poster.md has slug: print/shop-poster).
+  const bySlug = fs.existsSync(pagesDir)
+    ? fs
+        .readdirSync(pagesDir)
+        .filter((f) => f.endsWith('.md'))
+        .map((f) => path.join(pagesDir, f))
+        .find((f) => new RegExp(`^slug:\\s*["']?${pagePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']?\\s*$`, 'm').test(fs.readFileSync(f, 'utf8').split('\n---')[0]))
+    : undefined;
+  const src = bySlug ?? (fs.existsSync(file) ? file : fs.existsSync(alt) ? alt : null);
   const known = ['risks', 'protection', 'symptoms', 'limits', 'glossary', 'methodology'];
   if (!src) {
     if (!known.includes(pagePath.split('/')[0])) return null;
@@ -216,9 +232,8 @@ function renderPage(pagePath: string): Json | null {
       flush();
       closeList();
       const level = h[1].length;
-      if (level === 1) continue;
       const id = slugify(h[2]);
-      toc.push({ id, text: h[2], level });
+      if (level > 1) toc.push({ id, text: h[2], level });
       html.push(`<h${level} id="${id}">${inline(h[2], foot)}</h${level}>`);
     } else if (li) {
       flush();
@@ -228,7 +243,12 @@ function renderPage(pagePath: string): Json | null {
         html.push(`<${kind}>`);
         list = kind;
       }
-      html.push(`<li>${inline(li[2], foot)}</li>`);
+      const task = li[2].match(/^\[( |x)\]\s+(.*)$/);
+      html.push(
+        task
+          ? `<li><input${task[1] === 'x' ? ' checked=""' : ''} disabled="" type="checkbox"> ${inline(task[2], foot)}</li>`
+          : `<li>${inline(li[2], foot)}</li>`,
+      );
     } else if (!line.trim()) {
       flush();
       closeList();
