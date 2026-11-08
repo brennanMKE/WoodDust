@@ -321,6 +321,7 @@
       class="intro-art"
     />
     <div>
+      <p class="eyebrow">Anonymous · manually reviewed</p>
       <h1>
         {#if form.phase === 'done'}Thank you{:else if form.target && form.kind === 'correction'}Report a correction{:else if form.kind === 'new_species'}Suggest a species{:else}Suggest or correct{/if}
       </h1>
