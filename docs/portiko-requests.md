@@ -17,7 +17,7 @@ This is the shared list of changes Dust Almanac needs from Portiko (`github.com/
 | # | Request | Priority | Status | Portiko ref | WoodDust ref |
 |---|---|---|---|---|---|
 | P1 | Enforce `BOOTSTRAP_CODE` on registration | **Security, high** | in progress (fix written and tested, not committed) | `TestBootstrapCodeGatesEveryNewAccount` | gate in `internal/identity` |
-| P1b | Option to close registration with no code set | **Security, high** | open | | gate treats an unset code as closed |
+| P1b | Option to close registration with no code set | **Security, high** | in progress (with P1, not committed): `REGISTRATION=open\|code\|closed`, `Config.Registration` | `TestClosedRegistrationRefusesEveryNewAccount`, `TestRegistrationModeFailsClosed` | gate treats an unset code as closed |
 | P2 | Exported, implementable `Mailer` | Medium | open | | uses SMTP env |
 | P3 | Public client registration API | Medium | open | | `wooddust identity register-site` |
 | P4 | Provider applies its own migrations | Medium | open | | `identity.Migrate` |
