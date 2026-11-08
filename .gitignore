@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Go
+/wooddust
+/bin/
+*.test
+*.out
+coverage.*
+
+# Svelte / Node
+node_modules/
+web/dist/
+web/.svelte-kit/
+.vite/
+npm-debug.log*
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.env
+!*.env.example
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Local scratch
+tmp/
+*.log

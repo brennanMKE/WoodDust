@@ -1,0 +1,24 @@
+* text=auto eol=lf
+
+*.go       text diff=golang
+*.md       text diff=markdown
+*.json     text
+*.sql      text
+*.svelte   text
+*.ts       text
+*.js       text
+*.css      text
+*.html     text diff=html
+*.sh       text eol=lf
+
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.ico  binary
+*.woff2 binary
+*.pdf  binary
+
+go.sum                 linguist-generated
+web/package-lock.json  linguist-generated -diff

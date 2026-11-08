@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wooddust.local/schema/sources.schema.json",
+  "title": "Source registry (object keyed by source key)",
+  "type": "object",
+  "propertyNames": { "pattern": "^[A-Za-z0-9][A-Za-z0-9-]*$" },
+  "additionalProperties": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["tier", "citation", "verified"],
+    "properties": {
+      "tier": { "enum": ["A", "B", "C", "D"] },
+      "citation": { "type": "string", "description": "Full citation: authors, title, journal, year;vol(issue):pages" },
+      "title": { "type": "string" },
+      "doi": { "type": "string" },
+      "pmid": { "type": "string" },
+      "pmcid": { "type": "string" },
+      "url": { "type": "string", "format": "uri" },
+      "accessed": { "type": "string", "format": "date" },
+      "license": { "type": "string", "description": "e.g. 'US public domain', 'OGL v3', 'CC BY 4.0', 'copyrighted - cite facts only'" },
+      "verified": { "type": "boolean", "description": "true only if DOI/PMID/URL was confirmed against PubMed, Crossref, or the publisher in this session" },
+      "verification_note": { "type": "string" }
+    }
+  }
+}

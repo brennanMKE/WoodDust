@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wooddust.local/schema/species.schema.json",
+  "title": "Wood species hazard record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "slug", "botanical_name", "family", "common_names", "wood_type", "region", "hazards", "image_prompt", "last_reviewed"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "Botanical slug, e.g. thuja-plicata, quercus-spp" },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "description": "Common-name URL slug, e.g. western-red-cedar. Unique across all species." },
+    "botanical_name": { "type": "string" },
+    "botanical_name_verified": { "type": "boolean", "description": "true only if checked against POWO or WFO" },
+    "botanical_name_source": { "type": "string", "description": "POWO/WFO URL used to verify" },
+    "synonyms": { "type": "array", "items": { "type": "string" } },
+    "family": { "type": "string" },
+    "common_names": { "type": "array", "minItems": 1, "items": { "type": "string" }, "description": "First entry is the display name. Include trade names and aliases users might search." },
+    "wood_type": { "enum": ["hardwood", "softwood"] },
+    "region": { "type": "string" },
+    "description": { "type": "string", "description": "1-3 plain-language sentences in our own words about the wood and how it is used. Non-health facts may cite Tier D." },
+    "hazards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "effects", "route", "summary", "evidence_level", "sources"],
+        "properties": {
+          "type": { "enum": ["respiratory_sensitizer", "respiratory_irritant", "skin_sensitizer", "skin_irritant", "eye_irritant", "hypersensitivity_pneumonitis", "systemic_toxic", "cardiac", "carcinogen", "splinter_infection", "photosensitization"] },
+          "effects": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "route": { "type": "array", "minItems": 1, "items": { "enum": ["inhalation", "skin", "eyes", "splinter", "ingestion"] } },
+          "source_part": { "type": "array", "items": { "enum": ["dust", "heartwood", "sap", "bark", "leaves"] } },
+          "summary": { "type": "string", "minLength": 20, "description": "Our own words. Never copied." },
+          "evidence_level": { "enum": [0, 1, 2, 3] },
+          "sources": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+        }
+      }
+    },
+    "exposure_limits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["body", "value_mg_m3", "source"],
+        "properties": {
+          "body": { "type": "string" },
+          "value_mg_m3": { "type": "number" },
+          "fraction": { "enum": ["inhalable", "total", "respirable"] },
+          "note": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "carcinogen_class": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["body", "class", "source"],
+        "properties": { "body": { "type": "string" }, "class": { "type": "string" }, "source": { "type": "string" } }
+      }
+    },
+    "known_compounds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "source"],
+        "properties": { "name": { "type": "string" }, "role": { "type": "string" }, "source": { "type": "string" } }
+      }
+    },
+    "related_species_note": { "type": "string" },
+    "image_prompt": { "type": "string", "minLength": 80 },
+    "image_alt": { "type": "string", "description": "Alt text for the generated image" },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "license", "attribution"],
+        "properties": { "file": { "type": "string" }, "license": { "type": "string" }, "attribution": { "type": "string" }, "generated": { "type": "boolean" } }
+      }
+    },
+    "featured_rank": { "type": "integer", "minimum": 1, "maximum": 5, "description": "Homepage top-5 order; omit for non-featured species" },
+    "last_reviewed": { "type": "string", "format": "date" },
+    "notes_internal": { "type": "string" }
+  }
+}
