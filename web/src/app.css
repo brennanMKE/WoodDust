@@ -372,25 +372,28 @@ sup a::after {
   }
 }
 
-/* An illustration framed like a plate in an old lumber-company pamphlet:
-   double ink rule around a cream mat. Used for the larger artwork. */
-.plate {
-  padding: 0.45rem;
-  border: 3px double var(--ink-rule);
-  background: var(--surface);
-  border-radius: 2px;
+/* Header illustration: a small picture floated beside a page's title and
+   intro, so the content starts right away. Text wraps around it on phones. */
+div.art.header-art {
+  float: right;
+  width: clamp(8.5rem, 34%, 19rem);
+  margin: 0.25rem 0 0.75rem 1.25rem;
+  shape-outside: margin-box;
 }
 
-.plate img {
+div.art.header-art img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 1px;
+  border-radius: var(--radius);
+}
+
+.header-clear {
+  clear: both;
 }
 
 @media print {
-  .plate {
-    border: none;
-    padding: 0;
+  div.art.header-art {
+    display: none;
   }
 }

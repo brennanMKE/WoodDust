@@ -121,19 +121,22 @@
 </script>
 
 <div class="wrap">
-  <h1>Browse woods</h1>
-  <!-- Art: the site's default share image (Paul and Babe reading the almanac). -->
-  <Art
-    src="/images/og-default.jpg"
-    alt="Paul Bunyan and Babe the Blue Ox reading a giant almanac in a woodshop."
-    width={1200}
-    height={630}
-    fallback="hide"
-    class="plate browse-art"
-  />
-  <p class="muted lede">
-    {all.length} woods. Every one also carries the hazards shared by all wood dust. Filter by what you need to know.
-  </p>
+  <header>
+    <!-- Art: the site's default share image (Paul and Babe reading the almanac), small, beside the title. -->
+    <Art
+      src="/images/og-default.jpg"
+      alt="Paul Bunyan and Babe the Blue Ox reading a giant almanac in a woodshop."
+      width={1200}
+      height={630}
+      fallback="hide"
+      class="header-art"
+    />
+    <h1>Browse woods</h1>
+    <p class="muted lede">
+      {all.length} woods. Every one also carries the hazards shared by all wood dust. Filter by what you need to know.
+    </p>
+    <div class="header-clear"></div>
+  </header>
 
   <form class="filters" aria-label="Filter woods" onsubmit={(e) => e.preventDefault()}>
     <div class="f">
@@ -243,10 +246,6 @@
 </div>
 
 <style>
-  .wrap :global(.browse-art) {
-    max-width: 36rem;
-    margin: 0.5rem 0 1.25rem;
-  }
 
   .lede {
     max-width: 44rem;

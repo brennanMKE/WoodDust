@@ -197,7 +197,7 @@
         width={1200}
         height={630}
         fallback="hide"
-        class="plate"
+        class="tip-art"
       />
       <figcaption>
         <strong>Paul's tip:</strong> seal-check your respirator every time you put it on, following the maker's
@@ -279,7 +279,11 @@
 
   .paul-tip {
     margin: 1.5rem 0 0;
-    max-width: 34rem;
+    max-width: 24rem;
+  }
+
+  .paul-tip :global(.tip-art img) {
+    border-radius: var(--radius);
   }
 
   .paul-tip figcaption {

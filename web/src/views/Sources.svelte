@@ -21,21 +21,24 @@
 </script>
 
 <div class="wrap">
-  <h1>Sources</h1>
-  <!-- Art slot: images/pages/methodology.jpg, shared with /methodology (site-art.md §6). -->
-  <Art
-    src="/images/pages/methodology.jpg"
-    alt="Paul Bunyan stacks books and journals like lumber, checking each one against a ledger."
-    width={1200}
-    height={630}
-    fallback="hide"
-    class="plate sources-art"
-  />
-  <p class="lede">
-    All {total} sources cited on this site. Agency listings and primary studies back the hazard claims; technical
-    references are used only for names and non-health facts. Read how we grade evidence in the
-    <a href="/methodology">methodology</a>.
-  </p>
+  <header>
+    <!-- Art slot: images/pages/methodology.jpg, shared with /methodology (site-art.md §6), small, beside the title. -->
+    <Art
+      src="/images/pages/methodology.jpg"
+      alt="Paul Bunyan stacks books and journals like lumber, checking each one against a ledger."
+      width={1200}
+      height={630}
+      fallback="hide"
+      class="header-art"
+    />
+    <h1>Sources</h1>
+    <p class="lede">
+      All {total} sources cited on this site. Agency listings and primary studies back the hazard claims; technical
+      references are used only for names and non-health facts. Read how we grade evidence in the
+      <a href="/methodology">methodology</a>.
+    </p>
+    <div class="header-clear"></div>
+  </header>
 
   {#if tiers.length > 1}
     <nav aria-label="Source groups">
@@ -74,10 +77,6 @@
     max-width: 46rem;
   }
 
-  .wrap :global(.sources-art) {
-    max-width: 36rem;
-    margin: 0.5rem 0 1rem;
-  }
 
   .jump {
     display: flex;

@@ -26,14 +26,14 @@
   </nav>
 
   <header>
+    {#if page.image?.url && !page.image.url.endsWith('/placeholder.svg')}
+      <!-- Art slot: images/pages/<page>.jpg (images/prompts/site-art.md §6), small, beside the title. -->
+      <Art src={page.image.url} alt={page.image.alt} width={1200} height={630} eager fallback="hide" class="header-art" />
+    {/if}
     <h1 id="page-title">{page.title}</h1>
     {#if page.description}<p class="lede">{page.description}</p>{/if}
+    <div class="header-clear"></div>
   </header>
-
-  {#if page.image?.url && !page.image.url.endsWith('/placeholder.svg')}
-    <!-- Art slot: images/pages/<page>.jpg (images/prompts/site-art.md §6), framed as a plate. -->
-    <Art src={page.image.url} alt={page.image.alt} width={1200} height={630} eager fallback="hide" class="hero-img plate" />
-  {/if}
 
   <div class="layout" class:has-toc={toc.length > 1}>
     {#if toc.length > 1}
@@ -140,10 +140,7 @@
     padding-left: 0.9rem;
   }
 
-  article :global(.hero-img) {
-    margin: 0.5rem 0 2rem;
-    max-width: 60rem;
-  }
+
 
   .reviewed {
     margin-top: 2rem;
@@ -153,7 +150,6 @@
   @media print {
     .crumbs,
     .toc,
-    article :global(.hero-img),
     .back {
       display: none;
     }
