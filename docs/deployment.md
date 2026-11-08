@@ -24,7 +24,9 @@ sudo useradd --system --home /opt/wooddust --shell /sbin/nologin wooddust
 sudo mkdir -p /opt/wooddust/releases /etc/wooddust
 sudo -u postgres createuser wooddust
 sudo -u postgres createdb -O wooddust wooddust
-# pg_trgm and unaccent are trusted extensions (PG 13+): the owner can create them.
+# pg_trgm and unaccent are trusted extensions (PG 13+): the owner can create them,
+# but they ship in the contrib package, which photon did not have:
+sudo dnf install -y postgresql15-contrib   # match the server's major version
 sudo install -m 0640 -o root -g wooddust deploy/config.env.example /etc/wooddust/config.env   # then edit
 sudo install -m 0644 deploy/systemd/wooddust.service /etc/systemd/system/
 sudo install -m 0644 deploy/apache/001-wooddust.sstools.co-le-ssl.conf deploy/apache/001-wooddust.sstools.co.conf /etc/httpd/conf.d/
