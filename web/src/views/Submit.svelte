@@ -321,14 +321,13 @@
       class="intro-art"
     />
     <div>
-      <p class="eyebrow">Anonymous · reviewed by a person</p>
       <h1>
         {#if form.phase === 'done'}Thank you{:else if form.target && form.kind === 'correction'}Report a correction{:else if form.kind === 'new_species'}Suggest a species{:else}Suggest or correct{/if}
       </h1>
       {#if form.phase !== 'done'}
         <p class="lede">
-          Help keep the almanac honest. No account needed. Every submission is read by a person and checked against
-          its sources before anything changes.
+          Help keep the almanac honest. No account needed. Every submission is manually reviewed and checked
+          against its sources before anything changes.
         </p>
       {/if}
     </div>
