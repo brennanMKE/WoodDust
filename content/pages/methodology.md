@@ -79,7 +79,7 @@ Each page and species card shows a "last reviewed" date. Sources and limits chan
 
 ## How to contribute
 
-Corrections and additions are welcome. Sign in and use the **Report a correction** link on any species page, or **Suggest a new species**.
+Corrections and additions are welcome, and no account is needed. Use the **Report a correction** link on any species page, or [**Suggest a species**](/submit?kind=new_species).
 
 **What we need**
 
@@ -89,12 +89,12 @@ Corrections and additions are welcome. Sign in and use the **Report a correction
 
 **What happens next**
 
-Every submission is reviewed by a moderator. Accepted changes go through the same review and validation as the rest of the data, and you can follow the status on your account page.
+Every submission is manually reviewed. Accepted changes go through the same review and validation as the rest of the data. After you submit, you get a private status link to follow its progress.
 
 **Reporting a reaction**
 
 You can tell us you reacted to a wood. These reports help us decide what to research, but they are never published and are not a medical service. If you have symptoms, see a doctor ([Symptoms](/symptoms)).
 
-## Reusing our data
+## Thanks
 
-The dataset is available to download. License details are on the download page.
+Dust Almanac was inspired by [The Wood Database](https://www.wood-database.com), Eric Meier's long-running reference on wood species, which has helped countless woodworkers identify woods and learn about their hazards. We built our own entries from primary sources so every claim can be traced, but the idea of a friendly, species-by-species guide is theirs. If you want to know how a wood looks, works and finishes, start there.

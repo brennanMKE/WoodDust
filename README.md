@@ -10,6 +10,8 @@
 - **Education pages:** the risks of wood dust and how to protect yourself (dust collection, respirators, skin and eyes, cleanup, fire), plus a printable shop poster.
 - **Anonymous submissions:** suggest a species, correct a card, or report a reaction. Every submission is manually reviewed against its sources.
 
+Inspired by [The Wood Database](https://www.wood-database.com), Eric Meier's reference on wood species: Dust Almanac focuses on one question, the health hazards of the dust, with every claim traced to its primary source.
+
 Paul Bunyan and Babe the Blue Ox (public-domain folk characters, drawn fresh in the style of 1910s lumber-company pamphlets) keep it friendly. The data stays serious.
 
 ## How the evidence works

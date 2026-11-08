@@ -19,7 +19,7 @@
       <h2 id="footer-data">About the data</h2>
       <p>
         Every hazard links to its sources and carries an evidence level. Absence of reports is not evidence that
-        a wood is safe. Data license: CC BY 4.0 (pending confirmation).
+        a wood is safe.
       </p>
     </section>
     <nav aria-label="Footer">
@@ -34,7 +34,8 @@
     </nav>
   </div>
   <p class="wrap small">
-    {app.site.name}. No tracking, no ads, no affiliate links.
+    {app.site.name}. No tracking, no ads, no affiliate links. Inspired by
+    <a href="https://www.wood-database.com">The Wood Database</a>.
     <span class="suggest">Know a wood we’re missing? <a href="/submit?kind=new_species">Suggest a species</a>.</span>
   </p>
 </footer>
