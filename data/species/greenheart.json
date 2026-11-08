@@ -1,0 +1,118 @@
+{
+  "id": "chlorocardium-rodiei",
+  "slug": "greenheart",
+  "botanical_name": "Chlorocardium rodiei",
+  "botanical_name_verified": false,
+  "synonyms": [
+    "Ocotea rodiaei",
+    "Nectandra rodiei"
+  ],
+  "family": "Lauraceae",
+  "common_names": [
+    "greenheart",
+    "Demerara greenheart",
+    "bibiru"
+  ],
+  "wood_type": "hardwood",
+  "region": "Northern South America (Guyana, Suriname)",
+  "description": "Greenheart is a very dense, strong, and rot-resistant timber from the Guiana Shield. It is used for marine and dock work, lock gates, heavy construction, factory flooring, and traditionally for fishing rods and tool handles.",
+  "hazards": [
+    {
+      "type": "splinter_infection",
+      "effects": [
+        "slow-healing, septic splinter wounds"
+      ],
+      "route": [
+        "splinter"
+      ],
+      "source_part": [
+        "heartwood"
+      ],
+      "summary": "The UK HSE lists greenheart among woods whose splinters tend to heal slowly and often become infected.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "cardiac",
+      "effects": [
+        "cardiac disorders"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE reports heart-related disorders among the adverse health effects associated with greenheart.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "systemic_toxic",
+      "effects": [
+        "intestinal disorders"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE also lists intestinal (gut) disorders among the reported effects of working with greenheart.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "severe throat irritation"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Severe throat irritation from greenheart dust is listed by the UK HSE.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ],
+      "summary": "All wood dust, including greenheart, is classified by IARC as carcinogenic to humans, mainly linked to cancers of the nose and sinuses after long-term exposure."
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "image_prompt": "Photorealistic studio photograph of a freshly planed greenheart (Chlorocardium rodiei) board, shot at a low three-quarter angle so the face grain fills most of the frame. Yellowish olive-green to medium olive-brown heartwood with a few darker brown streaks, grading into slightly paler yellow-green sapwood along one edge without a sharp boundary. Fine, very even texture with straight to slightly interlocked grain, small evenly scattered pores, and a medium natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of greenheart with olive-green to olive-brown heartwood, a few darker streaks, and a fine even texture.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "All greenheart hazards rest on HSE-WIS30 Table 2 only (read from a third-party-hosted copy of WIS30 rev 1; the hse.gov.uk/pubns/wis30.pdf URL returned an HTML page, so the live URL still needs confirming). WIS30 gives no route or mechanism for cardiac/intestinal effects; route set to inhalation as an assumption - review. No PubMed primary reports found for greenheart health effects. WIS30 does not give a botanical name; mapping to Chlorocardium rodiei is standard trade usage, name checked on GBIF only. WIS30 copy carries an Open Government Licence footer. No reports for a given effect does not mean the wood is safe."
+}

@@ -1,0 +1,107 @@
+{
+  "id": "gonystylus-bancanus",
+  "slug": "ramin",
+  "botanical_name": "Gonystylus bancanus",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000707215",
+  "synonyms": [
+    "Aquilaria bancana",
+    "Gonystylus hackenbergii"
+  ],
+  "family": "Thymelaeaceae",
+  "common_names": [
+    "ramin"
+  ],
+  "wood_type": "hardwood",
+  "region": "Southeast Asia (Malay Peninsula, Sumatra, Borneo)",
+  "description": "A pale, straight-grained, fine-textured Southeast Asian hardwood. Commonly sold as dowels, mouldings, picture frame stock, and toy and furniture parts.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Occupational asthma from ramin dust was confirmed with skin tests and bronchial challenge in a Spanish study of obeche workers. The same patients reacted to ramin even if they had not worked with it, showing cross-reactivity between the two woods.",
+      "evidence_level": 1,
+      "sources": [
+        "Hinojosa-1986"
+      ]
+    },
+    {
+      "type": "hypersensitivity_pneumonitis",
+      "effects": [
+        "extrinsic allergic alveolitis",
+        "airway obstruction",
+        "reduced gas transfer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "One worker developed an alveolitis-like illness from ramin dust; the drop in lung function was reproduced by an inhalation challenge in the laboratory.",
+      "evidence_level": 1,
+      "sources": [
+        "Howie-1976"
+      ]
+    },
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust",
+        "bark"
+      ],
+      "summary": "HSE lists dermatitis from ramin and notes it may come from the bark. Two dermatology case reports describe skin sensitivity to ramin wood.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30",
+        "Beck-1982",
+        "Bruynzeel-1987"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, chiefly through cancers of the nose and sinuses. This applies to ramin dust as it does to any other wood.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "related_species_note": "Cross-reacts with obeche (Triplochiton scleroxylon) in sIgE inhibition studies (Hinojosa-1986).",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed ramin (Gonystylus bancanus) board, shot at a low three-quarter angle so the face grain fills most of the frame. Uniform pale straw to light creamy-yellow wood with no distinct heartwood or sapwood boundary. Straight to slightly interlocked grain, fine even texture with small evenly spread pores, and a modest natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of ramin with uniform pale straw-colored wood and a fine, even, straight grain.",
+  "images": [],
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Beck-1982 and Bruynzeel-1987 have no abstracts; titles verified only. Whether they used patch testing is unknown, so the skin hazard stays at level 2 (HSE) and is typed skin_irritant (HSE says 'dermatitis' without stating allergic). Upgrade to skin_sensitizer level 1 if full text shows positive patch tests."
+}

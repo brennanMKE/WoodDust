@@ -1,0 +1,113 @@
+{
+  "id": "betula-spp",
+  "slug": "birch",
+  "botanical_name": "Betula spp.",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-4000004547",
+  "synonyms": [],
+  "family": "Betulaceae",
+  "common_names": [
+    "birch",
+    "yellow birch",
+    "paper birch",
+    "silver birch",
+    "Baltic birch"
+  ],
+  "wood_type": "hardwood",
+  "region": "Northern temperate and boreal regions of Europe, Asia and North America",
+  "description": "Birches give a pale, fine-textured hardwood. Yellow birch is a common North American furniture and cabinet wood, and silver and downy birch from northern Europe are the basis of Baltic birch plywood. It is also used for turnery, flooring and veneer.",
+  "hazards": [
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "UK HSE lists dermatitis when sawing birch lumber. The mechanism (irritant or allergic) is not specified.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "rhinitis",
+        "allergic sensitization"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "A Swedish study of furniture workers with nasal symptoms found a few with positive skin prick tests to wood dusts, which a later review lists as including birch. Species-level confirmation was not checked in the original paper.",
+      "evidence_level": 3,
+      "sources": [
+        "Wilhelmsson-1984",
+        "Schlunssen-2018"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancer of the nasal cavity and sinuses after long, heavy exposure. This applies to this wood like any other.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "ACGIH names birch dust specifically as a suspected human carcinogen (A2).",
+      "evidence_level": 2,
+      "sources": [
+        "OSHA-CSI"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "note": "8-hour TWA; ACGIH value as restated by OSHA.",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A2",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [],
+  "related_species_note": "Evidence is reported for 'birch' without a species name. Birch pollen allergy is common, but pollen allergy is a separate issue from wood dust exposure.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed yellow birch (Betula alleghaniensis) board, shot at a low three-quarter angle so the face grain fills most of the frame. Creamy white to pale yellow sapwood blending into light golden-brown to reddish-tan heartwood. Mostly straight, fine, even grain with very small diffuse pores; a subtle shimmering curl or ripple in places, with a gentle natural sheen. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of yellow birch with pale creamy sapwood and light golden-brown heartwood.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Genus entry; image uses yellow birch (Betula alleghaniensis, name not separately checked on WFO). Schlunssen-2018 lists birch as OA/OR citing Wilhelmsson 1984 and Ahman 1996 (two papers). Ahman 1996 papers (PMID 8777447, 8919846) study woodwork teachers' nasal function with mixed woods and are not birch-specific, so not cited. Ahman 1995 (PMID 8588687) found birch RAST positive only in a reference subject. Cormier 2000 (PMID 11128881) Canadian sawmill SPT data for birch is in Schlunssen text but not the abstract. No verified primary with provocation testing for birch found."
+}

@@ -1,0 +1,149 @@
+{
+  "id": "triplochiton-scleroxylon",
+  "slug": "obeche",
+  "botanical_name": "Triplochiton scleroxylon",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000456002",
+  "synonyms": [
+    "Triplochiton johnsonii",
+    "Triplochiton nigericum",
+    "Samba scleroxylon"
+  ],
+  "family": "Malvaceae",
+  "common_names": [
+    "obeche",
+    "samba",
+    "wawa",
+    "ayous",
+    "abachi",
+    "African maple"
+  ],
+  "wood_type": "hardwood",
+  "region": "West and Central Africa",
+  "description": "A light, soft, pale cream to straw-colored hardwood that is easy to cut and carve. Widely used for model making, sauna benches and panelling, mouldings, picture frames, and as a core or veneer wood.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma",
+        "rhinitis",
+        "conjunctivitis"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Obeche is one of the best documented wood causes of allergic occupational asthma. Many workers have been confirmed by bronchial challenge plus skin or IgE tests, including a Finnish series in which 27 of 34 symptomatic workers had a positive challenge.",
+      "evidence_level": 1,
+      "sources": [
+        "Hinojosa-1984",
+        "Hinojosa-1986",
+        "Reijula-1994",
+        "Ferrer-2001",
+        "Hannu-2013"
+      ]
+    },
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "contact urticaria (hives)"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Hives where the wood or dust touches the skin have been confirmed in obeche-allergic workers with rubbing tests and specific IgE. People with obeche asthma may also react through the skin.",
+      "evidence_level": 1,
+      "sources": [
+        "Hinojosa-1990",
+        "Kanerva-1998"
+      ]
+    },
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "skin irritation",
+        "dermatitis",
+        "nettle rash"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists skin irritation, nettle rash, and dermatitis from handling obeche articles.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "respiratory tract irritation",
+        "sneezing",
+        "wheezing",
+        "feverishness"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE also lists irritation of the airways, sneezing, wheezing, and feeling feverish among reported effects of obeche dust.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, chiefly through cancers of the nose and sinuses. This applies to obeche dust as it does to any other wood.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [
+    {
+      "name": "Trip s 1 (38 kDa class I chitinase)",
+      "role": "major protein allergen",
+      "source": "Kespohl-2005"
+    },
+    {
+      "name": "thaumatin-like protein (24 kDa) and gamma-expansin (12 kDa)",
+      "role": "protein allergens recognized by symptomatic workers",
+      "source": "Aranda-2013"
+    }
+  ],
+  "related_species_note": "Cross-reactivity has been shown between obeche and ramin (Hinojosa-1986) and with natural rubber latex (Venturini-2004, Kespohl-2005). One obeche-allergic carpenter had anaphylaxis to tamarillo fruit (Vidal-2006). Obeche from Cameroon (ayous) was found to contain less of the major allergen than obeche from Ghana (wawa) (Kespohl-2008).",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed obeche (Triplochiton scleroxylon) board, shot at a low three-quarter angle so the face grain fills most of the frame. Pale creamy white to light straw-yellow throughout, with little difference between heartwood and sapwood. Interlocked grain giving a faint ribbon stripe, moderately coarse open texture with visible pores, and a soft low luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of obeche with pale creamy-yellow wood and a faint ribbon stripe from interlocked grain.",
+  "images": [],
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Trip s 1 primary characterization is Kespohl-2005 (Allergy 2005;60:808-814). Baatjies-2023 and Schlunssen-2018 not cited because primaries were reachable. Quirce-2000 (PMID 10932087, J Allergy Clin Immunol 106:400-1, obeche allergens) and Krawczyk-Szulc-2014 (PMID 24840887, SIC-confirmed) also support level 1 but were not added to keep the list short; can be added. Hinojosa papers call obeche 'African maple' - it is not a maple."
+}

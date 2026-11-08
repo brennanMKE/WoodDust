@@ -1,0 +1,89 @@
+{
+  "id": "alnus-spp",
+  "slug": "alder",
+  "botanical_name": "Alnus spp.",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-4000001331",
+  "synonyms": [],
+  "family": "Betulaceae",
+  "common_names": [
+    "alder",
+    "red alder",
+    "black alder",
+    "European alder",
+    "common alder"
+  ],
+  "wood_type": "hardwood",
+  "region": "Europe, western North America and Asia",
+  "description": "Alder is a soft, light, even-textured hardwood. Red alder from the Pacific Northwest is widely used for cabinets, furniture and millwork, and European alder for turnery, carving, toys and brush handles.",
+  "hazards": [
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "rhinitis",
+        "bronchial effects"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "UK HSE lists rhinitis and bronchial effects for alder dust. Whether these are allergic or irritant is not stated.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "UK HSE lists dermatitis among the reported effects of alder. The mechanism (irritant or allergic) is not specified.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancer of the nasal cavity and sinuses after long, heavy exposure. This applies to this wood like any other.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "note": "8-hour TWA; ACGIH value as restated by OSHA.",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [],
+  "known_compounds": [],
+  "related_species_note": "HSE lists 'alder' without a species. Alder pollen allergy is common and separate from wood dust exposure.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed red alder (Alnus rubra) board, shot at a low three-quarter angle so the face grain fills most of the frame. Light tan to pale reddish-brown color throughout, with almost no visible difference between heartwood and sapwood. Straight, fine, very even texture with tiny diffuse pores and faint growth rings; a few small pin knots possible, low to moderate luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of red alder with even light reddish-tan color and fine, faint grain.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Schlunssen-2018 lists alder (as 'Alnus glutinaosa', sic) with occupational asthma citing Ahman 1995 (PMID 8588687). That paper actually found a single woodwork teacher with positive RAST to alder and concluded IgE allergy did not explain symptoms, so it does not support an asthma claim and is not cited. No verified primary report of alder asthma or dermatitis found. Image uses red alder (Alnus rubra, not separately checked on WFO)."
+}

@@ -1,0 +1,133 @@
+{
+  "id": "tieghemella-heckelii",
+  "slug": "makore",
+  "botanical_name": "Tieghemella heckelii",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000325065",
+  "synonyms": [
+    "Dumoria heckelii",
+    "Mimusops heckelii",
+    "Baillonella heckelii"
+  ],
+  "family": "Sapotaceae",
+  "common_names": [
+    "makore",
+    "makoré",
+    "cherry mahogany",
+    "African cherry"
+  ],
+  "wood_type": "hardwood",
+  "region": "West Africa",
+  "description": "A fine-textured, pinkish to reddish-brown West African hardwood, sometimes used as a stand-in for cherry or mahogany. Used for furniture, veneers, panelling, flooring, doors, and boats.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "A cabinet maker's asthma was confirmed by specific challenge with an extract of makore dust, which produced both an immediate and a delayed reaction. No IgE mechanism was found, and the paper refers to the wood as African cherry (makore).",
+      "evidence_level": 1,
+      "sources": [
+        "Obata-2000"
+      ]
+    },
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists dermatitis among reported effects of makore. The wood contains a quinone that sensitized guinea pigs in laboratory tests.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30",
+        "Hausen-1978"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "mucous membrane irritation",
+        "respiratory tract irritation"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists irritation of the nose, throat and airways from makore dust.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "systemic_toxic",
+      "effects": [
+        "central nervous system effects",
+        "blood effects"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE also lists effects on the nervous system and blood from makore. No primary report describing these effects was found during this review.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, chiefly through cancers of the nose and sinuses. This applies to makore dust as it does to any other wood.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [
+    {
+      "name": "2,6-dimethoxy-1,4-benzoquinone",
+      "role": "quinone contact sensitizer found in makore and many other woods",
+      "source": "Hausen-1978"
+    }
+  ],
+  "related_species_note": "Not the same as Prunus africana, which is also called African cherry. See notes_internal.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed makore (Tieghemella heckelii) board, shot at a low three-quarter angle so the face grain fills most of the frame. Even pinkish-brown to deep reddish-brown heartwood with a narrow band of paler pinkish-grey sapwood along one edge. Straight to slightly interlocked grain with occasional mottled or moire figure, fine uniform texture, and a soft lustrous sheen. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of makore with fine-textured pinkish to reddish-brown heartwood and a narrow pale sapwood edge.",
+  "images": [],
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Name conflict resolved: SENSOR-2017 maps Obata-2000's 'makore' to Prunus africana. The Obata paper (full text read) never gives a binomial, calls the wood 'African cherry (Makore)', and uses Hausen's chapter titled 'Tieghemella heckelii, Makore' (Woods Injurious to Human Health, 1981, pp 89-91) as its background reference, plus Sandermann & Barghoorn 1955 on 'Makore- und Peroba-Holz'. Makore is the standard trade name for T. heckelii; Prunus africana is not a common furniture timber. Conclusion: tested wood was almost certainly T. heckelii, but it was identified by trade name only (no botanical verification of the sample). Hausen-1978 abstract names Makore without a binomial."
+}

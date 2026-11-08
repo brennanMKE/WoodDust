@@ -1,0 +1,72 @@
+{
+  "id": "robinia-pseudoacacia",
+  "slug": "black-locust",
+  "botanical_name": "Robinia pseudoacacia",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0000213931",
+  "synonyms": [],
+  "family": "Fabaceae",
+  "common_names": [
+    "black locust",
+    "locust",
+    "false acacia",
+    "robinia",
+    "acacia (European trade name)"
+  ],
+  "wood_type": "hardwood",
+  "region": "Native to the eastern United States; widely naturalized and planted in Europe and Asia",
+  "description": "Black locust is a very hard, heavy and rot-resistant hardwood used for fence posts, outdoor furniture, decking, playground equipment, boat parts and turning. In Europe it is often sold as 'acacia'.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma",
+        "allergic sensitization"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "A German report identified new wood allergens in black locust dust using antibodies from a worker with occupational respiratory allergy. Details of the challenge testing were not available to us.",
+      "evidence_level": 1,
+      "sources": [
+        "Kespohl-2006"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancer of the nasal cavity and sinuses after long, heavy exposure. This applies to this wood like any other.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "note": "8-hour TWA; ACGIH value as restated by OSHA.",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [],
+  "known_compounds": [],
+  "related_species_note": "European timber sold as 'acacia' is often black locust, not a true Acacia. Honey locust (Gleditsia triacanthos) is a different tree.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed black locust (Robinia pseudoacacia) board, shot at a low three-quarter angle so the face grain fills most of the frame. Narrow pale cream sapwood and greenish-yellow to golden olive-brown heartwood that is darkening toward russet-brown with exposure. Ring-porous grain with prominent earlywood pores in bold growth rings, medium-coarse texture, straight to slightly irregular figure, a bright satin luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of black locust with greenish-yellow to golden-brown heartwood and bold ring-porous grain.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Kespohl-2006 is a 3-page research letter in J Allergy Clin Immunol (not Allergy or Int Arch Allergy Immunol); no abstract and paywalled. Level 1 rests on the title (wood allergens detected) plus Schlunssen-2018's description of sIgE immunoblot binding and its 'OA' classification; the number of patients and whether inhalation challenge was done are unconfirmed. Black locust is not in HSE-WIS30. DeZotti-1996 reports asthma from 'acacia' by provocation test; in Italian usage this often means Robinia, but the abstract does not say so, so it is not cited here. Bark, seeds and leaves are known to be toxic if eaten (robin, robitin lectins) but no wood-dust source was found; not added. Black locust pollen sensitization (PMID 16680930) is separate and not cited."
+}

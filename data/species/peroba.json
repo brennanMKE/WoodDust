@@ -1,0 +1,106 @@
+{
+  "id": "aspidosperma-polyneuron",
+  "slug": "peroba",
+  "botanical_name": "Aspidosperma polyneuron",
+  "botanical_name_verified": false,
+  "synonyms": [
+    "Aspidosperma peroba"
+  ],
+  "family": "Apocynaceae",
+  "common_names": [
+    "peroba",
+    "peroba rosa",
+    "red peroba"
+  ],
+  "wood_type": "hardwood",
+  "region": "Brazil, Paraguay, Argentina",
+  "description": "Peroba rosa is a moderately heavy Brazilian hardwood with rosy to yellowish-brown heartwood. It has long been used for construction, joinery, flooring, and furniture, and reclaimed peroba is popular for furniture today.",
+  "hazards": [
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "skin irritation",
+        "blisters"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE lists skin irritation and blistering among reported effects of peroba.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "mucous membrane irritation"
+      ],
+      "route": [
+        "inhalation",
+        "eyes"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Irritation of the moist linings of the nose, throat, and eyes is listed by the UK HSE for peroba.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "systemic_toxic",
+      "effects": [
+        "headache",
+        "nausea",
+        "stomach cramps",
+        "weakness"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE reports whole-body effects such as headache, nausea, stomach cramps, and weakness in people working with peroba.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ],
+      "summary": "All wood dust, including peroba, is classified by IARC as carcinogenic to humans, mainly linked to cancers of the nose and sinuses after long-term exposure."
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "related_species_note": "'Peroba' is used for more than one timber. Peroba de campos (usually Paratecoma peroba) has caused eczema in an older report, and allergic contact dermatitis has been reported from other Aspidosperma woods; neither is confirmed for peroba rosa.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed peroba rosa (Aspidosperma polyneuron) board, shot at a low three-quarter angle so the face grain fills most of the frame. Rose-pink to yellowish-tan heartwood with irregular darker purplish-brown streaks, mellowing toward warm orange-brown, with no distinct sapwood visible. Very fine, uniform texture with straight to slightly irregular grain, pores too small to see clearly, and a low to medium natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of peroba rosa with rosy to yellowish-tan heartwood, irregular darker streaks, and a very fine texture.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "WIS30 lists only 'Peroba' with no botanical name; mapping to A. polyneuron (peroba rosa) follows the batch brief and is unconfirmed. Not cited as hazards (different or unidentified species): DeJong-1951 (peroba de campos), Jemec-1991 (Brazilian box tree, Aspidosperma sp.), CabezasArteaga-2019 (Aspidosperma per MeSH). These are defined in the batch sources file for a reviewer. Systemic route assumed inhalation - WIS30 gives no route. Name checked on GBIF only (A. peroba = synonym). No reports for a given effect does not mean the wood is safe."
+}

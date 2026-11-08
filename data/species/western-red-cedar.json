@@ -1,0 +1,140 @@
+{
+  "id": "thuja-plicata",
+  "slug": "western-red-cedar",
+  "botanical_name": "Thuja plicata",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000407856",
+  "synonyms": [],
+  "family": "Cupressaceae",
+  "common_names": [
+    "western red cedar",
+    "red cedar",
+    "WRC",
+    "giant arborvitae",
+    "Pacific red cedar",
+    "British Columbia cedar"
+  ],
+  "wood_type": "softwood",
+  "region": "Pacific Northwest, North America",
+  "description": "Western red cedar is a light, aromatic, rot-resistant softwood from the Pacific Northwest. It is widely used for shingles, siding, decking, fencing, outdoor furniture, sauna panelling, and boats.",
+  "hazards": [
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancer of the nasal cavity and sinuses after long-term heavy exposure. This applies to every species, so dust control matters whatever you cut.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    },
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "occupational asthma",
+        "rhinitis"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Western red cedar is one of the best-documented causes of wood-dust asthma, confirmed by inhalation challenge in hundreds of British Columbia workers and linked to plicatic acid. Many people kept having asthma after they stopped working with it, and ACGIH flags it as a respiratory sensitizer.",
+      "evidence_level": 1,
+      "sources": [
+        "ChanYeung-1973",
+        "ChanYeung-1982",
+        "ChanYeung-1987",
+        "OSHA-CSI",
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "allergic contact dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust",
+        "heartwood"
+      ],
+      "summary": "Patch testing confirmed allergic contact dermatitis from western red cedar sauna panelling in three Finnish cases, and ACGIH flags it as a skin sensitizer. The UK HSE also lists dermatitis.",
+      "evidence_level": 1,
+      "sources": [
+        "Huilaja-2016",
+        "OSHA-CSI",
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "mucous membrane irritation"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE lists irritation of the nose, throat, and eyes (mucous membranes) for western red cedar dust.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "systemic_toxic",
+      "effects": [
+        "central nervous system effects"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "summary": "The UK HSE lists central nervous system effects for western red cedar without further detail. We did not find a primary report describing this.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 0.5,
+      "fraction": "inhalable",
+      "note": "8-hour time-weighted average, as restated by OSHA",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A4",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [
+    {
+      "name": "plicatic acid",
+      "role": "main cause of red cedar asthma",
+      "source": "Cartier-1986"
+    }
+  ],
+  "related_species_note": "Eastern white cedar (Thuja occidentalis) contains plicatic acid too and cross-reacts with western red cedar (Cartier-1986). Spanish cedar (Cedrela) and aromatic red cedar (Juniperus virginiana) are different trees.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed western red cedar (Thuja plicata) board, shot at a low three-quarter angle so the face grain fills most of the frame. Heartwood in mixed tones of salmon-pink, reddish-brown and light amber, with streaks of varying color, and a thin band of pale whitish-yellow sapwood along one edge. Straight, even grain with distinct growth rings in close parallel lines, coarse but uniform texture, no visible pores, and a soft natural sheen. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of western red cedar with streaky salmon-pink to reddish-brown heartwood and straight, tight grain.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "ChanYeung-1973 has no PubMed abstract; level 1 also rests on ChanYeung-1982 and -1987 (both state inhalation challenge). Plicatic acid source is Cartier-1986 (EWC paper that states it is the causal agent in red cedar too); ChanYeung-1980 (complement activation by plicatic acid, PMID 6768786) could also be added. HSE 'central nervous system effects' has no primary source found; kept at level 2 but reviewer may prefer to drop or soften. A4 class listed because OSHA-CSI names western red cedar explicitly in the A4 row. Large literature exists (Vedal, Noertjojo dose-response, Frew mechanism studies) if more depth is wanted. Absence of reports for a hazard is not evidence that this wood is safe."
+}

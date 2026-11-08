@@ -1,0 +1,127 @@
+{
+  "id": "pterocarpus-soyauxii",
+  "slug": "padauk",
+  "botanical_name": "Pterocarpus soyauxii",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0000172858",
+  "synonyms": [],
+  "family": "Fabaceae",
+  "common_names": [
+    "padauk",
+    "African padauk",
+    "African padouk",
+    "barwood",
+    "camwood"
+  ],
+  "wood_type": "hardwood",
+  "region": "Central and tropical West Africa",
+  "description": "African padauk is a bright orange-red hardwood that darkens to reddish brown with age. Woodworkers use it for turnery, carving, boxes, accents, flooring and boat parts; its dust is strongly coloured and stains skin and clothing.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "occupational asthma",
+        "eosinophilic airway inflammation"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "A worker developed occupational asthma from padauk dust, confirmed by a specific inhalation challenge that also caused a marked rise in eosinophils (allergy-type white cells) in the airway.",
+      "evidence_level": 1,
+      "sources": [
+        "Doyen-2023"
+      ]
+    },
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "allergic contact dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "A woodworker reacting to several exotic woods had a strong positive patch test to padauk sawdust, and an occupational allergic skin rash from Pterocarpus soyauxii has also been reported.",
+      "evidence_level": 1,
+      "sources": [
+        "Rackett-1997",
+        "KiecSwierczynska-2004"
+      ]
+    },
+    {
+      "type": "eye_irritant",
+      "effects": [
+        "itching",
+        "eye irritation",
+        "eyelid swelling"
+      ],
+      "route": [
+        "eyes",
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE lists padauk as a reported cause of itching, eye irritation and swelling such as puffy eyelids, noting that effects depend on the species.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "systemic_toxic",
+      "effects": [
+        "vomiting"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE also lists vomiting among reported effects of padauk, again noting that it varies by species.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "All wood dust is classified as carcinogenic to humans, mainly linked to cancers of the nose and sinuses after long-term exposure. This applies to this wood like any other.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "note": "Applies to wood dust generally; this species has no separate ACGIH value.",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [],
+  "known_compounds": [],
+  "related_species_note": "Several Pterocarpus species are sold as padauk (e.g. Andaman padauk, P. dalbergioides, which has its own dermatitis report: Mehta 2007, PMID 17343633). Kejaat/muninga (Pterocarpus angolensis) has its own page.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed African padauk (Pterocarpus soyauxii) board, shot at a low three-quarter angle so the face grain fills most of the frame. Freshly cut heartwood a vivid saturated orange-red to blood red with slightly darker reddish-brown streaks; no sapwood visible. Straight to slightly interlocked grain, medium to coarse texture with prominent open pores, a moderate natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of African padauk with vivid orange-red heartwood and open pores.",
+  "notes_internal": "Doyen-2023 full text not read; SIC confirmation from UCLouvain repository/search summaries, botanical name not confirmed in the paper. Rackett-1997 abstract names 'padauk' without species. KiecSwierczynska-2004 no abstract; title names P. soyauxii. HSE-WIS30 says 'species-dependant' and gives no botanical name. Li 2018 (PMID 29693067) reports carpenter's pigmentation from African padauk dust; not added. Common names barwood/camwood not verified against a Tier D source.",
+  "last_reviewed": "2026-11-07"
+}

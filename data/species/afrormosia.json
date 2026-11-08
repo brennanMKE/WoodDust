@@ -1,0 +1,110 @@
+{
+  "id": "pericopsis-elata",
+  "slug": "afrormosia",
+  "botanical_name": "Pericopsis elata",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000212083",
+  "synonyms": [
+    "Afrormosia elata"
+  ],
+  "family": "Fabaceae",
+  "common_names": [
+    "afrormosia",
+    "assamela",
+    "kokrodua",
+    "African teak",
+    "Pericopsis elata"
+  ],
+  "wood_type": "hardwood",
+  "region": "West and Central Africa (Ghana, Côte d'Ivoire, Cameroon, Congo Basin)",
+  "description": "Afrormosia is a fine, durable West and Central African hardwood that starts yellowish-brown and darkens to a teak-like brown. It is used as a teak substitute for furniture, joinery, flooring, veneers and boat work, and its trade is regulated under CITES.",
+  "hazards": [
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "skin irritation"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK safety regulator lists skin irritation among the reported effects of afrormosia.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "splinter_infection",
+      "effects": [
+        "septic splinters"
+      ],
+      "route": [
+        "splinter"
+      ],
+      "source_part": [
+        "heartwood"
+      ],
+      "summary": "The UK safety regulator notes that afrormosia splinters tend to become infected (go septic).",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "systemic_toxic",
+      "effects": [
+        "nervous system effects"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK safety regulator lists nervous system effects among the reported effects of afrormosia, without further detail.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancers of the nasal cavity and sinuses after long-term exposure.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [
+    {
+      "name": "2,6-dimethoxy-1,4-benzoquinone",
+      "role": "quinone isolated from afrormosia wood; a contact sensitizer in guinea pig tests",
+      "source": "Hausen-1978"
+    }
+  ],
+  "image_prompt": "Photorealistic studio photograph of a freshly planed afrormosia (Pericopsis elata) board, shot at a low three-quarter angle so the face grain fills most of the frame. Heartwood a fresh yellowish-brown with olive and light brown streaks, beginning to warm toward a teak-like medium brown; a narrow band of pale cream sapwood along one edge. Straight to slightly interlocked grain with a subtle ribbon stripe, fine even texture finer than teak, small pores, and a smooth surface with moderate-to-high natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of afrormosia with yellowish-brown heartwood streaked with olive and light brown, and a fine even texture.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Only an agency listing (HSE-WIS30) found; no primary clinical reports on afrormosia found in PubMed searches ('afrormosia OR Pericopsis' with dermatitis/asthma/allergy/toxic) on 2026-11-07. HSE-WIS30 does not describe the 'nervous system effects'; route assigned as inhalation by assumption, flag for review. Botanical name verified on WFO: Pericopsis elata (Harms) Meeuwen accepted; Afrormosia elata Harms is a synonym. Hausen-1978 isolated 2,6-dimethoxybenzoquinone from afrormosia among ~21 woods; no afrormosia patient data in that abstract."
+}

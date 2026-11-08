@@ -1,0 +1,133 @@
+{
+  "Kespohl-2012": {
+    "tier": "C",
+    "citation": "Kespohl S, Kotschy-Lang N, Tomm JM, von Bergen M, Maryska S, Bruening T, Raulf-Heimsoth M. Occupational IgE-mediated softwood allergy: characterization of the causative allergen. Int Arch Allergy Immunol. 2012;157(2):202-208.",
+    "title": "Occupational IgE-mediated softwood allergy: characterization of the causative allergen",
+    "doi": "10.1159/000324953",
+    "pmid": "21986217",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/21986217/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed record and abstract checked. Epub Oct 2011; Schlunssen-2018 Table 1 cites it as 'Kespohl 2011'. Case report: sIgE to spruce, pine, larch; skin and challenge tests; spruce peroxidases identified as allergens."
+  },
+  "Wittczak-2012": {
+    "tier": "C",
+    "citation": "Wittczak T, Dudek W, Walusiak-Skorupa J, Bochenska-Marciniak M, Nowakowska-Swirta E, Kuna P, Palczynski C. Occupational asthma due to spruce wood. Occup Med (Lond). 2012;62(4):301-304.",
+    "title": "Occupational asthma due to spruce wood",
+    "doi": "10.1093/occmed/kqs023",
+    "pmid": "22661666",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22661666/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed abstract checked: sawmill owner, spruce sIgE 7.8 IU/ml, serial PEF and sputum eosinophilia."
+  },
+  "Hessel-1995": {
+    "tier": "C",
+    "citation": "Hessel PA, Herbert FA, Melenka LS, Yoshida K, Michaelchuk D, Nakaza M. Lung health in sawmill workers exposed to pine and spruce. Chest. 1995;108(3):642-646.",
+    "title": "Lung health in sawmill workers exposed to pine and spruce",
+    "doi": "10.1378/chest.108.3.642",
+    "pmid": "7656610",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/7656610/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed abstract checked: 94 sawmill workers vs 165 oil field workers; lower FEV1 and FEV1/FVC, more wheeze. Mixed pine/spruce exposure."
+  },
+  "Estlander-2001": {
+    "tier": "C",
+    "citation": "Estlander T, Jolanki R, Alanko K, Kanerva L. Occupational allergic contact dermatitis caused by wood dusts. Contact Dermatitis. 2001;44(4):213-217.",
+    "title": "Occupational allergic contact dermatitis caused by wood dusts",
+    "doi": "10.1034/j.1600-0536.2001.044004213.x",
+    "pmid": "11260236",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11260236/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed abstract checked: 5 patients exposed to Finnish pine or spruce dust; 4 reacted to sawdust patch tests, all 5 to colophonium."
+  },
+  "Majamaa-2004": {
+    "tier": "C",
+    "citation": "Majamaa H, Viljanen P. Occupational facial allergic contact dermatitis caused by Finnish pine and spruce wood dusts. Contact Dermatitis. 2004;51(3):157-158.",
+    "title": "Occupational facial allergic contact dermatitis caused by Finnish pine and spruce wood dusts",
+    "doi": "10.1111/j.0105-1873.2004.0426k.x",
+    "pmid": "15479214",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/15479214/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed record confirmed; no abstract available, so testing details not checked (title only)."
+  },
+  "Greenberg-1972": {
+    "tier": "C",
+    "citation": "Greenberg M. Respiratory symptoms following brief exposure to Cedar of Lebanon (Cedra libani) dust. Clin Allergy. 1972;2(3):219-224.",
+    "title": "Respiratory symptoms following brief exposure to Cedar of Lebanon (Cedra libani) dust",
+    "doi": "10.1111/j.1365-2222.1972.tb01286.x",
+    "pmid": "4643784",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/4643784/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed record and DOI confirmed; no abstract, paper not read. Schlunssen-2018 classifies it as non-IgE respiratory symptoms."
+  },
+  "Grobosch-2013": {
+    "tier": "C",
+    "citation": "Grobosch T, Schwarze B, Felgenhauer N, Riesselmann B, Roscher S, Binscheck T. Eight cases of fatal and non-fatal poisoning with Taxus baccata. Forensic Sci Int. 2013;227(1-3):118-126.",
+    "title": "Eight cases of fatal and non-fatal poisoning with Taxus baccata",
+    "doi": "10.1016/j.forsciint.2012.11.014",
+    "pmid": "23265441",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/23265441/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed abstract checked: ingestion of yew leaves; taxines measured in serum; ventricular tachycardia and prolonged QRS; two deaths."
+  },
+  "Reijnen-2017": {
+    "tier": "C",
+    "citation": "Reijnen G, Bethlehem C, van Remmen JMBL, Smit HJM, van Luin M, Reijnders UJL. Post-mortem findings in 22 fatal Taxus baccata intoxications and a possible solution to its detection. J Forensic Leg Med. 2017;52:56-61.",
+    "title": "Post-mortem findings in 22 fatal Taxus baccata intoxications and a possible solution to its detection",
+    "doi": "10.1016/j.jflm.2017.08.016",
+    "pmid": "28865388",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28865388/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed abstract checked: 22 fatal cases from literature 1960-2016 via leaves, pulp, bark and yew tea. Partly a literature compilation."
+  },
+  "Alloatti-1996": {
+    "tier": "C",
+    "citation": "Alloatti G, Penna C, Levi RC, Gallo MP, Appendino G, Fenoglio I. Effects of yew alkaloids and related compounds on guinea-pig isolated perfused heart and papillary muscle. Life Sci. 1996;58(10):845-854.",
+    "title": "Effects of yew alkaloids and related compounds on guinea-pig isolated perfused heart and papillary muscle",
+    "doi": "10.1016/0024-3205(96)00018-5",
+    "pmid": "8602118",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/8602118/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed abstract checked: taxine B most potent; negative inotropy and AV block in isolated guinea-pig heart (animal tissue study)."
+  },
+  "Tekol-1987": {
+    "tier": "C",
+    "citation": "Tekol Y, Kameyama M. Elektrophysiologische Untersuchungen ueber den Wirkungsmechanismus des Eibentoxins Taxin am Herzen [Electrophysiology of the mechanisms of action of the yew toxin, taxine, on the heart]. Arzneimittelforschung. 1987;37(4):428-431.",
+    "title": "Electrophysiology of the mechanisms of action of the yew toxin, taxine, on the heart",
+    "pmid": "2440454",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/2440454/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed English abstract checked (article in German): taxine inhibits sodium and calcium currents in guinea-pig ventricular cells. German original title not confirmed; no DOI."
+  },
+  "Wilson-2001": {
+    "tier": "B",
+    "citation": "Wilson CR, Sauer J, Hooser SB. Taxines: a review of the mechanism and toxicity of yew (Taxus spp.) alkaloids. Toxicon. 2001;39(2-3):175-185.",
+    "title": "Taxines: a review of the mechanism and toxicity of yew (Taxus spp.) alkaloids",
+    "doi": "10.1016/s0041-0101(00)00146-x",
+    "pmid": "10978734",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/10978734/",
+    "accessed": "2026-11-07",
+    "license": "copyrighted - cite facts only",
+    "verified": true,
+    "verification_note": "PubMed abstract checked. Review; background only, not cited on species page."
+  }
+}

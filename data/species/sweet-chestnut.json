@@ -1,0 +1,87 @@
+{
+  "id": "castanea-sativa",
+  "slug": "sweet-chestnut",
+  "botanical_name": "Castanea sativa",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://www.worldfloraonline.org/taxon/wfo-0000812271",
+  "synonyms": [],
+  "family": "Fagaceae",
+  "common_names": [
+    "sweet chestnut",
+    "European chestnut",
+    "Spanish chestnut",
+    "chestnut"
+  ],
+  "wood_type": "hardwood",
+  "region": "Southern Europe, western Asia; widely planted in Britain and Europe",
+  "description": "Sweet chestnut is a ring-porous hardwood that looks like oak without the large rays. It is durable outdoors and used for fencing, gates, cleft poles, cladding, furniture, kitchen utensils and barrels.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "An Italian case series confirmed occupational asthma from chestnut dust with a specific provocation test.",
+      "evidence_level": 1,
+      "sources": [
+        "DeZotti-1996"
+      ]
+    },
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "bark"
+      ],
+      "summary": "UK HSE lists dermatitis for sweet chestnut and suggests lichens on the bark may be the cause.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancer of the nasal cavity and sinuses after long, heavy exposure. This applies to this wood like any other.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "note": "8-hour TWA; ACGIH value as restated by OSHA.",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [],
+  "known_compounds": [],
+  "related_species_note": "Horse chestnut (Aesculus) is unrelated. American chestnut (Castanea dentata) is a close relative mostly met as reclaimed lumber; no separate evidence was reviewed for it.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed sweet chestnut (Castanea sativa) board, shot at a low three-quarter angle so the face grain fills most of the frame. Narrow pale straw-colored sapwood and light to medium golden-brown heartwood that darkens toward warm tan. Straight, coarse, ring-porous grain with conspicuous earlywood pores in distinct rings, flatsawn cathedral figure, no large ray fleck, moderate luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of sweet chestnut with golden-brown heartwood and coarse, open, oak-like grain without ray flecks.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "DeZotti-1996 abstract says 'chestnut' without botanical name; assumed Castanea sativa given the Italian setting. Innocenti 1985 (PMID 4069066, Med Lav, chestnut dust and loss of smell pilot study) has no abstract and was not cited; see verify file. Carosso 1987 lists chestnut SPT per Schlunssen-2018, abstract does not name species."
+}

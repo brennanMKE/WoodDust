@@ -1,0 +1,106 @@
+{
+  "id": "acacia-melanoxylon",
+  "slug": "australian-blackwood",
+  "botanical_name": "Acacia melanoxylon",
+  "botanical_name_verified": false,
+  "synonyms": [],
+  "family": "Fabaceae",
+  "common_names": [
+    "Australian blackwood",
+    "blackwood",
+    "Tasmanian blackwood",
+    "blackwood acacia",
+    "sally wattle"
+  ],
+  "wood_type": "hardwood",
+  "region": "Southeastern Australia and Tasmania; planted elsewhere",
+  "description": "Australian blackwood is a medium-density acacia with golden to dark reddish-brown heartwood, often with striking curly or fiddleback figure. It is used for fine furniture, cabinetry, veneer, and musical instruments such as guitars and ukuleles.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Occupational asthma from blackwood dust was reported in Australian woodworkers, and a NIOSH-funded review lists it among woods with a positive specific challenge test.",
+      "evidence_level": 1,
+      "sources": [
+        "WoodBaker-1997",
+        "SENSOR-2017",
+        "Clarke-1989"
+      ]
+    },
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "allergic contact dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "heartwood",
+        "dust"
+      ],
+      "summary": "Blackwood has long been reported to cause allergic skin rashes in Australian woodworkers. Lab studies identified several heartwood compounds that can sensitize skin, though their individual strength appears modest.",
+      "evidence_level": 3,
+      "sources": [
+        "Tilsley-1990",
+        "Hausen-1981",
+        "Hausen-1990"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ],
+      "summary": "All wood dust, including Australian blackwood, is classified by IARC as carcinogenic to humans, mainly linked to cancers of the nose and sinuses after long-term exposure."
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [
+    {
+      "name": "2,6-dimethoxy-1,4-benzoquinone",
+      "role": "contact allergen",
+      "source": "Hausen-1981"
+    },
+    {
+      "name": "acamelin",
+      "role": "contact allergen (furanoquinone)",
+      "source": "Hausen-1981"
+    },
+    {
+      "name": "melacacidin",
+      "role": "contact allergen (hydroxyflavan)",
+      "source": "Hausen-1990"
+    }
+  ],
+  "related_species_note": "Hausen-1990 notes melacacidin occurs in many other Acacia species, so related acacia woods could plausibly cause similar skin reactions; this has not been confirmed species by species.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed Australian blackwood (Acacia melanoxylon) board, shot at a low three-quarter angle so the face grain fills most of the frame. Golden-brown to rich reddish-brown heartwood with darker chocolate streaks, and a narrow strip of pale straw-colored sapwood along one edge. Straight to slightly interlocked grain with a medium, even texture and a shimmering chatoyant fiddleback figure running across the board, good natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of Australian blackwood with golden to reddish-brown heartwood, shimmering fiddleback figure, and a thin edge of pale sapwood.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "WoodBaker-1997 and Clarke-1989 have no abstracts; level 1 rests on SENSOR-2017 Table 3 listing (positive specific challenge). Skin evidence kept at level 3: Hausen papers are guinea-pig sensitisation and chemistry; Tilsley-1990 (clinical report, no abstract) may include human patch tests - if so upgrade to level 1. Hausen-1981 abstract also mentions 'toxic effects' since 1925 without detail - not entered. Name checked on GBIF only. No reports for a given effect does not mean the wood is safe."
+}

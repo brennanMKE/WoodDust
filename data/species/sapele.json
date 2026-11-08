@@ -1,0 +1,103 @@
+{
+  "id": "entandrophragma-cylindricum",
+  "slug": "sapele",
+  "botanical_name": "Entandrophragma cylindricum",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000668215",
+  "synonyms": [],
+  "family": "Meliaceae",
+  "common_names": [
+    "sapele",
+    "sapelli",
+    "sapeli",
+    "aboudikro",
+    "Entandrophragma cylindricum"
+  ],
+  "wood_type": "hardwood",
+  "region": "Tropical West and Central Africa",
+  "description": "Sapele is a reddish-brown African hardwood related to mahogany, known for a striking ribbon stripe on quarter-sawn faces. It is used for furniture, cabinetry, doors, flooring, veneer, plywood and guitar backs and sides.",
+  "hazards": [
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "skin irritation"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK safety regulator lists skin irritation among the reported effects of sapele.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "A Spanish case report describes a carpenter with work-related asthma from sapele dust, and a peer-reviewed review lists sapele among woods that cause occupational asthma. We have not yet confirmed what testing the case report used.",
+      "evidence_level": 3,
+      "sources": [
+        "AlvarezCuesta-2004",
+        "Schlunssen-2018"
+      ]
+    },
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "contact dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The same Spanish report describes an allergic skin reaction to sapele dust alongside the asthma.",
+      "evidence_level": 3,
+      "sources": [
+        "AlvarezCuesta-2004"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancers of the nasal cavity and sinuses after long-term exposure.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "related_species_note": "Sapele is in the same family (Meliaceae) as genuine mahogany, African mahogany and utile (Entandrophragma utile); evidence for those woods is listed separately.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed sapele (Entandrophragma cylindricum) board, shot at a low three-quarter angle so the face grain fills most of the frame. Heartwood a medium to deep reddish-brown with a slight purple tone, uniform across the face; no visible sapwood. Quarter-sawn face with tightly interlocked grain producing a bold, regular ribbon stripe of alternating light and dark bands that shift as the light changes, fine even texture, small pores, and a high natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed quarter-sawn board of sapele with reddish-brown heartwood and a bold ribbon stripe of alternating light and dark bands.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "AlvarezCuesta-2004 title reports occupational asthma and IgE-mediated contact dermatitis from sapele, but there is no PubMed abstract and we could not access the full text; if it includes a specific inhalation challenge, prick test or sIgE, upgrade asthma and skin hazards to level 1. Schlunssen-2018 Table 1 lists sapele OA citing Kersten 1994 and Oertmann 1993 (German, Allergologie; not in PubMed)."
+}

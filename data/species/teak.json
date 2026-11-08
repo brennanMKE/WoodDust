@@ -1,0 +1,162 @@
+{
+  "id": "tectona-grandis",
+  "slug": "teak",
+  "botanical_name": "Tectona grandis",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000321229",
+  "synonyms": [],
+  "family": "Lamiaceae",
+  "common_names": [
+    "teak",
+    "Burmese teak",
+    "true teak",
+    "plantation teak",
+    "Tectona grandis"
+  ],
+  "wood_type": "hardwood",
+  "region": "Native to South and Southeast Asia (India, Myanmar, Laos, Thailand); widely grown in plantations across the tropics",
+  "description": "Teak is a golden-brown, naturally oily hardwood that resists rot and moisture, which makes it a classic choice for boat decks and fittings, outdoor furniture and joinery. Its high silica content dulls cutting edges quickly.",
+  "hazards": [
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "allergic contact dermatitis",
+        "itching"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Teak dust is a well documented cause of allergic skin rashes. In one furniture factory study about half of heavily exposed workers had eczema or severe itching, and patch tests confirmed allergy to teak dust; lapachol and deoxylapachol in the wood are identified sensitizers.",
+      "evidence_level": 1,
+      "sources": [
+        "Krogh-1962",
+        "Krogh-1964",
+        "Estlander-2001",
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "contact urticaria (hives)",
+        "skin irritation"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Hives (nettle rash) from teak are listed by the UK safety regulator and described in a case report, and the factory study above found that moistened teak dust could also irritate skin directly.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30",
+        "Schmidt-1978",
+        "Krogh-1962"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "respiratory symptoms"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK safety regulator lists breathing problems among the reported effects of teak dust.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Occupational asthma from teak is listed in a peer-reviewed review of wood dust allergy, based on a German workplace study we have not yet been able to check directly.",
+      "evidence_level": 3,
+      "sources": [
+        "Schlunssen-2018"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "ACGIH names teak dust as a suspected human carcinogen (class A2).",
+      "evidence_level": 2,
+      "sources": [
+        "OSHA-CSI"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancers of the nasal cavity and sinuses after long-term exposure.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A2",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [
+    {
+      "name": "deoxylapachol",
+      "role": "main contact allergen of teak; sensitizes guinea pigs in experimental tests",
+      "source": "Schmalle-1984"
+    },
+    {
+      "name": "lapachol",
+      "role": "naphthoquinone sensitizer; patch-test positive in teak-allergic workers",
+      "source": "Krogh-1964"
+    }
+  ],
+  "related_species_note": "Workers sensitized to teak also reacted to jacaranda wood dust containing lapachol in patch tests (Krogh-1964). Several unrelated timbers are sold with 'teak' in the name (for example 'African teak' for iroko); check the botanical name.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed teak (Tectona grandis) board, shot at a low three-quarter angle so the face grain fills most of the frame. Heartwood a golden to medium honey-brown with faint darker olive-brown streaks, fresh-cut and not yet darkened; a narrow strip of pale yellowish sapwood along one edge. Straight grain with a coarse, uneven texture, ring-porous growth rings showing as soft wavy bands, a slightly waxy, oily-looking surface with low-to-moderate luster, and occasional tiny pale mineral flecks. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of teak with golden honey-brown heartwood, faint darker streaks and an oily-looking surface.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Skin sensitization level 1 rests on Krogh-1962 (patch testing of 112 workers) and Krogh-1964 (lapachol patch tests); Estlander-2001 also reports 5 patch-test positives to teak dust. Schmalle-1984 (deoxylapachol structure) has no abstract; its title names deoxylapachol as the contact allergen of Tectona grandis, and Schulz-1977 confirms deoxylapachol sensitizes guinea pigs. Asthma rests only on Schlunssen-2018 Table 1 (citing Oertmann & Bergmann 1993, Allergologie 16:334-340, not in PubMed) so it stays at level 3. Schmidt-1978 (contact urticaria with systemic effects) has no abstract; details unverified. HSE-WIS30 also notes Southeast Asian teak may be more irritating and sensitising than plantation teak grown elsewhere; not stated as a hazard. Other unchecked leads: Rao-2010 (Indian ACD case, PMID 20445306), Estlander-1999 letter (PMID 10475519)."
+}

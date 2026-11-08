@@ -1,0 +1,135 @@
+{
+  "id": "quercus-spp",
+  "slug": "oak",
+  "botanical_name": "Quercus spp.",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-4000032377",
+  "synonyms": [],
+  "family": "Fagaceae",
+  "common_names": [
+    "oak",
+    "red oak",
+    "white oak",
+    "northern red oak",
+    "English oak",
+    "European oak",
+    "Quercus"
+  ],
+  "wood_type": "hardwood",
+  "region": "Northern Hemisphere; main lumber species from North America and Europe",
+  "description": "Oak is one of the most widely used furniture and flooring hardwoods, sold mainly as red oak (e.g. Quercus rubra) and white oak (e.g. Quercus alba, and European Quercus robur). It is strong, open-pored, and common in cabinetry, flooring, barrels, and joinery, so many woodworkers generate a lot of oak dust.",
+  "hazards": [
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancer of the nasal cavity and sinuses after long-term heavy exposure. This applies to every species, so dust control matters whatever you cut.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "ACGIH names oak dust specifically as a confirmed human carcinogen (A1), one of only two woods with that class. The classification covers oak as a group rather than red or white oak separately.",
+      "evidence_level": 2,
+      "sources": [
+        "OSHA-CSI"
+      ]
+    },
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "occupational asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Three workers in Quebec developed asthma from oak dust, confirmed by specific inhalation challenge in the lab. The species of oak is not given in the abstract; the UK HSE also lists asthma for oak in general.",
+      "evidence_level": 1,
+      "sources": [
+        "Malo-1995",
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "sneezing",
+        "sore throat",
+        "bronchial hyperresponsiveness"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE lists sneezing for oak. A French study of beech and oak furniture workers found more sore throat and more twitchy airways as dust levels rose; it did not separate oak from beech.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30",
+        "Bohadana-2000"
+      ]
+    },
+    {
+      "type": "eye_irritant",
+      "effects": [
+        "eye irritation"
+      ],
+      "route": [
+        "eyes"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE lists eye irritation as a reported effect of oak dust. We did not find a primary paper describing this for oak specifically.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "note": "8-hour time-weighted average, as restated by OSHA",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [
+    {
+      "body": "ACGIH",
+      "class": "A1",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [],
+  "related_species_note": "ACGIH also lists beech as A1. Hardwood-dust studies often pool oak and beech, so oak-only numbers are scarce.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed red oak (Quercus rubra) board, shot at a low three-quarter angle so the face grain fills most of the frame. Light reddish-tan to pinkish-brown heartwood with a narrow band of paler cream sapwood along one edge. Flat-sawn face showing bold cathedral arches and coarse, open pores visible as fine dark dashes along the grain, with a moderately coarse texture and low luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of red oak with pinkish-tan heartwood, bold cathedral grain arches and visible open pores.",
+  "featured_rank": 1,
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Genus entry covering red and white oak; no evidence found that separates their hazards. Malo-1995 abstract does not name the oak species (Schlunssen-2018 table lists Quercus robur for oak rows). Bohadana-2000 pools beech and oak; used only as supporting evidence. Not used: 'silky oak' (Grevillea robusta, not Quercus) dermatitis reports; Frullania (liverwort on bark) dermatitis, which is from bark epiphytes, not oak wood, and not oak-specific; Spiewak 1994 and Aldunate 1998 (oak asthma, from Schlunssen table) not indexed in PubMed and not verified. Image prompt uses red oak as the representative. Absence of reports for a hazard is not evidence that this wood is safe."
+}

@@ -1,0 +1,109 @@
+{
+  "id": "nauclea-diderrichii",
+  "slug": "opepe",
+  "botanical_name": "Nauclea diderrichii",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000249515",
+  "synonyms": [
+    "Sarcocephalus diderrichii",
+    "Nauclea trillesii",
+    "Sarcocephalus trillesii",
+    "Sarcocephalus badi"
+  ],
+  "family": "Rubiaceae",
+  "common_names": [
+    "opepe",
+    "bilinga",
+    "badi",
+    "kusia"
+  ],
+  "wood_type": "hardwood",
+  "region": "West and Central Africa",
+  "description": "A heavy, very durable West African hardwood with golden-yellow to orange-brown heartwood. Used for marine work, piling, heavy construction, and hard-wearing flooring.",
+  "hazards": [
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists dermatitis among reported effects of opepe.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "mucous membrane irritation",
+        "nose bleeds",
+        "blood spitting"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists irritation of the nose and throat, nose bleeds, and spitting blood among reported effects of opepe dust.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "systemic_toxic",
+      "effects": [
+        "giddiness",
+        "visual disturbance"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE also lists nervous system effects such as giddiness and changes in vision. No primary report of these effects was found during this review.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, chiefly through cancers of the nose and sinuses. This applies to opepe dust as it does to any other wood.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "image_prompt": "Photorealistic studio photograph of a freshly planed opepe (Nauclea diderrichii) board, shot at a low three-quarter angle so the face grain fills most of the frame. Golden yellow to warm orange-brown heartwood that is fairly uniform in tone, with no sapwood showing. Interlocked grain producing a broad ribbon stripe, medium to coarse texture with open pores, and a moderate golden luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of opepe with golden orange-brown heartwood and a broad ribbon stripe from interlocked grain.",
+  "images": [],
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Only source is HSE-WIS30. PubMed and Europe PMC searches for opepe / Nauclea diderrichii health effects found no primary reports. Common names other than 'opepe' (bilinga, badi, kusia) are trade-name knowledge not checked against a cited source; verify against BS EN 13556 or USDA FPL."
+}

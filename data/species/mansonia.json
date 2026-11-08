@@ -1,0 +1,146 @@
+{
+  "id": "mansonia-altissima",
+  "slug": "mansonia",
+  "botanical_name": "Mansonia altissima",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000450928",
+  "synonyms": [
+    "Achantia altissima"
+  ],
+  "family": "Malvaceae",
+  "common_names": [
+    "mansonia",
+    "bete",
+    "mansonia walnut"
+  ],
+  "wood_type": "hardwood",
+  "region": "West Africa",
+  "description": "A fine-textured West African hardwood with greyish-brown to purplish-brown heartwood, often used as a walnut substitute. Used for cabinet making, furniture, turnery, and sports goods.",
+  "hazards": [
+    {
+      "type": "cardiac",
+      "effects": [
+        "heart disorders"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists heart disorders among reported effects of mansonia. Laboratory studies found that water extracts of the wood were toxic to the heart in animals, and bark extracts block the same enzyme as the heart drug ouabain.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30",
+        "Beretta-1970",
+        "Guede-1977"
+      ]
+    },
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "skin sensitization",
+        "skin irritation"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists mansonia as a skin sensitiser and irritant.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "respiratory disorders",
+        "rhinitis",
+        "nose bleeds"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists respiratory disorders and nose bleeds from mansonia dust, and an older Italian report describes several cases of nasal disease in exposed workers.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30",
+        "Noferi-1966"
+      ]
+    },
+    {
+      "type": "systemic_toxic",
+      "effects": [
+        "headache"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE also lists headache among reported effects of working mansonia.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "splinter_infection",
+      "effects": [
+        "septic splinters"
+      ],
+      "route": [
+        "splinter"
+      ],
+      "summary": "HSE names mansonia as one of the woods whose splinter wounds heal slowly and often turn septic.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, chiefly through cancers of the nose and sinuses. This applies to mansonia dust as it does to any other wood.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "known_compounds": [
+    {
+      "name": "mansonones (sesquiterpene quinones)",
+      "role": "quinone compounds isolated from the wood",
+      "source": "MariniBettolo-1966"
+    }
+  ],
+  "image_prompt": "Photorealistic studio photograph of a freshly planed mansonia (Mansonia altissima) board, shot at a low three-quarter angle so the face grain fills most of the frame. Greyish-brown to purplish-brown heartwood, sometimes with lighter or darker bands, and a sharply defined pale whitish sapwood strip along one edge. Mostly straight grain, fine even texture with small pores, and a low to moderate natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of mansonia with greyish to purplish-brown heartwood and a pale sapwood strip along one edge.",
+  "images": [],
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Cardiac evidence in people is from the HSE listing only; Beretta-1970 (animal, title only) and Guede-1977 (bark extract, Na/K-ATPase, abstract read) are supporting lab studies, not human cases. Nava-1975 ('Mansonia altissima disease', 30 cases, Med Lav, PMID 131905), Sigg-1968 (PMID 4387523), Reinl-1965 (PMID 14305268) have no abstracts and were not cited; full text could clarify skin and respiratory findings. Noferi-1966 title only."
+}

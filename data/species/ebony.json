@@ -1,0 +1,108 @@
+{
+  "id": "diospyros-crassiflora",
+  "slug": "ebony",
+  "botanical_name": "Diospyros crassiflora",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000648727",
+  "synonyms": [
+    "Diospyros ampullacea",
+    "Diospyros evila",
+    "Diospyros incarnata"
+  ],
+  "family": "Ebenaceae",
+  "common_names": [
+    "African ebony",
+    "ebony",
+    "Gaboon ebony",
+    "Cameroon ebony"
+  ],
+  "wood_type": "hardwood",
+  "region": "West and Central Africa",
+  "description": "A very heavy, fine-textured hardwood whose heartwood is close to jet black. Prized for small, high-value parts such as instrument fingerboards and fittings, knife and tool handles, inlay, and turned details.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Occupational asthma from ebony dust has been confirmed by inhalation challenge, once in a worker exposed to Diospyros crassiflora and once in a violin maker sanding ebony fingerboards. Skin testing was negative in the first case, so the mechanism is not known.",
+      "evidence_level": 1,
+      "sources": [
+        "Maestrelli-1987",
+        "KopferschmittKubler-1992"
+      ]
+    },
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "dermatitis",
+        "possible skin sensitization"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK HSE lists ebony as a cause of dermatitis and as a possible skin sensitiser. Its listing covers ebony in general rather than naming a particular Diospyros species.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "mucous membrane irritation"
+      ],
+      "route": [
+        "inhalation",
+        "eyes"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE also lists irritation of the moist linings of the nose, throat and eyes among the reported effects of ebony dust.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, chiefly through cancers of the nose and sinuses. This applies to African ebony dust as it does to any other wood.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "image_prompt": "Photorealistic studio photograph of a freshly planed African ebony (Diospyros crassiflora) board, shot at a low three-quarter angle so the face grain fills most of the frame. Dense, uniform jet-black heartwood with occasional faint dark-brown streaks, and no visible sapwood. Very fine, even texture with tiny closed pores, nearly invisible straight grain, and a soft satin sheen where the light catches the surface. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of African ebony with dense, nearly uniform jet-black heartwood and a subtle satin sheen.",
+  "images": [],
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Maestrelli-1987 is the only reviewed primary paper that names D. crassiflora; KopferschmittKubler-1992 abstract says only 'ebony'. HSE-WIS30 'Ebony' is not species-specific. Ebony skin case reports (Wlodek 2014, Kuner 2004, Rouyer 2026) found but not cited because species and test details could not be confirmed from abstracts; see data/verify/african-tropicals.md. 'Gaboon ebony' is a trade name for this wood; do not confuse with gaboon/okoume (slug okoume)."
+}

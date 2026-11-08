@@ -1,0 +1,56 @@
+{
+  "id": "prunus-serotina",
+  "slug": "cherry",
+  "botanical_name": "Prunus serotina",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000995988",
+  "synonyms": [],
+  "family": "Rosaceae",
+  "common_names": [
+    "cherry",
+    "black cherry",
+    "American cherry",
+    "American black cherry",
+    "wild cherry",
+    "rum cherry"
+  ],
+  "wood_type": "hardwood",
+  "region": "Eastern North America; introduced and invasive in parts of Europe",
+  "description": "Black cherry is a fine-grained North American hardwood that darkens from pinkish brown to a deep reddish brown with light exposure. It is a favorite for furniture, cabinetry, turning, and small boxes.",
+  "hazards": [
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancer of the nasal cavity and sinuses after long-term heavy exposure. This applies to every species, so dust control matters whatever you cut.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "note": "8-hour time-weighted average, as restated by OSHA",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "carcinogen_class": [],
+  "known_compounds": [],
+  "related_species_note": "'African cherry' in asthma literature (Obata 2000) is makore (Tieghemella heckelii), not Prunus. Schlunssen-2018 lists sweet cherry (Prunus avium) under unspecified 'allergy', citing German-language sources we could not verify.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed black cherry (Prunus serotina) board, shot at a low three-quarter angle so the face grain fills most of the frame. Warm light reddish-brown to salmon-pink heartwood, slightly darker in tone as if just beginning to age, with a narrow band of pale creamy yellow sapwood along one edge. Fine, even texture with straight grain, a few small dark gum flecks and faint wavy figure, tiny diffuse pores, and a smooth satiny luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of black cherry with warm reddish-brown heartwood, fine straight grain and a narrow pale sapwood edge.",
+  "featured_rank": 4,
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "No species-specific reports found. PubMed searches on 2026-11-07: 'Prunus serotina' with dermatitis/asthma/allergy/occupational/dust/wood/toxic; 'cherry' in title with wood/sawdust and asthma/rhinitis/dermatitis/allergy; 'cherry wood'. Only hit was Obata 2000 (makore, mislabelled African cherry). Not in HSE-WIS30 table. ACGIH puts it in the A4 'all other wood dusts' group (not species-named, so no level 2 entry). Leaves, bark and seeds of Prunus serotina contain cyanogenic compounds (livestock poisoning literature), which is not a wood-dust hazard and was not added. The page should state clearly that no species-specific reports were found and that this is not evidence of safety. Absence of reports for a hazard is not evidence that this wood is safe."
+}

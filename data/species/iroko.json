@@ -1,0 +1,129 @@
+{
+  "id": "milicia-excelsa",
+  "slug": "iroko",
+  "botanical_name": "Milicia excelsa",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000447908",
+  "synonyms": [
+    "Chlorophora excelsa"
+  ],
+  "family": "Moraceae",
+  "common_names": [
+    "iroko",
+    "African teak",
+    "odum",
+    "mvule",
+    "kambala",
+    "Milicia excelsa",
+    "Chlorophora excelsa"
+  ],
+  "wood_type": "hardwood",
+  "region": "Tropical Africa, from West Africa to East Africa",
+  "description": "Iroko is a durable, yellow-brown African hardwood that darkens with age and is often used as a cheaper substitute for teak. Woodworkers use it for outdoor furniture, boat work, worktops, joinery and flooring.",
+  "hazards": [
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Iroko dust is a confirmed cause of occupational asthma. In an Italian study all nine affected woodworkers had asthma reactions when challenged with iroko dust in the clinic, and a Spanish case was confirmed the same way.",
+      "evidence_level": 1,
+      "sources": [
+        "Ricciardi-2003",
+        "Azofra-1989",
+        "Pickering-1972",
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "hypersensitivity_pneumonitis",
+      "effects": [
+        "extrinsic allergic alveolitis"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK safety regulator names iroko as one of the woods that can rarely cause allergic alveolitis, a flu-like lung inflammation that can lead to lasting lung damage.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "skin_sensitizer",
+      "effects": [
+        "dermatitis",
+        "allergic contact dermatitis"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "Dermatitis from iroko is listed by the UK safety regulator, and case reports describe allergic skin rashes from iroko dust, including on the face from airborne dust.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30",
+        "Hinnen-1995",
+        "Stingeni-1998"
+      ]
+    },
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "contact urticaria (hives)"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "The UK safety regulator lists nettle rash (hives) among the reported effects of iroko.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, mainly linked to cancers of the nasal cavity and sinuses after long-term exposure.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "related_species_note": "Milicia regia (also traded as iroko) is a close relative; evidence here is reported simply as iroko and may include either species. 'African teak' is a trade name only; iroko is not related to true teak.",
+  "image_prompt": "Photorealistic studio photograph of a freshly planed iroko (Milicia excelsa) board, shot at a low three-quarter angle so the face grain fills most of the frame. Heartwood a yellowish to golden-brown with a slight greenish cast on the fresh surface, mid-way between yellow and teak-brown; a narrow band of pale cream sapwood clearly set apart along one edge. Interlocked grain giving a faint ribbon stripe, coarse even texture with large open pores visible as fine dark streaks, a few scattered small pale mineral deposits, and a moderate natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of iroko with yellowish golden-brown heartwood, coarse open grain and a narrow band of pale sapwood.",
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Asthma level 1: Ricciardi-2003 (bronchial provocation positive in 9 workers; skin prick and sIgE negative, suggesting a non-IgE mechanism) and Azofra-1989 (bronchial provocation, early and late response). Pickering-1972 has no abstract; cited as supporting only. Hinnen-1995 and Stingeni-1998 are letters without abstracts; patch-test details not confirmed, so dermatitis stays at level 2 via HSE-WIS30. Unused leads: Casas-2003 (Spanish case, PMID 12605819), de las Marinas-2013 (basophil activation test, PMID 24654319), Kersten 1994 (via Schlunssen-2018). Milicia regia not separately checked."
+}

@@ -1,0 +1,121 @@
+{
+  "id": "terminalia-superba",
+  "slug": "limba",
+  "botanical_name": "Terminalia superba",
+  "botanical_name_verified": true,
+  "botanical_name_source": "https://list.worldfloraonline.org/wfo-0000408519",
+  "synonyms": [
+    "Terminalia altissima"
+  ],
+  "family": "Combretaceae",
+  "common_names": [
+    "limba",
+    "afara",
+    "korina",
+    "black limba",
+    "white limba",
+    "frake"
+  ],
+  "wood_type": "hardwood",
+  "region": "West and Central Africa",
+  "description": "A light to medium-weight hardwood, pale yellowish-brown, with some logs showing dark grey-brown streaks sold as black limba. Used for furniture, frames, drawer sides, veneer, plywood, and electric guitar bodies.",
+  "hazards": [
+    {
+      "type": "respiratory_irritant",
+      "effects": [
+        "decrease in lung function",
+        "nose bleeds",
+        "gum bleeding"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists reduced lung function and bleeding from the nose and gums among reported effects of limba dust.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "skin_irritant",
+      "effects": [
+        "nettle rash"
+      ],
+      "route": [
+        "skin"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "HSE lists nettle rash (itchy, raised welts) from contact with limba.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "splinter_infection",
+      "effects": [
+        "septic splinters"
+      ],
+      "route": [
+        "splinter"
+      ],
+      "summary": "HSE notes that limba splinter wounds can turn septic.",
+      "evidence_level": 2,
+      "sources": [
+        "HSE-WIS30"
+      ]
+    },
+    {
+      "type": "respiratory_sensitizer",
+      "effects": [
+        "asthma"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "A review of wood allergy lists limba as a reported cause of occupational asthma, based on German case reports that could not be checked for this page.",
+      "evidence_level": 3,
+      "sources": [
+        "Schlunssen-2018"
+      ]
+    },
+    {
+      "type": "carcinogen",
+      "effects": [
+        "nasal and sinus cancer"
+      ],
+      "route": [
+        "inhalation"
+      ],
+      "source_part": [
+        "dust"
+      ],
+      "summary": "IARC classifies all wood dust as carcinogenic to humans, chiefly through cancers of the nose and sinuses. This applies to limba dust as it does to any other wood.",
+      "evidence_level": 0,
+      "sources": [
+        "IARC-62"
+      ]
+    }
+  ],
+  "exposure_limits": [
+    {
+      "body": "ACGIH TLV",
+      "value_mg_m3": 1,
+      "fraction": "inhalable",
+      "source": "OSHA-CSI"
+    }
+  ],
+  "image_prompt": "Photorealistic studio photograph of a freshly planed limba (Terminalia superba) board, shot at a low three-quarter angle so the face grain fills most of the frame. Pale straw to light yellowish-brown wood with a few irregular dark grey-brown to black streaks running along the board. Mostly straight grain, moderately coarse texture with open pores, and a medium natural luster. Soft diffused daylight from upper left, gentle falloff, neutral warm-grey seamless background, shallow depth of field with the near edge tack-sharp. No text, no logos, no hands, no tools, no finish or varnish, natural unfinished wood. Wide 1200x630 composition (1.91:1) with the board centered and margin on both sides for cropping.",
+  "image_alt": "Planed board of limba with pale yellowish-brown wood crossed by a few irregular dark streaks.",
+  "images": [],
+  "last_reviewed": "2026-11-07",
+  "notes_internal": "Asthma primaries listed by Schlunssen-2018 (Oertmann 1993 Allergologie 16:334-340; Kersten 1994 Allergologie 17:55-60; Wirtz 1997 Arbeitsmed Sozialmed Umweltmed 32:257-260, 'Asthmaanfalle durch Abachi- und Limbaholz') are not in PubMed or Crossref and were not read, so Tier B is cited at level 3. Upgrade if a library copy of Wirtz-1997 confirms challenge testing."
+}
