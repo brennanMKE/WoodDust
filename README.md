@@ -97,4 +97,4 @@ Dust Almanac summarizes published research and agency guidance for general educa
 
 ## License
 
-Not yet chosen. The plan is MIT for code and CC BY 4.0 for data ([`PLAN.md`](PLAN.md) §10). Until a `LICENSE` file is added, all rights are reserved.
+[MIT](LICENSE) © 2026 Brennan Stehling.
