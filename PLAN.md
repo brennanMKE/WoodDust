@@ -38,7 +38,8 @@ The SPA uses history routing; the Go server answers every route with **server-re
 | `/` | Top 5 (featured_rank), search box, "all wood dust is hazardous" headline |
 | `/wood/{slug}` | Species card |
 | `/browse` | Filterable table/cards |
-| `/safety`, `/limits`, `/glossary`, `/sources` | Content pages from handoff §6 |
+| `/risks`, `/protection/*`, `/symptoms`, `/limits`, `/glossary` | Education pages (§3a) |
+| `/sources`, `/methodology` | Sources, evidence levels, data policy, how to contribute |
 | `/submit`, `/submit/{slug}` | New species / correction form (sign-in required) |
 | `/account` | My submissions, sign out |
 | `/admin/*` | Submission queue, API keys (admin only, `noindex`) |
@@ -60,6 +61,31 @@ Rules:
 - Search result pages (`/?q=`) are `noindex`; `/submit`, `/account`, `/admin` are `noindex` and disallowed in robots.txt.
 - Sitemap lists every species with `lastmod` = `last_reviewed`.
 - No tracking scripts, no third-party fonts; target Lighthouse 95+ and WCAG 2.2 AA (handoff §6).
+
+## 3a. Education pages: wood dust risks and protection
+
+These pages are a core part of the site, not an appendix. Many people searching for one wood are really asking "is this dust bad for me, and what should I wear?". Every species card links to them, and the homepage has a short "All wood dust is hazardous" section pointing to `/risks` and `/protection`.
+
+| Path | Covers | Main sources |
+|---|---|---|
+| `/risks` | Why all wood dust is hazardous: nasal and sinus cancer (IARC Group 1); sensitization and occupational asthma, which can be permanent and worsen with every exposure; rhinitis; dermatitis; eye irritation; species with toxic compounds; fire and dust-explosion risk. Exposure adds up over years. Fine dust you can't see matters most | IARC-62/100C, OSHA-CSI, HSE, Baatjies-2023 |
+| `/protection` | Overview using the hierarchy of controls: remove dust at the source first, then clean the air, then wear protection. A one-screen checklist | NIOSH, HSE, OSHA |
+| `/protection/dust-collection` | Extraction at the tool, dust collectors vs shop vacs, filter ratings, ambient air cleaners, why sanding makes the worst dust | NIOSH, HSE |
+| `/protection/respirators` | Dust masks vs N95 vs P100 vs PAPR. Fit testing and seal checks. Why beards break the seal. When to replace filters. Cartridges needed for finishing | NIOSH, OSHA respiratory protection |
+| `/protection/skin-and-eyes` | Gloves, long sleeves, washing, barrier creams (limits), safety glasses vs goggles, irritating species | HSE, NIOSH |
+| `/protection/cleanup` | HEPA vacuum and damp wipe. Never compressed air or dry sweeping. Clothing and taking dust home | OSHA, HSE |
+| `/protection/fire-and-explosion` | Combustible dust, collector fires, spark sources, oily rags from finishing | OSHA combustible dust, NFPA references (cite, don't copy) |
+| `/symptoms` | Signs to watch for (cough, wheeze or stuffy nose that improves on days away from the shop, rashes, nosebleeds) and when to see a doctor. Not medical advice; plain disclaimer | NIOSH, HSE |
+| `/limits` | OSHA vs NIOSH vs ACGIH vs UK vs EU limits, and what 1 mg/m³ looks like in a hobby shop | `data/regulatory.json` |
+| `/glossary` | Sensitizer, irritant, inhalable vs respirable, etc. Terms are linked from cards with hover definitions | |
+
+Rules:
+- Our own words. Every factual claim links to a source from `data/sources.json`. Same data policy as the species data.
+- Calm and practical. Explain why, then what to do. No fear-mongering, no product endorsements, no affiliate links.
+- Content lives as Markdown with front matter in `content/pages/`. Go renders it server-side for SEO, with the same head/OG/JSON-LD treatment (`Article`, `BreadcrumbList`).
+- Each page gets its own OG image prompt (stored in front matter), e.g. a woodworker wearing a respirator at a sanding station.
+- A printable shop poster (`/print/shop-poster`): a one-page summary of the protection checklist.
+- Drafting begins once the agency agent's NIOSH/OSHA/HSE guidance sources are in `data/sources/agency.json`.
 
 ## 4. Search
 
@@ -164,7 +190,7 @@ rest:
 1. **Data** (in progress): eight research agents fill `data/species`, `data/sources`, `data/verify`. Then merge into `data/sources.json`, run cross-file checks, and do a human review pass.
 2. **Skeleton**: repo layout, migrations, `seed`, public read API, CI (schema validation, unknown source keys, hazard without source, link checker, `go test`, `svelte-check`).
 3. **Public site**: SPA routes, server-rendered head and content, top 5 home, search, cards, browse, sitemap/robots, 404/301 handling. Generate images from the prompts in each species file into `images/og/{slug}.jpg`.
-4. **Content pages**: safety, limits, glossary, sources and methodology (drafted from NIOSH/OSHA/HSE, in our own words).
+4. **Education pages** (§3a): risks, protection (5 subpages), symptoms, limits, glossary, sources/methodology, shop poster. Drafted by a research agent from NIOSH/OSHA/HSE, in our own words, then reviewed by you.
 5. **Portiko sign-in + submissions**: embed the provider, mount its routes, `identity` subcommands, register the client, `rp` integration, bootstrap the admin, then forms, account page, moderation queue, `export`.
 6. **API keys + Home Assistant**: key management, `/stats`, the HA config above, `docs/api.md`.
 7. **Deploy**: Apache vhost, systemd unit, deploy script, backups, then a Lighthouse/a11y pass.
