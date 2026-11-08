@@ -63,7 +63,7 @@
           <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path d="M5 7V2.5h10V7M5 14H3V8.5A1.5 1.5 0 0 1 4.5 7h11A1.5 1.5 0 0 1 17 8.5V14h-2M5 11.5h10v6H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg>
           Print shop card
         </button>
-        <a class="button" href="/submit/{s.slug}">Report a correction</a>
+        <a class="button" href="/submit/{s.slug}?kind=correction">Report a correction</a>
       </p>
     </div>
     <figure class="photo">
@@ -201,7 +201,7 @@
   <footer class="card-foot">
     <p>
       Last reviewed <time datetime={s.last_reviewed}>{formatDate(s.last_reviewed)}</time>.
-      <span class="no-print">Spotted an error or a missing source? <a href="/submit/{s.slug}">Report a correction</a>.</span>
+      <span class="no-print">Spotted an error or a missing source? <a href="/submit/{s.slug}?kind=correction">Report a correction</a>.</span>
     </p>
     <p class="print-only small key-line">
       Evidence levels: {EVIDENCE[1].label}; {EVIDENCE[2].label}; {EVIDENCE[3].label}; General = applies to all wood dust.

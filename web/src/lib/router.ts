@@ -1,13 +1,28 @@
-// Route table from docs/contract.md §2, plus client-only routes (`submit`).
+// Route table from docs/contract.md §2.
 // Pure functions only, so they can be unit tested without a DOM.
 
-export type RouteId = 'home' | 'species' | 'browse' | 'page' | 'sources' | 'submit' | 'not_found';
+export type RouteId =
+  | 'home'
+  | 'species'
+  | 'browse'
+  | 'page'
+  | 'sources'
+  | 'submit'
+  | 'submission_status'
+  | 'admin'
+  | 'not_found';
+
+/** Admin screens under /admin (contract §2): params.section is one of these. */
+export type AdminSection = 'dashboard' | 'submissions' | 'submission' | 'api-keys';
 
 export interface RouteMatch {
   id: RouteId;
   path: string;
   params: Record<string, string>;
-  /** API path whose response is this route's `data`, or null if the route needs none. */
+  /**
+   * API path whose response is this route's `data`, or null if the route needs
+   * none. `submit` is special: its data is assembled by nav (form token + target).
+   */
   api: string | null;
 }
 
@@ -35,6 +50,26 @@ export function matchRoute(rawPath: string): RouteMatch {
   if (parts.some((s) => !SEGMENT.test(s))) return notFound;
 
   const [first, second, ...rest] = parts;
+
+  if (first === 'submit' && second === 'status') {
+    if (rest.length !== 1) return notFound;
+    return {
+      id: 'submission_status',
+      path,
+      params: { token: rest[0] },
+      api: `/api/v1/submissions/status/${encodeURIComponent(rest[0])}`,
+    };
+  }
+  if (first === 'admin') {
+    // Data for every admin screen is the signed-in user (GET /api/v1/me); views fetch the rest.
+    const admin = (params: Record<string, string>): RouteMatch => ({ id: 'admin', path, params, api: '/api/v1/me' });
+    if (!second && !rest.length) return admin({ section: 'dashboard' });
+    if (second === 'api-keys' && !rest.length) return admin({ section: 'api-keys' });
+    if (second === 'submissions' && !rest.length) return admin({ section: 'submissions' });
+    if (second === 'submissions' && rest.length === 1 && /^\d+$/.test(rest[0]))
+      return admin({ section: 'submission', id: rest[0] });
+    return notFound;
+  }
   if (rest.length > 0) return notFound;
 
   switch (first) {
@@ -51,6 +86,7 @@ export function matchRoute(rawPath: string): RouteMatch {
     case 'sources':
       return second ? notFound : { id: 'sources', path, params: {}, api: '/api/v1/sources' };
     case 'submit':
+      if (second === 'status') return notFound;
       return { id: 'submit', path, params: second ? { slug: second } : {}, api: null };
     case 'print':
       // Printable pages (contract §2: /print/shop-poster), served by the page API.
@@ -83,7 +119,7 @@ export function matchRoute(rawPath: string): RouteMatch {
  */
 export function isSpaLink(url: URL, origin: string): boolean {
   if (url.origin !== origin) return false;
-  if (/^\/(api|images|assets|auth|login|signin|admin|account|oauth|accounts|u)(\/|$)/.test(url.pathname)) return false;
+  if (/^\/(api|images|assets|auth|login|signin|account|oauth|accounts|u)(\/|$)/.test(url.pathname)) return false;
   if (/\.[a-z0-9]+$/i.test(url.pathname)) return false; // files like /sitemap.xml
   return matchRoute(url.pathname).id !== 'not_found';
 }

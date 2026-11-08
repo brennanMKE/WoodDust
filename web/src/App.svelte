@@ -10,8 +10,24 @@
   import Poster from './views/Poster.svelte';
   import Sources from './views/Sources.svelte';
   import Submit from './views/Submit.svelte';
+  import SubmissionStatus from './views/SubmissionStatus.svelte';
   import NotFound from './views/NotFound.svelte';
-  import type { ContentPage, SourcesResponse, SpeciesDetail, SpeciesList } from './lib/types';
+  import type {
+    ContentPage,
+    MeResponse,
+    SourcesResponse,
+    SpeciesDetail,
+    SpeciesList,
+    SubmissionStatusData,
+    SubmitData,
+  } from './lib/types';
+
+  // Admin is owner-only: keep it in its own chunk, loaded on first visit.
+  let adminView: Promise<typeof import('./admin/Admin.svelte')> | null = null;
+  const loadAdmin = () => (adminView ??= import('./admin/Admin.svelte'));
+
+  // /submit?kind=… and /submit?name=… re-initialize the form, so key on the query too.
+  const viewKey = $derived(app.match.id === 'submit' ? app.match.path + app.search : app.match.path);
 
   let announcement = $state('');
 
@@ -45,7 +61,7 @@
     <div class="progress" aria-hidden="true"></div>
   {/if}
 
-  {#key app.match.path}
+  {#key viewKey}
     {#if app.match.id === 'home'}
       <Home data={app.data as SpeciesList} />
     {:else if app.match.id === 'species'}
@@ -59,7 +75,17 @@
     {:else if app.match.id === 'sources'}
       <Sources data={app.data as SourcesResponse} />
     {:else if app.match.id === 'submit'}
-      <Submit slug={app.match.params.slug} />
+      <Submit slug={app.match.params.slug} data={app.data as SubmitData | null} />
+    {:else if app.match.id === 'submission_status'}
+      <SubmissionStatus data={app.data as SubmissionStatusData} />
+    {:else if app.match.id === 'admin'}
+      {#await loadAdmin()}
+        <div class="wrap"><p class="muted">Loading admin…</p></div>
+      {:then { default: Admin }}
+        <Admin data={app.data as MeResponse | null} section={app.match.params.section} id={app.match.params.id} />
+      {:catch}
+        <div class="wrap"><div class="notice" role="alert"><p>The admin screens didn’t load. Reload the page to try again.</p></div></div>
+      {/await}
     {:else}
       <NotFound />
     {/if}

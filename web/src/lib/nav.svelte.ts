@@ -2,7 +2,7 @@
 import { ApiError, getJSON } from './api';
 import { applyHead, headFor } from './head';
 import { isSpaLink, matchRoute, type RouteMatch } from './router';
-import type { InitialPayload, SiteInfo } from './types';
+import type { InitialPayload, SiteInfo, SpeciesDetail, SubmitData } from './types';
 
 interface AppState {
   match: RouteMatch;
@@ -72,9 +72,15 @@ async function load(match: RouteMatch, search: string, opts: { initial?: boolean
   let data: unknown = {};
   let finalMatch = match;
   try {
-    if (match.api) data = await getJSON(match.api, ctl.signal);
+    if (match.id === 'submit') data = await loadSubmit(match, search, ctl.signal);
+    else if (match.api) data = await getJSON(match.api, ctl.signal);
   } catch (err) {
     if (ctl.signal.aborted) return false;
+    if (err instanceof ApiError && err.status === 401 && match.id === 'admin') {
+      // Not signed in (contract §7): hand off to Portiko's login, then come back here.
+      location.assign(loginURL(match.path + search));
+      return false;
+    }
     if (err instanceof ApiError && err.status === 404) {
       if (match.id === 'species' && !opts.initial) {
         // Possibly an alias (e.g. /wood/wrc): let the server answer with its 301.
@@ -96,6 +102,38 @@ async function load(match: RouteMatch, search: string, opts: { initial?: boolean
   app.loading = false;
   applyHead(headFor(finalMatch, data, app.site, search));
   return true;
+}
+
+export function loginURL(returnTo: string): string {
+  return `/auth/login?return=${encodeURIComponent(returnTo)}`;
+}
+
+/**
+ * The submit route's data on client navigation: Go puts it in #initial on a
+ * full page load, so here we assemble the same shape (contract §2) from a
+ * fresh form token and, for /submit/{slug}, the target species.
+ */
+async function loadSubmit(match: RouteMatch, search: string, signal: AbortSignal): Promise<SubmitData> {
+  const slug = match.params.slug;
+  const [token, species] = await Promise.all([
+    getJSON<{ form_token: string }>('/api/v1/submissions/form-token', signal),
+    slug
+      ? getJSON<SpeciesDetail>(`/api/v1/species/${encodeURIComponent(slug)}`, signal).catch((err) => {
+          if (err instanceof ApiError && err.status === 404) return null;
+          throw err;
+        })
+      : Promise.resolve(null),
+  ]);
+  return {
+    form_token: token.form_token,
+    target: species ? { slug: species.slug, name: species.name, botanical_name: species.botanical_name } : null,
+    prefill_name: new URLSearchParams(search).get('name') ?? '',
+  };
+}
+
+/** Fetch a fresh form token (e.g. for "send another"). */
+export async function freshFormToken(): Promise<string> {
+  return (await getJSON<{ form_token: string }>('/api/v1/submissions/form-token')).form_token;
 }
 
 export async function navigate(href: string, opts: { replace?: boolean } = {}): Promise<void> {

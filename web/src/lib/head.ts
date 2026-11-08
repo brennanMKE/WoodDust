@@ -1,5 +1,5 @@
 import type { RouteMatch } from './router';
-import type { ContentPage, SiteInfo, SpeciesDetail } from './types';
+import type { ContentPage, SiteInfo, SpeciesDetail, SubmitData } from './types';
 import { hazardName } from './labels';
 
 export interface HeadInfo {
@@ -57,8 +57,27 @@ export function headFor(match: RouteMatch, data: unknown, site: SiteInfo, search
         canonical,
         noindex: false,
       };
-    case 'submit':
-      return { title: t('Report a correction'), description: DEFAULT_DESC, canonical, noindex: true };
+    case 'submit': {
+      const target = (data as SubmitData | null)?.target;
+      const kind = params.get('kind');
+      const title = target
+        ? kind === 'correction'
+          ? `Report a correction: ${target.name}`
+          : `Send a note about ${target.name}`
+        : kind === 'new_species' || params.has('name')
+          ? 'Suggest a species'
+          : 'Suggest or correct';
+      return {
+        title: t(title),
+        description: 'Suggest a species, correct a card, add a better source or report a reaction. Anonymous; every submission is reviewed.',
+        canonical,
+        noindex: true,
+      };
+    }
+    case 'submission_status':
+      return { title: t('Submission status'), description: DEFAULT_DESC, canonical, noindex: true };
+    case 'admin':
+      return { title: t('Admin'), description: DEFAULT_DESC, canonical, noindex: true };
   }
   return { title: t('Page not found'), description: DEFAULT_DESC, canonical, noindex: true };
 }

@@ -33,7 +33,10 @@
       </ul>
     </nav>
   </div>
-  <p class="wrap small">{app.site.name}. No tracking, no ads, no affiliate links.</p>
+  <p class="wrap small">
+    {app.site.name}. No tracking, no ads, no affiliate links.
+    <span class="suggest">Know a wood we’re missing? <a href="/submit?kind=new_species">Suggest a species</a>.</span>
+  </p>
 </footer>
 
 <style>
@@ -87,6 +90,14 @@
     color: var(--muted);
     padding-bottom: 1.5rem;
     margin: 0 auto;
+  }
+
+  .suggest {
+    margin-left: 0.5rem;
+  }
+
+  .small a {
+    color: inherit;
   }
 
   @media print {

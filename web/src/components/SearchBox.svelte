@@ -2,6 +2,9 @@
   // Editable combobox with list autocomplete (WAI-ARIA APG pattern).
   // Debounced type-ahead from /api/v1/search; Enter goes to the highlighted
   // option or the top match; no match shows "Not listed yet".
+  // mode="pick" reuses it as a species picker inside another form: no <form>
+  // of its own, and choosing calls onpick instead of navigating.
+  import type { Snippet } from 'svelte';
   import { getJSON } from '../lib/api';
   import { comboInput, comboKey, initialCombo, type ComboState } from '../lib/combobox';
   import { navigate } from '../lib/nav.svelte';
@@ -12,7 +15,26 @@
     variant = 'hero',
     initialQuery = '',
     id = 'search',
-  }: { variant?: 'hero' | 'compact'; initialQuery?: string; id?: string } = $props();
+    mode = 'navigate',
+    label = 'Search by common, trade or botanical name',
+    onpick,
+    describedby,
+    invalid = false,
+    nomatch,
+  }: {
+    variant?: 'hero' | 'compact' | 'field';
+    initialQuery?: string;
+    id?: string;
+    mode?: 'navigate' | 'pick';
+    label?: string;
+    onpick?: (r: SearchResult) => void;
+    /** Extra ids for aria-describedby (hints, errors). */
+    describedby?: string;
+    invalid?: boolean;
+    /** Replaces the "Not listed yet" text in pick mode; receives the query. */
+    nomatch?: Snippet<[string]>;
+  } = $props();
+  const picking = $derived(mode === 'pick');
 
   const DEBOUNCE_MS = 150;
   const LIMIT = 8;
@@ -88,7 +110,8 @@
   function go(r: SearchResult) {
     combo = { open: false, active: -1 };
     query = r.name;
-    void navigate(r.url);
+    if (picking) onpick?.(r);
+    else void navigate(r.url);
   }
 
   async function onkeydown(e: KeyboardEvent) {
@@ -148,9 +171,17 @@
   });
 </script>
 
-<form class="search {variant}" role="search" {onsubmit} onfocusout={onfocusout} action="/" method="get">
-  <label for={id} class={variant === 'compact' ? 'visually-hidden' : 'label'}>
-    Search by common, trade or botanical name
+<svelte:element
+  this={picking ? 'div' : 'form'}
+  class="search {variant}"
+  role={picking ? undefined : 'search'}
+  onsubmit={picking ? undefined : onsubmit}
+  {onfocusout}
+  action={picking ? undefined : '/'}
+  method={picking ? undefined : 'get'}
+>
+  <label for={id} class={variant === 'compact' ? 'visually-hidden' : variant === 'field' ? 'field-label' : 'label'}>
+    {label}
   </label>
   <div class="field">
     <svg class="icon" viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false">
@@ -160,19 +191,20 @@
     <input
       bind:this={input}
       {id}
-      name="q"
+      name={picking ? undefined : 'q'}
       type="text"
       role="combobox"
       autocomplete="off"
       autocapitalize="off"
       spellcheck="false"
       enterkeyhint="go"
-      placeholder={variant === 'hero' ? 'Oak, cocobolo, Thuja plicata…' : 'Search woods'}
+      placeholder={variant === 'compact' ? 'Search woods' : 'Oak, cocobolo, Thuja plicata…'}
+      aria-invalid={invalid || undefined}
       aria-autocomplete="list"
       aria-expanded={combo.open && results.length > 0}
       aria-controls={listId}
       aria-activedescendant={combo.open && combo.active >= 0 ? optionId(combo.active) : undefined}
-      aria-describedby={showNoMatch ? `${id}-nomatch` : undefined}
+      aria-describedby={[showNoMatch ? `${id}-nomatch` : '', describedby ?? ''].filter(Boolean).join(' ') || undefined}
       bind:value={query}
       {oninput}
       {onkeydown}
@@ -221,18 +253,22 @@
         />
       {/if}
       <div>
-        <p><strong>Not listed yet:</strong> “{trimmed}”.</p>
-        <p class="muted">
-          Check the spelling, try the botanical name, or
-          <a href="/submit?name={encodeURIComponent(trimmed)}">suggest it</a>. Until then, treat its dust like
-          any other: <a href="/protection">control it at the source and wear a respirator</a>.
-        </p>
+        {#if picking && nomatch}
+          {@render nomatch(trimmed)}
+        {:else}
+          <p><strong>Not listed yet:</strong> “{trimmed}”.</p>
+          <p class="muted">
+            Check the spelling, try the botanical name, or
+            <a href="/submit?kind=new_species&amp;name={encodeURIComponent(trimmed)}">suggest it</a>. Until then, treat its dust like
+            any other: <a href="/protection">control it at the source and wear a respirator</a>.
+          </p>
+        {/if}
       </div>
     </div>
   {/if}
 
   <div class="visually-hidden" role="status" aria-live="polite">{status}</div>
-</form>
+</svelte:element>
 
 <style>
   .search {
@@ -302,6 +338,34 @@
     background: var(--accent);
     color: var(--on-accent);
     cursor: pointer;
+  }
+
+  .field-label {
+    display: block;
+    font-weight: 650;
+    margin-bottom: 0.3rem;
+  }
+
+  .search.field > .field {
+    border-radius: var(--radius-sm);
+    box-shadow: none;
+    border-width: 1px;
+  }
+
+  .search.field input {
+    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    min-height: 44px;
+    padding: 0.5rem 0.75rem 0.5rem 2.6rem;
+  }
+
+  .search.field .icon {
+    left: 0.8rem;
+  }
+
+  .search.field > .field:has(input[aria-invalid='true']) {
+    border-color: var(--accent);
+    border-width: 2px;
   }
 
   .compact .field {

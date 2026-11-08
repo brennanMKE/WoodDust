@@ -168,3 +168,36 @@ export interface InitialPayload {
   data: unknown;
   site?: Partial<SiteInfo>;
 }
+
+// --- Submissions (contract §6) and admin (§7) -------------------------------
+
+/** Initial data for `/submit` and `/submit/{slug}`. */
+export interface SubmitData {
+  form_token: string;
+  kinds?: unknown[];
+  target?: { slug: string; name: string; botanical_name?: string } | null;
+  prefill_name?: string;
+}
+
+export interface SubmissionNote {
+  at: string;
+  text: string;
+}
+
+export interface SubmissionStatusData {
+  reference: string;
+  kind: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  notes?: SubmissionNote[];
+}
+
+export interface AdminUser {
+  display_name: string;
+  is_admin: boolean;
+}
+
+export interface MeResponse {
+  user: AdminUser;
+}

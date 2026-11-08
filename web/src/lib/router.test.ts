@@ -57,6 +57,25 @@ describe('matchRoute', () => {
     expect(matchRoute('/submit/oak').params.slug).toBe('oak');
   });
 
+  it('matches the submission status page by token', () => {
+    expect(matchRoute('/submit/status/abc123')).toMatchObject({
+      id: 'submission_status',
+      params: { token: 'abc123' },
+      api: '/api/v1/submissions/status/abc123',
+    });
+    expect(matchRoute('/submit/status').id).toBe('not_found');
+    expect(matchRoute('/submit/status/a/b').id).toBe('not_found');
+  });
+
+  it('matches admin screens, all loading /api/v1/me', () => {
+    expect(matchRoute('/admin')).toMatchObject({ id: 'admin', params: { section: 'dashboard' }, api: '/api/v1/me' });
+    expect(matchRoute('/admin/submissions').params.section).toBe('submissions');
+    expect(matchRoute('/admin/submissions/42').params).toEqual({ section: 'submission', id: '42' });
+    expect(matchRoute('/admin/api-keys').params.section).toBe('api-keys');
+    expect(matchRoute('/admin/submissions/x').id).toBe('not_found');
+    expect(matchRoute('/admin/other').id).toBe('not_found');
+  });
+
   it('falls through to not_found', () => {
     expect(matchRoute('/nope').id).toBe('not_found');
     expect(matchRoute('/wood/..').id).toBe('not_found');
@@ -71,11 +90,14 @@ describe('isSpaLink', () => {
     expect(isSpaLink(u('/protection/respirators'), origin)).toBe(true);
     expect(isSpaLink(u('/print/shop-poster'), origin)).toBe(true);
     expect(isSpaLink(u('/submit/oak'), origin)).toBe(true);
+    expect(isSpaLink(u('/submit/status/tok'), origin)).toBe(true);
+    expect(isSpaLink(u('/admin/api-keys'), origin)).toBe(true);
   });
   it('leaves other links to the browser', () => {
     expect(isSpaLink(u('/sitemap.xml'), origin)).toBe(false);
     expect(isSpaLink(u('/api/v1/species'), origin)).toBe(false);
     expect(isSpaLink(u('/login'), origin)).toBe(false);
+    expect(isSpaLink(u('/auth/logout'), origin)).toBe(false);
     expect(isSpaLink(u('/unknown'), origin)).toBe(false);
     expect(isSpaLink(new URL('https://other.test/wood/oak'), origin)).toBe(false);
   });

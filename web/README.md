@@ -9,7 +9,7 @@ npm install
 npm run dev            # Vite on :5173; proxies /api, /images, /sitemap.xml to Go on 127.0.0.1:$PORT (default 8080)
 npm run dev:fixtures   # same, but no Go needed (see below)
 npm run check          # tsc for the config files + svelte-check (expect 0 errors, 0 warnings)
-npm test               # vitest: router, combobox keyboard logic, evidence/hazard labels
+npm test               # vitest: router, combobox, labels, DOI/PMID validators, submission reducer, API-key display-once
 npm run build          # writes dist/index.html + dist/assets/*
 ```
 
@@ -21,6 +21,7 @@ npm run build          # writes dist/index.html + dist/assets/*
 - pages come from `../content/pages/*.md`, rendered with a very small Markdown subset that supports headings, lists, links, emphasis and `[^KEY]` footnotes. A missing page gets a placeholder
 - search is approximate: exact match, then prefix, then trigram similarity
 - `/images/placeholder.svg` is generated, and any other image is served from `../images/` if it exists
+- submissions, admin and API keys (contract §6-§7) use an in-memory store seeded with a few examples. `/api/v1/me` returns a fake owner. `/auth/logout` signs out, so `/admin` then goes to `/auth/login`, which signs straight back in. POSTs are rate-limited to 5 per 10 minutes; details containing `ratelimit` force a 429
 
 The fixtures are only loaded from `vite.config.ts` during `vite serve`. Nothing under `src/` imports them, so they are not in the production bundle. Go remains the reference for API behavior.
 
@@ -41,12 +42,19 @@ Navigation is handled by `src/lib/nav.svelte.ts` with the History API. It interc
 ```
 src/
   main.ts, App.svelte, app.css     entry, shell, design tokens (light/dark, print)
-  lib/      router, nav state, api, head/meta, labels (contract §5), combobox logic, footnotes
+  lib/      router, nav state, api, head/meta, labels (contract §5), combobox logic, footnotes,
+            citations (DOI/PMID/URL checks), submission (form reducer, status timeline)
   components/  Header, Footer, SearchBox (ARIA combobox), EvidenceBadge, SpeciesTile,
                SpeciesImage, SourceList, Art (illustration slot with fallback)
-  views/    Home, Species, Browse, Page, Sources, Submit ("coming soon"), NotFound
+  views/    Home, Species, Browse, Page, Sources, Submit (anonymous form), SubmissionStatus, NotFound
+  admin/    owner-only screens (dashboard, submissions, detail/export, API keys); a lazily loaded chunk
 fixtures/   dev-only fixture API
 ```
+
+## Submissions and admin
+
+- `/submit` and `/submit/{slug}` are an anonymous form (contract §6). Its rules live in `src/lib/submission.ts`, a pure reducer. `form_token` comes from `#initial`; on client navigation `nav` fetches `/api/v1/submissions/form-token` and the target species. `SearchBox` with `mode="pick"` is the species picker.
+- `/admin/*` loads `src/admin/Admin.svelte` with a dynamic `import()`, so it builds as its own `Admin-*.js` chunk. Every admin route's data is `GET /api/v1/me`, and a 401 goes to `/auth/login?return=…`. Requests use `credentials: 'same-origin'`; the browser adds `Origin` for the CSRF check.
 
 ## Illustrations
 

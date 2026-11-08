@@ -37,6 +37,7 @@ export default defineConfig(async ({ command }): Promise<UserConfig> => {
             '/api': apiTarget,
             '/images': apiTarget,
             '/sitemap.xml': apiTarget,
+            '/auth': apiTarget,
           },
     },
   };

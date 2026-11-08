@@ -156,3 +156,9 @@ Session auth comes from Portiko `rp` (owner only). Unsafe methods with a session
 Key format: `da_` + an 8-character prefix + `_` + 32 random bytes in base62. Only the SHA-256 of the full key is stored, compared in constant time.
 
 `/auth/login`, `/auth/callback` and `/auth/logout` belong to Portiko `rp`. The embedded provider owns `/login`, `/signin`, `/u/`, `/oauth/`, `/accounts/` and `/.well-known/openid-configuration` (see PLAN §5). All of them are `noindex` and disallowed in robots.txt.
+
+### Response shapes (pinned 2026-11-08)
+- `GET /api/v1/submissions/check-url?url=` returns `{ "warnings": ["..."], "leads_only": true|false }`
+- `GET /api/v1/submissions` returns `{ "submissions": [ ... ], "next_cursor": "..." | null }`
+- `GET /api/v1/submissions/{id}` returns the submission record's fields at the top level, plus `"events": [ { "at", "type", "from_status"?, "to_status"?, "note"?, "visible_to_submitter"? } ]`
+- `GET /api/v1/admin/api-keys` returns `{ "keys": [ ... ] }`
