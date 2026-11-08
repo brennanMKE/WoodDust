@@ -165,9 +165,9 @@ Base `/api/v1`, JSON only, versioned, documented in `docs/api.md` (and an OpenAP
 
 **API keys:**
 - Created and revoked in `/admin/api-keys` (or `wooddust apikey create --name ha --scopes submissions:read`).
-- Format `wd_<8-char prefix>_<32 random bytes base62>`. The full key is shown **once**. Only the prefix and a SHA-256 hash are stored. Compare in constant time.
+- Format `da_<8-char prefix>_<32 random bytes base62>`. The full key is shown **once**. Only the prefix and a SHA-256 hash are stored. Compare in constant time.
 - Columns: `name`, `prefix`, `hash`, `scopes[]`, `owner_user_id`, `created_at`, `last_used_at`, `expires_at`, `revoked_at`.
-- Sent as `Authorization: Bearer wd_…`. Every use updates `last_used_at` and writes to the audit log on writes.
+- Sent as `Authorization: Bearer da_…`. Every use updates `last_used_at` and writes to the audit log on writes.
 - Scopes: `submissions:read`, `submissions:write`, `stats:read`.
 
 **Home Assistant example** (`configuration.yaml`):
