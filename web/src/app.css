@@ -145,7 +145,11 @@ img {
   border-radius: 2px;
 }
 
-[tabindex='-1']:focus:not(:focus-visible) {
+/* Headings and <main> get focus on navigation so screen readers announce the
+   new page. They are not tabbable, so they never need a visible ring (after a
+   keyboard-triggered navigation, :focus-visible would otherwise draw one). */
+[tabindex='-1']:focus,
+[tabindex='-1']:focus-visible {
   outline: none;
 }
 
