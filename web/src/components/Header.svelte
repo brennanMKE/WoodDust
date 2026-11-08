@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   import { app } from '../lib/nav.svelte';
   import SearchBox from './SearchBox.svelte';
 
@@ -24,7 +25,7 @@
       <!-- Art slot: images/art/emblem.png (site-art.md §2); tree-ring mark until it exists. -->
       {#if !emblemFailed}
         <img
-          src="/images/art/emblem.png"
+          src={asset('/images/art/emblem.png')}
           alt="{app.site.name} emblem: Babe the Blue Ox's head above an open book."
           width="56"
           height="56"

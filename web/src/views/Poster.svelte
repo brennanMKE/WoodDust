@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   // Printable shop poster (/print/shop-poster, contract §2). Content comes from
   // the page API like any other page; the layout is built to print on one
   // Letter or A4 sheet.
@@ -27,7 +28,7 @@
     <header class="poster-head">
       <!-- Art slot: images/art/poster-header.png (images/prompts/site-art.md §8). -->
       <Art
-        src="/images/art/poster-header.png"
+        src={asset('/images/art/poster-header.png')}
         alt="Paul Bunyan in full shop safety gear gives a thumbs-up beside Babe the Blue Ox."
         width={1536}
         height={1024}

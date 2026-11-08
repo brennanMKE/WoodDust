@@ -58,11 +58,13 @@ type Server struct {
 	siteName  string
 	baseURL   string
 	imagesDir string
-	images    fs.FS
-	dist      fs.FS
-	shell     shell
-	log       *slog.Logger
-	contrib   *contrib.API
+	// imageVersions: rel path under IMAGES_DIR -> content hash (assets.go).
+	imageVersions map[string]string
+	images        fs.FS
+	dist          fs.FS
+	shell         shell
+	log           *slog.Logger
+	contrib       *contrib.API
 }
 
 // New builds a Server.
@@ -86,6 +88,7 @@ func New(o Options) *Server {
 	if o.ImagesDir != "" {
 		s.images = os.DirFS(o.ImagesDir)
 	}
+	s.imageVersions = hashImages(s.images)
 	var usingFallback bool
 	s.shell, usingFallback = loadShell(o.Dist)
 	if usingFallback {

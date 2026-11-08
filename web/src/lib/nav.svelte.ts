@@ -42,6 +42,7 @@ export async function boot(initial: InitialPayload | null): Promise<void> {
     app.site = {
       name: initial.site.name || app.site.name,
       base_url: initial.site.base_url || '',
+      assets: initial.site.assets ?? {},
     };
   }
   const match = matchRoute(location.pathname);

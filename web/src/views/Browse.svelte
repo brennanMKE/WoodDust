@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   import { app, replaceSearch } from '../lib/nav.svelte';
   import type { SpeciesSummary } from '../lib/types';
   import { EVIDENCE, evidenceRank, HAZARD_TYPES, hazardName } from '../lib/labels';
@@ -124,7 +125,7 @@
   <header>
     <!-- Art: the site's default share image (Paul and Babe reading the almanac), small, beside the title. -->
     <Art
-      src="/images/og-default.jpg"
+      src={asset('/images/og-default.jpg')}
       alt="Paul Bunyan and Babe the Blue Ox reading a giant almanac in a woodshop."
       width={1200}
       height={630}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   import { app } from '../lib/nav.svelte';
   import type { SpeciesList } from '../lib/types';
   import SearchBox from '../components/SearchBox.svelte';
@@ -19,7 +20,7 @@
   <div class="wrap hero-inner">
     <!-- Art slot: images/mascots/hero.png (images/prompts/site-art.md §1). -->
     <Art
-      src="/images/mascots/hero.png"
+      src={asset('/images/mascots/hero.png')}
       alt="Paul Bunyan, wearing a respirator and safety glasses, sands a board at a workbench while Babe the Blue Ox watches a dust collector hose pull the dust away."
       width={1536}
       height={1024}
@@ -56,15 +57,15 @@
     </p>
     <ul class="steps">
       <li>
-        <Art src="/images/art/spot-dust-collector.png" alt="A barrel dust collector." width={72} height={72} fallback="hide" />
+        <Art src={asset('/images/art/spot-dust-collector.png')} alt="A barrel dust collector." width={72} height={72} fallback="hide" />
         <span><strong>Catch it at the tool.</strong> Dust collection or extraction where the dust is made.</span>
       </li>
       <li>
-        <Art src="/images/art/spot-respirator.png" alt="A half-face respirator." width={72} height={72} fallback="hide" />
+        <Art src={asset('/images/art/spot-respirator.png')} alt="A half-face respirator." width={72} height={72} fallback="hide" />
         <span><strong>Wear a fitted respirator</strong> for sanding and dusty jobs.</span>
       </li>
       <li>
-        <Art src="/images/art/spot-babe-hoofprint.png" alt="Babe's hoofprint." width={72} height={72} fallback="hide" />
+        <Art src={asset('/images/art/spot-babe-hoofprint.png')} alt="Babe's hoofprint." width={72} height={72} fallback="hide" />
         <span><strong>Clean up with a HEPA vacuum,</strong> never compressed air or a dry broom.</span>
       </li>
     </ul>
@@ -77,7 +78,7 @@
 
 <style>
   .hero {
-    padding: clamp(1.5rem, 5vw, 3.5rem) 0 2rem;
+    padding: clamp(0.75rem, 2.5vw, 1.75rem) 0 2rem;
     text-align: center;
   }
 
@@ -85,9 +86,11 @@
     max-width: 46rem;
   }
 
+  /* Small enough that the search box stays above the fold: at most 400px
+     wide and never taller than about a quarter of the window (3:2 art). */
   .hero :global(.hero-art) {
-    width: min(100%, 720px);
-    margin: 0 auto 0.5rem;
+    width: min(100%, 400px, 40vh);
+    margin: 0 auto 0.25rem;
   }
 
   .lede {

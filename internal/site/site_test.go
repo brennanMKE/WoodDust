@@ -154,7 +154,7 @@ func TestAPISpeciesList(t *testing.T) {
 	if cedar.MaxEvidenceLevel == nil || *cedar.MaxEvidenceLevel != 1 || cedar.Name != "Western red cedar" {
 		t.Errorf("cedar summary %+v", cedar)
 	}
-	if oak.Image.URL != "/images/species/oak.jpg" || cedar.Image.URL != placeholderPath || cedar.Image.Width != 1200 {
+	if !strings.HasPrefix(oak.Image.URL, "/images/species/oak.jpg?v=") || cedar.Image.URL != placeholderPath || cedar.Image.Width != 1200 {
 		t.Errorf("images: %+v %+v", oak.Image, cedar.Image)
 	}
 
@@ -331,7 +331,7 @@ func TestSpeciesPage(t *testing.T) {
 	}
 
 	// og:image uses the species image when it exists.
-	if !strings.Contains(get(t, env.h, "/wood/oak").Body.String(), `content="https://example.test/images/species/oak.jpg"`) {
+	if !strings.Contains(get(t, env.h, "/wood/oak").Body.String(), `content="https://example.test/images/species/oak.jpg?v=`) {
 		t.Error("oak og:image should be its photo")
 	}
 }

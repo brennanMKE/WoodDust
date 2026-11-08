@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   import type { Source, SourcesResponse } from '../lib/types';
   import { TIER_NAMES } from '../lib/labels';
   import { sourceHref } from '../lib/footnotes';
@@ -24,7 +25,7 @@
   <header>
     <!-- Art slot: images/pages/methodology.jpg, shared with /methodology (site-art.md §6), small, beside the title. -->
     <Art
-      src="/images/pages/methodology.jpg"
+      src={asset('/images/pages/methodology.jpg')}
       alt="Paul Bunyan stacks books and journals like lumber, checking each one against a ledger."
       width={1200}
       height={630}

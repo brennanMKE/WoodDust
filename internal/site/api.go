@@ -135,7 +135,7 @@ func (s *Server) imageExists(rel string) bool {
 func (s *Server) speciesImage(sp model.Species) imageView {
 	img := imageView{URL: placeholderPath, Alt: sp.ImageAlt, Width: imageWidth, Height: imageHeight}
 	if s.imageExists("species/" + sp.Slug + ".jpg") {
-		img.URL = "/images/species/" + sp.Slug + ".jpg"
+		img.URL = s.imageURL("species/" + sp.Slug + ".jpg")
 	}
 	return img
 }
@@ -143,7 +143,7 @@ func (s *Server) speciesImage(sp model.Species) imageView {
 func (s *Server) pageImage(p *content.Page) imageView {
 	img := imageView{URL: placeholderPath, Alt: p.ImageAlt, Width: imageWidth, Height: imageHeight}
 	if name := "pages/" + p.Key() + ".jpg"; s.imageExists(name) {
-		img.URL = "/images/" + name
+		img.URL = s.imageURL(name)
 	}
 	return img
 }

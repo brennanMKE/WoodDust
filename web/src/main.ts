@@ -2,6 +2,7 @@ import { mount } from 'svelte';
 import './app.css';
 import App from './App.svelte';
 import { boot, installRouter, readInitial } from './lib/nav.svelte';
+import { asset } from './lib/asset';
 
 const target = document.getElementById('app')!;
 const initial = readInitial();
@@ -23,4 +24,4 @@ fav.onload = () => {
     link.href = fav.src;
   }
 };
-fav.src = '/images/art/favicon.png';
+fav.src = asset('/images/art/favicon.png');

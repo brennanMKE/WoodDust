@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   // Editable combobox with list autocomplete (WAI-ARIA APG pattern).
   // Debounced type-ahead from /api/v1/search; Enter goes to the highlighted
   // option or the top match; no match shows "Not listed yet".
@@ -244,7 +245,7 @@
     <div class="nomatch" id="{id}-nomatch">
       {#if variant === 'hero'}
         <Art
-          src="/images/mascots/no-results.png"
+          src={asset('/images/mascots/no-results.png')}
           alt="Paul Bunyan studies the end grain of a log through a large magnifying glass."
           width={160}
           height={160}

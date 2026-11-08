@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   import Art from '../components/Art.svelte';
   import SearchBox from '../components/SearchBox.svelte';
 </script>
@@ -6,7 +7,7 @@
 <div class="wrap nf">
   <!-- Art slot: images/mascots/babe-404.png (images/prompts/site-art.md §4). -->
   <Art
-    src="/images/mascots/babe-404.png"
+    src={asset('/images/mascots/babe-404.png')}
     alt="Babe the Blue Ox peeks around a tall stack of lumber, looking puzzled."
     width={320}
     height={320}

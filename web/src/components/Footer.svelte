@@ -1,11 +1,12 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   import { app } from '../lib/nav.svelte';
 </script>
 
 <footer class="site-footer">
   <!-- Art slot: images/art/border-forest.png (site-art.md §7), decorative; nothing shows if missing. -->
   <!-- style: directive, not a style="" attribute: Svelte sets it through CSSOM, which CSP style-src 'self' allows. -->
-  <div class="forest" aria-hidden="true" style:background-image="url('/images/art/border-forest.png')"></div>
+  <div class="forest" aria-hidden="true" style:background-image="url('{asset('/images/art/border-forest.png')}')"></div>
   <div class="double-rule" aria-hidden="true"></div>
   <div class="wrap cols">
     <section aria-labelledby="footer-medical">

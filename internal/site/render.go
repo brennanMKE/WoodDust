@@ -121,6 +121,8 @@ type view struct {
 type siteInfo struct {
 	Name    string `json:"name"`
 	BaseURL string `json:"base_url"`
+	// Assets: content hashes for images the SPA references by fixed path.
+	Assets map[string]string `json:"assets,omitempty"`
 }
 
 type initialData struct {
@@ -153,7 +155,7 @@ func jsonLD(v any) template.JS {
 func (s *Server) ogImageFor(img imageView) ogImage {
 	url := img.URL
 	if url == placeholderPath && s.imageExists("og-default.jpg") {
-		url = "/images/og-default.jpg"
+		url = s.imageURL("og-default.jpg")
 	}
 	alt := img.Alt
 	if alt == "" {
@@ -225,7 +227,7 @@ func (s *Server) render(w http.ResponseWriter, r *http.Request, v view) {
 		v.Head.Image = s.ogImageFor(s.defaultImage())
 	}
 	if s.imageExists("art/favicon.png") {
-		v.Head.Favicon = "/images/art/favicon.png"
+		v.Head.Favicon = s.imageURL("art/favicon.png")
 	}
 
 	var head, body bytes.Buffer
@@ -239,7 +241,7 @@ func (s *Server) render(w http.ResponseWriter, r *http.Request, v view) {
 		Site        siteInfo
 		Breadcrumbs []crumb
 		Body        any
-	}{siteInfo{s.siteName, s.baseURL}, v.Breadcrumbs, v.Body}
+	}{siteInfo{s.siteName, s.baseURL, s.spaAssetVersions()}, v.Breadcrumbs, v.Body}
 	if err := tmpl.ExecuteTemplate(&body, v.Template, bodyData); err != nil {
 		s.log.Error("render body", "template", v.Template, "err", err)
 		http.Error(w, "internal server error", http.StatusInternalServerError)
@@ -248,7 +250,7 @@ func (s *Server) render(w http.ResponseWriter, r *http.Request, v view) {
 	if v.Data == nil {
 		v.Data = struct{}{}
 	}
-	init, err := json.Marshal(initialData{Route: v.Route, Data: v.Data, Site: siteInfo{s.siteName, s.baseURL}})
+	init, err := json.Marshal(initialData{Route: v.Route, Data: v.Data, Site: siteInfo{s.siteName, s.baseURL, s.spaAssetVersions()}})
 	if err != nil {
 		s.log.Error("render data", "err", err)
 		http.Error(w, "internal server error", http.StatusInternalServerError)
@@ -592,7 +594,7 @@ func (s *Server) pageSources(w http.ResponseWriter, r *http.Request) {
 	// /sources shares the methodology page's art.
 	img := imageView{URL: placeholderPath, Alt: "Sources and methodology", Width: imageWidth, Height: imageHeight}
 	if s.imageExists("pages/methodology.jpg") {
-		img.URL = "/images/pages/methodology.jpg"
+		img.URL = s.imageURL("pages/methodology.jpg")
 	}
 	if mp, ok := s.pages.Get("methodology"); ok && mp.ImageAlt != "" {
 		img.Alt = mp.ImageAlt

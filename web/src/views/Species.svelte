@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   import { app } from '../lib/nav.svelte';
   import type { SpeciesDetail } from '../lib/types';
   import { ACGIH_CLASSES, EVIDENCE, hazardName } from '../lib/labels';
@@ -49,7 +50,7 @@
       <p class="eyebrow">{s.wood_type === 'softwood' ? 'Softwood' : 'Hardwood'} · {s.family}</p>
       <h1 id="species-name">{s.name}</h1>
       <p class="botanical-line">
-        <Art src="/images/art/spot-end-grain.png" alt="" width={32} height={32} fallback="hide" class="grain-mark no-print" />
+        <Art src={asset('/images/art/spot-end-grain.png')} alt="" width={32} height={32} fallback="hide" class="grain-mark no-print" />
         <span class="botanical">{s.botanical_name}</span>
         {#if s.synonyms?.length}
           <span class="muted">(also <span class="botanical">{s.synonyms.join(', ')}</span>)</span>
@@ -177,7 +178,7 @@
 
   <section aria-labelledby="protect-title" class="protect">
     <div class="protect-head">
-      <Art src="/images/art/spot-respirator.png" alt="A half-face respirator." width={56} height={56} fallback="hide" class="no-print" />
+      <Art src={asset('/images/art/spot-respirator.png')} alt="A half-face respirator." width={56} height={56} fallback="hide" class="no-print" />
       <h2 id="protect-title">Protect yourself</h2>
     </div>
     <ul>
@@ -192,7 +193,7 @@
     <p class="no-print"><a href="/protection">The full protection guide</a></p>
     <figure class="paul-tip no-print">
       <Art
-        src="/images/pages/protection-respirators.jpg"
+        src={asset('/images/pages/protection-respirators.jpg')}
         alt="Paul Bunyan checks the seal of his half-face respirator, cupping the cartridges with his hands."
         width={1200}
         height={630}

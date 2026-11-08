@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { asset } from '../lib/asset';
   // Anonymous submission form (docs/contract.md §6, PLAN.md §6). The rules live
   // in lib/submission.ts (a tested reducer); this view wires it to the DOM.
   import { tick } from 'svelte';
@@ -313,7 +314,7 @@
 <div class="wrap submit">
   <header class="intro">
     <Art
-      src="/images/art/spot-almanac.png"
+      src={asset('/images/art/spot-almanac.png')}
       alt="An open almanac with a ribbon bookmark and a wood shaving."
       width={160}
       height={160}

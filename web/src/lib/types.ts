@@ -161,6 +161,8 @@ export interface SourcesResponse {
 export interface SiteInfo {
   name: string;
   base_url: string;
+  /** Content hashes of images the SPA uses by fixed path (path under /images/ -> hash). */
+  assets?: Record<string, string>;
 }
 
 export interface InitialPayload {
