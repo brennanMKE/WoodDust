@@ -30,6 +30,11 @@
     {#if page.description}<p class="lede">{page.description}</p>{/if}
   </header>
 
+  {#if page.image?.url && !page.image.url.endsWith('/placeholder.svg')}
+    <!-- Art slot: images/pages/<page>.jpg (images/prompts/site-art.md §6), framed as a plate. -->
+    <Art src={page.image.url} alt={page.image.alt} width={1200} height={630} eager fallback="hide" class="hero-img plate" />
+  {/if}
+
   <div class="layout" class:has-toc={toc.length > 1}>
     {#if toc.length > 1}
       <nav class="toc" aria-labelledby="toc-title">
@@ -43,10 +48,6 @@
     {/if}
 
     <div class="main-col">
-      {#if page.image?.url && !page.image.url.endsWith('/placeholder.svg')}
-        <!-- Art slot: images/pages/<page>.jpg (images/prompts/site-art.md §6). -->
-        <Art src={page.image.url} alt={page.image.alt} width={1200} height={630} eager fallback="hide" class="hero-img" />
-      {/if}
       <!-- Server-rendered from reviewed Markdown in content/pages (contract §3). -->
       <div class="prose">{@html page.html}</div>
 
@@ -139,11 +140,9 @@
     padding-left: 0.9rem;
   }
 
-  .main-col :global(.hero-img) {
-    margin: 0 0 1.5rem;
-    max-width: 44rem;
-    border-radius: var(--radius);
-    overflow: hidden;
+  article :global(.hero-img) {
+    margin: 0.5rem 0 2rem;
+    max-width: 60rem;
   }
 
   .reviewed {
@@ -154,7 +153,7 @@
   @media print {
     .crumbs,
     .toc,
-    .main-col :global(.hero-img),
+    article :global(.hero-img),
     .back {
       display: none;
     }

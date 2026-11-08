@@ -3,6 +3,7 @@
   import type { SpeciesSummary } from '../lib/types';
   import { EVIDENCE, evidenceRank, HAZARD_TYPES, hazardName } from '../lib/labels';
   import EvidenceBadge from '../components/EvidenceBadge.svelte';
+  import Art from '../components/Art.svelte';
 
   let { data }: { data: { species: SpeciesSummary[] } } = $props();
 
@@ -95,6 +96,15 @@
 
 <div class="wrap">
   <h1>Browse woods</h1>
+  <!-- Art: the site's default share image (Paul and Babe reading the almanac). -->
+  <Art
+    src="/images/og-default.jpg"
+    alt="Paul Bunyan and Babe the Blue Ox reading a giant almanac in a woodshop."
+    width={1200}
+    height={630}
+    fallback="hide"
+    class="plate browse-art"
+  />
   <p class="muted lede">
     {all.length} woods. Every one also carries the hazards shared by all wood dust. Filter by what you need to know.
   </p>
@@ -189,6 +199,11 @@
 </div>
 
 <style>
+  .wrap :global(.browse-art) {
+    max-width: 36rem;
+    margin: 0.5rem 0 1.25rem;
+  }
+
   .lede {
     max-width: 44rem;
   }

@@ -29,7 +29,7 @@
     width={1200}
     height={630}
     fallback="hide"
-    class="sources-art"
+    class="plate sources-art"
   />
   <p class="lede">
     All {total} sources cited on this site. Agency listings and primary studies back the hazard claims; technical

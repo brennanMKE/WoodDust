@@ -44,15 +44,29 @@
   .site-footer {
     background: var(--surface-2);
     color: var(--text);
-    margin-top: 4rem;
+    margin-top: calc(4rem + 128px);
   }
 
+  /* The border art is 1536x256 with the trees in the middle band; at 128px
+     tall the trees, woodpile and Babe read clearly and it still tiles. */
   .forest {
-    height: 64px;
-    margin-top: -64px;
+    height: 128px;
+    margin-top: -128px;
     background-repeat: repeat-x;
-    background-size: auto 64px;
+    background-size: auto 128px;
     background-position: bottom left;
+  }
+
+  @media (max-width: 40rem) {
+    .site-footer {
+      margin-top: calc(3rem + 96px);
+    }
+
+    .forest {
+      height: 96px;
+      margin-top: -96px;
+      background-size: auto 96px;
+    }
   }
 
   .cols {

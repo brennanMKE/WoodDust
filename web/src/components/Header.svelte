@@ -26,12 +26,12 @@
         <img
           src="/images/art/emblem.png"
           alt="{app.site.name} emblem: Babe the Blue Ox's head above an open book."
-          width="40"
-          height="40"
+          width="56"
+          height="56"
           onerror={() => (emblemFailed = true)}
         />
       {:else}
-        <svg viewBox="0 0 32 32" width="40" height="40" aria-hidden="true" focusable="false">
+        <svg viewBox="0 0 32 32" width="56" height="56" aria-hidden="true" focusable="false">
           <circle cx="16" cy="16" r="15" fill="var(--babe)" />
           <g fill="none" stroke="var(--on-babe)" stroke-width="1.8"><circle cx="16" cy="16" r="3" /><circle cx="16" cy="16" r="7" /><circle cx="16" cy="16" r="11" /></g>
         </svg>
@@ -79,6 +79,21 @@
     color: var(--text);
     text-decoration: none;
     min-height: 44px;
+  }
+
+  .brand img,
+  .brand svg {
+    width: 56px;
+    height: 56px;
+    flex: none;
+  }
+
+  @media (max-width: 40rem) {
+    .brand img,
+    .brand svg {
+      width: 44px;
+      height: 44px;
+    }
   }
 
   nav ul {

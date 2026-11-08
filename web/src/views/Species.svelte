@@ -49,6 +49,7 @@
       <p class="eyebrow">{s.wood_type === 'softwood' ? 'Softwood' : 'Hardwood'} · {s.family}</p>
       <h1 id="species-name">{s.name}</h1>
       <p class="botanical-line">
+        <Art src="/images/art/spot-end-grain.png" alt="" width={32} height={32} fallback="hide" class="grain-mark no-print" />
         <span class="botanical">{s.botanical_name}</span>
         {#if s.synonyms?.length}
           <span class="muted">(also <span class="botanical">{s.synonyms.join(', ')}</span>)</span>
@@ -189,6 +190,22 @@
       <li><a href="/symptoms">Know the symptoms</a> and see a doctor if they show up.</li>
     </ul>
     <p class="no-print"><a href="/protection">The full protection guide</a></p>
+    <figure class="paul-tip no-print">
+      <Art
+        src="/images/pages/protection-respirators.jpg"
+        alt="Paul Bunyan checks the seal of his half-face respirator, cupping the cartridges with his hands."
+        width={1200}
+        height={630}
+        fallback="hide"
+        class="plate"
+      />
+      <figcaption>
+        <strong>Paul's tip:</strong> seal-check your respirator every time you put it on, following the maker's
+        method: breathe in sharply and the mask should pull in slightly; breathe out and nothing should leak. Keep the
+        seal area clean-shaven.
+        <a href="/protection/respirators">How to fit a respirator</a>
+      </figcaption>
+    </figure>
   </section>
 
   {#if sourceList.length}
@@ -249,6 +266,30 @@
 
   .botanical-line {
     font-size: 1.15rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.5rem;
+  }
+
+  .botanical-line :global(.grain-mark) {
+    width: 32px;
+    flex: none;
+  }
+
+  .paul-tip {
+    margin: 1.5rem 0 0;
+    max-width: 34rem;
+  }
+
+  .paul-tip figcaption {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    color: var(--muted);
+  }
+
+  .paul-tip figcaption strong {
+    color: var(--text);
   }
 
   .actions {

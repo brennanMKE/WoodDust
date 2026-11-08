@@ -56,15 +56,15 @@
     </p>
     <ul class="steps">
       <li>
-        <Art src="/images/art/spot-dust-collector.png" alt="A barrel dust collector." width={48} height={48} fallback="hide" />
+        <Art src="/images/art/spot-dust-collector.png" alt="A barrel dust collector." width={72} height={72} fallback="hide" />
         <span><strong>Catch it at the tool.</strong> Dust collection or extraction where the dust is made.</span>
       </li>
       <li>
-        <Art src="/images/art/spot-respirator.png" alt="A half-face respirator." width={48} height={48} fallback="hide" />
+        <Art src="/images/art/spot-respirator.png" alt="A half-face respirator." width={72} height={72} fallback="hide" />
         <span><strong>Wear a fitted respirator</strong> for sanding and dusty jobs.</span>
       </li>
       <li>
-        <Art src="/images/art/spot-babe-hoofprint.png" alt="Babe's hoofprint." width={48} height={48} fallback="hide" />
+        <Art src="/images/art/spot-babe-hoofprint.png" alt="Babe's hoofprint." width={72} height={72} fallback="hide" />
         <span><strong>Clean up with a HEPA vacuum,</strong> never compressed air or a dry broom.</span>
       </li>
     </ul>
@@ -152,12 +152,13 @@
     grid-template-columns: auto 1fr;
     gap: 0.75rem;
     align-items: center;
-    margin: 0.5rem 0;
-    min-height: 48px;
+    gap: 1rem;
+    margin: 0.75rem 0;
+    min-height: 72px;
   }
 
   .steps li > :global(.art) {
-    width: 48px;
+    width: 72px;
   }
 
   .steps li:not(:has(:global(.art))) {

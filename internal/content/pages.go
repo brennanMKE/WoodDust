@@ -323,7 +323,7 @@ func collectTOC(doc ast.Node, src []byte) []TOCEntry {
 		}
 		id, _ := h.AttributeString("id")
 		idb, _ := id.([]byte)
-		out = append(out, TOCEntry{ID: string(idb), Text: strings.TrimSpace(nodeText(h, src)), Level: h.Level})
+		out = append(out, TOCEntry{ID: string(idb), Text: html.UnescapeString(strings.TrimSpace(nodeText(h, src))), Level: h.Level})
 		return ast.WalkSkipChildren, nil
 	})
 	return out
