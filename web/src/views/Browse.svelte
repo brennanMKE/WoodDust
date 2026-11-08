@@ -4,6 +4,7 @@
   import { EVIDENCE, evidenceRank, HAZARD_TYPES, hazardName } from '../lib/labels';
   import EvidenceBadge from '../components/EvidenceBadge.svelte';
   import Art from '../components/Art.svelte';
+  import SpeciesTile from '../components/SpeciesTile.svelte';
 
   let { data }: { data: { species: SpeciesSummary[] } } = $props();
 
@@ -23,6 +24,30 @@
   let text = $state(params.get('q') ?? '');
   let sortKey = $state<SortKey>((params.get('sort') as SortKey) in SORTS ? (params.get('sort') as SortKey) : 'name');
   let sortDir = $state<'asc' | 'desc'>(params.get('dir') === 'desc' ? 'desc' : 'asc');
+
+  // List (sortable table) or grid (photo tiles, for matching a board by eye).
+  // ?view= wins so a shared link opens the same way; otherwise the visitor's
+  // last choice is remembered in this browser.
+  type View = 'list' | 'grid';
+  const VIEW_KEY = 'browse-view';
+  function savedView(): View | null {
+    try {
+      const v = localStorage.getItem(VIEW_KEY);
+      return v === 'grid' || v === 'list' ? v : null;
+    } catch {
+      return null;
+    }
+  }
+  const urlView = params.get('view');
+  let view = $state<View>(urlView === 'grid' || urlView === 'list' ? urlView : (savedView() ?? 'list'));
+  function setView(v: View) {
+    view = v;
+    try {
+      localStorage.setItem(VIEW_KEY, v);
+    } catch {
+      /* private mode or storage blocked: the choice just isn't remembered */
+    }
+  }
 
   const norm = (s: string) =>
     s
@@ -69,6 +94,7 @@
     if (text.trim()) p.set('q', text.trim());
     if (sortKey !== 'name') p.set('sort', sortKey);
     if (sortDir !== 'asc') p.set('dir', sortDir);
+    if (view === 'grid') p.set('view', 'grid');
     const s = p.toString();
     replaceSearch(s ? `?${s}` : '');
   });
@@ -141,7 +167,7 @@
         <option value="softwood">Softwood</option>
       </select>
     </div>
-    <div class="f sort-mobile">
+    <div class="f sort-mobile" class:show={view === 'grid'}>
       <label for="f-sort">Sort by</label>
       <select id="f-sort" bind:value={sortKey}>
         {#each Object.entries(SORTS) as [k, label] (k)}
@@ -154,11 +180,29 @@
     </div>
   </form>
 
-  <p class="count" role="status" aria-live="polite">
-    Showing {rows.length} of {all.length} woods.
-  </p>
+  <div class="results-bar">
+    <p class="count" role="status" aria-live="polite">
+      Showing {rows.length} of {all.length} woods.
+    </p>
+    <div class="view-toggle" role="group" aria-label="View">
+      <button type="button" aria-pressed={view === 'list'} onclick={() => setView('list')}>
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path d="M3 5h14M3 10h14M3 15h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+        List
+      </button>
+      <button type="button" aria-pressed={view === 'grid'} onclick={() => setView('grid')}>
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="2.5" width="6" height="6" rx="1" /><rect x="11.5" y="2.5" width="6" height="6" rx="1" /><rect x="2.5" y="11.5" width="6" height="6" rx="1" /><rect x="11.5" y="11.5" width="6" height="6" rx="1" /></g></svg>
+        Grid
+      </button>
+    </div>
+  </div>
 
-  {#if rows.length}
+  {#if rows.length && view === 'grid'}
+    <ul class="grid">
+      {#each rows as s (s.slug)}
+        <li><SpeciesTile species={s} headingLevel={2} /></li>
+      {/each}
+    </ul>
+  {:else if rows.length}
     <table class="species-table">
       <caption class="visually-hidden">Woods and their hazards. Column headers with buttons can be sorted.</caption>
       <thead>
@@ -249,9 +293,73 @@
     color: var(--text);
   }
 
+  .results-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin: 0 0 0.75rem;
+  }
+
   .count {
     font-size: 0.92rem;
     color: var(--muted);
+    margin: 0;
+  }
+
+  .view-toggle {
+    display: inline-flex;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .view-toggle button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 44px;
+    padding: 0 0.9rem;
+    font: inherit;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--surface);
+    border: 0;
+    cursor: pointer;
+  }
+
+  .view-toggle button + button {
+    border-left: 1px solid var(--border);
+  }
+
+  .view-toggle button[aria-pressed='true'] {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 1rem;
+  }
+
+  .grid > li {
+    display: flex;
+  }
+
+  .grid > li > :global(.tile) {
+    flex: 1;
+  }
+
+  @media (max-width: 30rem) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem;
+    }
   }
 
   .species-table {
@@ -317,6 +425,10 @@
 
   .sort-mobile {
     display: none;
+  }
+
+  .sort-mobile.show {
+    display: flex;
   }
 
   .linkish {
