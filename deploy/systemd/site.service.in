@@ -41,10 +41,9 @@ RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 RestrictNamespaces=true
 LockPersonality=true
 MemoryDenyWriteExecute=true
-# Postgres is reached over its Unix socket; the only TCP peer is Apache on
-# loopback. Widen this when SMTP for one-time codes is configured.
-IPAddressDeny=any
-IPAddressAllow=localhost
+# Network: Postgres over its Unix socket, Apache on loopback, and outbound
+# SMTP to Amazon SES (email-smtp.us-east-1.amazonaws.com:587) for sign-in
+# codes. SES endpoints have no fixed IPs, so no IPAddressDeny here.
 
 [Install]
 WantedBy=multi-user.target
