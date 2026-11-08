@@ -33,3 +33,7 @@ npm-debug.log*
 # Local scratch
 tmp/
 *.log
+
+# Scratch files from art review (keep the character sheet, it is the reference)
+images/**/_*
+!images/art/_character-sheet.png
