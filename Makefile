@@ -1,4 +1,6 @@
-.PHONY: build web go test check dev dev-memory seed seed-check clean
+.PHONY: build web go test check dev dev-memory seed seed-check clean \
+	provision-preprod provision-prod deploy-preprod deploy-prod status-preprod status-prod \
+	logs-preprod logs-prod rollback-preprod rollback-prod
 
 BIN := bin/wooddust
 
@@ -34,3 +36,15 @@ seed-check:
 
 clean:
 	rm -rf bin
+
+# ---- photon (docs/deployment.md). preprod = wooddust.sstools.co, prod = www.dustalmanac.com
+provision-preprod: ; ./scripts/provision.sh preprod
+provision-prod:    ; ./scripts/provision.sh prod
+deploy-preprod:    ; ./scripts/deploy.sh preprod
+deploy-prod:       ; ./scripts/deploy.sh prod
+status-preprod:    ; ./scripts/status.sh preprod
+status-prod:       ; ./scripts/status.sh prod
+logs-preprod:      ; ./scripts/status.sh preprod --logs 100
+logs-prod:         ; ./scripts/status.sh prod --logs 100
+rollback-preprod:  ; ./scripts/rollback.sh preprod
+rollback-prod:     ; ./scripts/rollback.sh prod

@@ -1,22 +1,25 @@
+# Rendered by scripts/provision.sh into /etc/systemd/system/@UNIT@.service
+# (@UNIT@, @ENV_NAME@, @ROOT@, @ETC@ come from deploy/envs/<env>.env).
+# PORT comes from photon's port registry drop-in, not from here.
 [Unit]
-Description=Dust Almanac (wooddust) web service
+Description=Dust Almanac web service (@UNIT@, @ENV_NAME@)
 Documentation=https://github.com/brennanMKE/WoodDust
 After=network.target postgresql.service
 Wants=postgresql.service
 
 [Service]
 Type=simple
-User=wooddust
-Group=wooddust
-# Release layout: /opt/wooddust/releases/<sha>/ with /opt/wooddust/current
+User=@UNIT@
+Group=@UNIT@
+# Release layout: @ROOT@/releases/<sha>/ with @ROOT@/current
 # symlinked to the live one (docs/deployment.md). The working directory holds
 # data/, content/ and images/; the binary has the SPA embedded.
-WorkingDirectory=/opt/wooddust/current
-EnvironmentFile=/etc/wooddust/config.env
+WorkingDirectory=@ROOT@/current
+EnvironmentFile=@ETC@/config.env
 # Seed on every start so the published tables always match the release's
 # data/. Seed is idempotent and runs in one transaction.
-ExecStartPre=/opt/wooddust/current/bin/wooddust seed
-ExecStart=/opt/wooddust/current/bin/wooddust serve
+ExecStartPre=@ROOT@/current/bin/wooddust seed
+ExecStart=@ROOT@/current/bin/wooddust serve
 Restart=on-failure
 RestartSec=5
 KillSignal=SIGTERM

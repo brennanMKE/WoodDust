@@ -1,5 +1,41 @@
 # Deployment
 
+Two environments run on photon (`ssh photon`, AWS docs in `~/Developer/AWS`):
+
+| | Pre-prod | Prod |
+|---|---|---|
+| URL | https://wooddust.sstools.co (sends `X-Robots-Tag: noindex`) | https://www.dustalmanac.com (apex 301s to www) |
+| Env file | `deploy/envs/preprod.env` | `deploy/envs/prod.env` |
+| Unit / user / Postgres role | `wooddust` | `dustalmanac` |
+| Databases | `wooddust`, `wooddust_identity` | `dustalmanac`, `dustalmanac_identity` |
+| Root, config | `/opt/wooddust`, `/etc/wooddust/config.env` | `/opt/dustalmanac`, `/etc/dustalmanac/config.env` |
+| Port (photon registry) | 8112 | 8113 |
+| Certificate | `sstools.co-wildcard` (existing) | `dustalmanac.com` (apex + www, HTTP-01 webroot `/var/www/letsencrypt`) |
+
+Each environment has its own secrets, sign-in provider and passkeys: enroll separately on each.
+
+## Scripts
+
+| Task | Command |
+|---|---|
+| Run locally (Postgres) | `make dev` (`scripts/dev.sh`); without Postgres: `make dev-memory` |
+| Verify before shipping | `make check` |
+| One-time host setup, re-run after changing `deploy/` | `make provision-preprod`, `make provision-prod` |
+| Deploy HEAD | `make deploy-preprod`, `make deploy-prod` (prod asks you to type `prod`; only commits on `origin/main`) |
+| Deploy a specific commit | `scripts/deploy.sh prod --ref <sha>` |
+| What is live | `make status-prod`, `make logs-prod` |
+| Roll back | `make rollback-prod` (previous release) or `scripts/rollback.sh prod <sha>` |
+
+`deploy.sh` builds from `git archive` of the commit (never the working tree), runs the data integrity check, cross-compiles for arm64, uploads, switches `current`, restarts and waits for health, rolling back automatically if the new release does not come up. The first deploy also registers the site's sign-in client. It keeps the last 5 releases.
+
+`provision.sh` is idempotent: Route 53 records (prod, `admin` profile), user, databases, `config.env` (secrets generated on the host and never printed), port registry, systemd unit (rendered from `deploy/systemd/site.service.in`), log directories, vhosts (config-tested, reverted on failure) and the certificate.
+
+Why HTTP-01 for prod: photon's instance role may only write the six zones in the AWS repo's `terraform/variables.tf` (`certbot_zones`). Adding `dustalmanac.com` there would allow dns-route53 and a wildcard, but needs that Terraform state.
+
+The sections below describe the original manual setup of pre-prod and remain accurate for what the scripts do.
+
+## Manual reference
+
 Interim host: `wooddust.sstools.co` on the existing EC2 instance (`ssh photon`), behind Apache with the `sstools.co-wildcard` certificate. First deployed 2026-11-08 as a pre-production site.
 
 ## Layout on the host
@@ -9,7 +45,7 @@ Interim host: `wooddust.sstools.co` on the existing EC2 instance (`ssh photon`),
 | `/opt/wooddust/releases/<git-sha>/` | A checkout of the repo at that commit plus `bin/wooddust` built from it (SPA embedded) |
 | `/opt/wooddust/current` | Symlink to the live release |
 | `/etc/wooddust/config.env` | Environment (see `deploy/config.env.example`) |
-| `/etc/systemd/system/wooddust.service` | From `deploy/systemd/wooddust.service` |
+| `/etc/systemd/system/wooddust.service` | From `deploy/systemd/site.service.in (rendered)` |
 | `/etc/httpd/conf.d/001-wooddust.sstools.co{,-le-ssl}.conf` | From `deploy/apache/` (HTTPS vhost and the HTTP redirect) |
 | `/etc/photon/ports.conf` | photon's port registry; the `wooddust` row sets the port |
 
@@ -28,8 +64,8 @@ sudo -u postgres createdb -O wooddust wooddust
 # but they ship in the contrib package, which photon did not have:
 sudo dnf install -y postgresql15-contrib   # match the server's major version
 sudo install -m 0640 -o root -g wooddust deploy/config.env.example /etc/wooddust/config.env   # then edit
-sudo install -m 0644 deploy/systemd/wooddust.service /etc/systemd/system/
-sudo install -m 0644 deploy/apache/001-wooddust.sstools.co-le-ssl.conf deploy/apache/001-wooddust.sstools.co.conf /etc/httpd/conf.d/
+sudo install -m 0644 deploy/systemd/site.service.in (rendered) /etc/systemd/system/
+sudo install -m 0644 deploy/apache/preprod/001-wooddust.sstools.co-le-ssl.conf deploy/apache/preprod/001-wooddust.sstools.co.conf /etc/httpd/conf.d/
 sudo install -d -m 0700 /var/log/httpd/sites/wooddust.sstools.co
 # Add to /etc/photon/ports.conf under "8110-8119: sstools.co tools":
 #   8112    wooddust               loopback  wooddust.sstools.co
