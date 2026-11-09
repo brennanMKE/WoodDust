@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shop poster: Almanac (docs/posters.md). Same template rules as shave.svg.
+
+  The slogan is printed on the almanac's left page (blank 173-541 x 571-919)
+  in ink, with "Know yours." under the bookplate; the QR code is a bookplate on the right page (blank 517-862 x
+  538-912): 216 px, about 45.5 mm on Letter. The Dust Almanac seal, the only
+  brand mark in the set, is drawn in vector in the plain lower-right corner.
+  Placed on round-4 art; move the slots together if the art changes.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" data-poster="almanac" data-bg="#fde5be">
+  <defs>
+    <pattern id="almanac-hatch" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+      <line x1="0" y1="0" x2="0" y2="20" stroke="#4a3d33" stroke-width="5"/>
+    </pattern>
+  </defs>
+  <g data-slot="art-placeholder">
+    <rect width="1024" height="1536" fill="#2b211b"/>
+    <rect x="48" y="48" width="928" height="1440" fill="url(#almanac-hatch)" stroke="#6b5a4a" stroke-width="4" stroke-dasharray="18 12"/>
+    <rect x="150" y="530" width="740" height="400" fill="#f1e6cf"/>
+  </g>
+  <image data-slot="art" href="art.png" x="0" y="0" width="1024" height="1536" preserveAspectRatio="xMidYMid slice"/>
+
+  <!-- Printed on the pages: the claim on the left, above Paul's thumb; the
+       call to action under the bookplate on the right. -->
+  <text data-slot="slogan" x="360" y="652" text-anchor="middle" font-family="'Alfa Slab One', 'Rockwell', serif" font-size="56" fill="#2b211b">
+    <tspan x="360" y="652">No wood</tspan>
+    <tspan x="360" y="720">is “safe.”</tspan>
+  </text>
+  <text x="664" y="852" text-anchor="middle" font-family="'Alfa Slab One', 'Rockwell', serif" font-size="40" fill="#8a2f22">Know yours.</text>
+
+  <!-- A bookplate on the right page. -->
+  <rect data-slot="qr-frame" x="575" y="568" width="230" height="230" rx="4" fill="#ffffff" stroke="#2b211b" stroke-width="4"/>
+  <image data-slot="qr" href="qr.svg" x="582" y="575" width="216" height="216" preserveAspectRatio="xMidYMid meet"/>
+
+  <!-- The Dust Almanac seal. -->
+  <g data-slot="seal">
+    <circle cx="896" cy="1388" r="84" fill="#fbf3e2" stroke="#8a2f22" stroke-width="5"/>
+    <circle cx="896" cy="1388" r="72" fill="none" stroke="#8a2f22" stroke-width="2"/>
+    <text x="896" y="1380" text-anchor="middle" font-family="'Alfa Slab One', 'Rockwell', serif" font-size="30" fill="#8a2f22">DUST</text>
+    <text x="896" y="1410" text-anchor="middle" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="19" font-weight="700" letter-spacing="3" fill="#2b211b">ALMANAC</text>
+  </g>
+
+  <g data-slot="plaque" display="none">
+    <rect x="232" y="1462" width="560" height="54" rx="6" fill="#f6eedb" stroke="#2b211b" stroke-width="3"/>
+    <text x="262" y="1498" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#8a2f22">POSTED BY</text>
+    <text data-slot="plaque-name" x="400" y="1499" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="26" font-weight="600" fill="#2b211b">________________________</text>
+  </g>
+</svg>

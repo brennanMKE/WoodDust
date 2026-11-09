@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shop poster: Tall Tale (docs/posters.md). Same template rules as shave.svg:
+  art pixel space (1024 x 1536), presentation attributes only, slots marked
+  with data-slot.
+
+  The slogan sits in the open sky, right-aligned clear of the collector on
+  Paul's shoulder. The QR code is a label on the wagon's front crate panel
+  (blank patch 420-596 x 1089-1259): 176 px, about 37 mm on Letter. Placed on
+  round-4 art; move qr-frame and qr together if the art changes.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" data-poster="tall-tale" data-bg="#f9e5c8">
+  <defs>
+    <pattern id="tall-tale-hatch" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="24" stroke="#d8c8a6" stroke-width="6"/>
+    </pattern>
+  </defs>
+  <g data-slot="art-placeholder">
+    <rect width="1024" height="1536" fill="#f1e6cf"/>
+    <rect x="48" y="260" width="928" height="1228" fill="url(#tall-tale-hatch)" stroke="#b9a37a" stroke-width="4" stroke-dasharray="18 12"/>
+  </g>
+  <image data-slot="art" href="art.png" x="0" y="0" width="1024" height="1536" preserveAspectRatio="xMidYMid slice"/>
+
+  <text data-slot="slogan" x="976" y="118" text-anchor="end" font-family="'Alfa Slab One', 'Rockwell', serif" font-size="92" fill="#2b211b">
+    <tspan x="976" y="118">Catch it</tspan>
+    <tspan x="976" y="212">at the tool.</tspan>
+  </text>
+
+  <!-- A label on the wagon's front crate. -->
+  <rect data-slot="qr-frame" x="413" y="1081" width="190" height="190" rx="4" fill="#ffffff" stroke="#2b211b" stroke-width="4"/>
+  <image data-slot="qr" href="qr.svg" x="420" y="1088" width="176" height="176" preserveAspectRatio="xMidYMid meet"/>
+
+  <g data-slot="plaque" display="none">
+    <rect x="232" y="1462" width="560" height="54" rx="6" fill="#f6eedb" stroke="#2b211b" stroke-width="3"/>
+    <text x="262" y="1498" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#8a2f22">POSTED BY</text>
+    <text data-slot="plaque-name" x="400" y="1499" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="26" font-weight="600" fill="#2b211b">________________________</text>
+  </g>
+</svg>

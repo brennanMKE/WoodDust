@@ -30,9 +30,9 @@ func (p Poster) StockURL() string { return StockBase + "/u/" + p.Alias }
 var Catalog = []Poster{
 	{ID: "shave", Title: "Shave", Slogan: "Paul shaves for a reason.", Destination: "/protection/respirators", Alias: "shave", Published: true},
 	{ID: "sunbeam", Title: "Sunbeam", Slogan: "You can't see what you're breathing.", Destination: "/risks", Alias: "sunbeam", Published: true},
-	{ID: "tall-tale", Title: "Tall Tale", Slogan: "Catch it at the tool.", Destination: "/protection/dust-collection", Alias: "talltale"},
-	{ID: "sweep", Title: "Sweep", Slogan: "No brooms.", Destination: "/protection/cleanup", Alias: "sweep"},
-	{ID: "almanac", Title: "Almanac", Slogan: `No wood is "safe." Know yours.`, Destination: "/", Alias: "almanac"},
+	{ID: "tall-tale", Title: "Tall Tale", Slogan: "Catch it at the tool.", Destination: "/protection/dust-collection", Alias: "talltale", Published: true},
+	{ID: "sweep", Title: "Sweep", Slogan: "No brooms.", Destination: "/protection/cleanup", Alias: "sweep", Published: true},
+	{ID: "almanac", Title: "Almanac", Slogan: `No wood is "safe." Know yours.`, Destination: "/", Alias: "almanac", Published: true},
 }
 
 // Get returns a poster by id, published or not.

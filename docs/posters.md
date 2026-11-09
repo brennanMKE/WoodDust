@@ -15,6 +15,7 @@ Decided 2026-11-08 (proposal v2, reviewed by Brennan). The WoodDust side is buil
 | Click IPs in ShortLinks | Hashed before launch ([ShortLinks #0121](../../ShortLinks/issues/0121.md)) |
 | Emblem seal | On the Almanac poster only |
 | Sixth poster (fire) | Not now |
+| All five published | Approved 2026-11-09, after Brennan approved the art |
 
 ## The set
 
@@ -58,7 +59,7 @@ Abuse limits match the submissions form. Without the key, the download falls bac
 | Piece | Where | State |
 |---|---|---|
 | Catalog of the five posters, slogans, destinations, stock aliases | `internal/posters/catalog.go` | Shave and Sunbeam published; the other three hidden |
-| Stock QR codes (`go.dustalmanac.com/u/<alias>`, aliases `shave`, `sunbeam`, `talltale`, `sweep`, `almanac`: ShortLinks aliases allow no hyphens) | `posters/qr/<id>.svg`, from `go run ./cmd/posterbuild qr`; embedded in the binary | Built. `shave` and `sunbeam` exist (campaign `posters`, 2026-11-09); the other three are created when those posters ship |
+| Stock QR codes (`go.dustalmanac.com/u/<alias>`, aliases `shave`, `sunbeam`, `talltale`, `sweep`, `almanac`: ShortLinks aliases allow no hyphens) | `posters/qr/<id>.svg`, from `go run ./cmd/posterbuild qr`; embedded in the binary | Built. All five exist (campaign `posters`, 2026-11-09) |
 | SVG templates, presentation attributes only, slots marked `data-slot` | `posters/src/shave.svg`, `posters/src/sunbeam.svg` | QR and slogan placed on the round-4 art. The QR is ~32 mm on Shave (the card won't hold more) and ~34.5 mm on Sunbeam: check on the printed proof |
 | Print files: Letter, A4, greyscale PDFs, 300 dpi PNG, SVG source | `scripts/posters.sh` (`make posters`) → `images/posters/`; `--proof` writes `tmp/posters/` and allows missing art | Works with `rsvg-convert`. Not generated into `images/posters/` until the art is approved. The 2:3 art fills the sheet's height; the sides take the art's paper colour |
 | Fonts | `web/public/fonts/` (Alfa Slab One, Source Sans 3 variable, OFL texts); the script points fontconfig at them | Self-hosted |

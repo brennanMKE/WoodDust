@@ -20,8 +20,8 @@ func TestPostersPage(t *testing.T) {
 		t.Fatalf("/posters: %d %q", rec.Code, rec.Header().Get("Cache-Control"))
 	}
 	body := rec.Body.String()
-	if !strings.Contains(body, "Paul shaves for a reason.") || !strings.Contains(body, "breathing.") || strings.Contains(body, "Tall Tale") {
-		t.Error("published posters only, with slogans")
+	if !strings.Contains(body, "Paul shaves for a reason.") || !strings.Contains(body, "breathing.") || !strings.Contains(body, "No brooms.") {
+		t.Error("all five published posters, with slogans")
 	}
 	init := initial(t, body)
 	if init["route"] != "posters" {
@@ -29,7 +29,7 @@ func TestPostersPage(t *testing.T) {
 	}
 	data := init["data"].(map[string]any)
 	ps := data["posters"].([]any)
-	if len(ps) != 2 {
+	if len(ps) != 5 {
 		t.Fatalf("%d posters", len(ps))
 	}
 	shave := ps[0].(map[string]any)
@@ -62,13 +62,13 @@ func TestPosterPrintAndAPI(t *testing.T) {
 	if rec.Code != http.StatusOK || rec.Header().Get("X-Robots-Tag") != "noindex" || initial(t, rec.Body.String())["route"] != "poster_print" {
 		t.Fatalf("print: %d", rec.Code)
 	}
-	for _, p := range []string{"/posters/tall-tale/print", "/posters/nope/print"} {
+	for _, p := range []string{"/posters/fire/print", "/posters/nope/print"} {
 		if rec := get(t, e.h, p); rec.Code != http.StatusNotFound {
 			t.Errorf("%s: %d", p, rec.Code)
 		}
 	}
-	if rec := get(t, e.h, "/api/v1/posters/sweep"); rec.Code != http.StatusNotFound {
-		t.Errorf("unpublished poster API: %d", rec.Code)
+	if rec := get(t, e.h, "/api/v1/posters/fire"); rec.Code != http.StatusNotFound {
+		t.Errorf("unknown poster API: %d", rec.Code)
 	}
 	v := decode[posterResponse](t, get(t, e.h, "/api/v1/posters/shave"))
 	if v.Poster.Destination != "/protection/respirators" || !strings.Contains(v.Poster.Stock.QRSVG, "<svg") {

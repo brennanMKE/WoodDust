@@ -292,8 +292,8 @@ func TestFallbacks(t *testing.T) {
 
 func TestAbuseControls(t *testing.T) {
 	e := newEnv(t)
-	if w, _ := e.post("10.0.0.1", map[string]string{"poster": "tall-tale"}); w.Code != http.StatusUnprocessableEntity {
-		t.Errorf("unpublished poster: %d", w.Code)
+	if w, _ := e.post("10.0.0.1", map[string]string{"poster": "fire"}); w.Code != http.StatusUnprocessableEntity {
+		t.Errorf("unknown poster: %d", w.Code)
 	}
 	if w, _ := e.post("10.0.0.1", map[string]string{"poster": "shave", "form_token": "forged.x"}); w.Code != http.StatusUnprocessableEntity {
 		t.Errorf("forged token: %d", w.Code)
