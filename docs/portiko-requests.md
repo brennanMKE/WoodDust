@@ -16,11 +16,11 @@ This is the shared list of changes Dust Almanac needs from Portiko (`github.com/
 
 | # | Request | Priority | Status | Portiko ref | WoodDust ref |
 |---|---|---|---|---|---|
-| P1 | Enforce `BOOTSTRAP_CODE` on registration | **Security, high** | in progress (fix written and tested, not committed) | `TestBootstrapCodeGatesEveryNewAccount` | gate in `internal/identity` |
-| P1b | Option to close registration with no code set | **Security, high** | in progress (with P1, not committed): `REGISTRATION=open\|code\|closed`, `Config.Registration` | `TestClosedRegistrationRefusesEveryNewAccount`, `TestRegistrationModeFailsClosed` | gate treats an unset code as closed |
-| P2 | Exported, implementable `Mailer` | Medium | open | | uses SMTP env |
-| P3 | Public client registration API | Medium | open | | `wooddust identity register-site` |
-| P4 | Provider applies its own migrations | Medium | open | | `identity.Migrate` |
+| P1 | Enforce `BOOTSTRAP_CODE` on registration | **Security, high** | **adopted** (pin `74783e4`) | `c79d308`; `docs/registration.md` | explicit `Registration`; site gate kept for recovery, fills `bootstrap_code` |
+| P1b | Option to close registration with no code set | **Security, high** | **adopted**: `REGISTRATION=open\|code\|closed`, `Config.Registration` | `c79d308` | `code` with a code, `closed` without |
+| P2 | Exported, implementable `Mailer` | Medium | fixed upstream: `provider.Mailer`, `provider.PasskeyNotice` | `74783e4` | not used yet; SMTP (SES) still |
+| P3 | Public client registration API | Medium | **adopted**: `(*Provider).RegisterClient(ctx, provider.Client)` | `74783e4` | `identity.Client`, on every start |
+| P4 | Provider applies its own migrations | Medium | **adopted**: `provider.Migrate(ctx, dsn)` before `New`; `portiko migrate` | `74783e4` | `identity.Migrate` wraps it |
 | P5 | Path-prefix option for `Handler()` | Medium | open | | cherry-picked routes |
 | P6 | rp logout can end the provider SSO session | Medium | open | | in-process logout replay |
 | P7 | CSP-friendly templates (no inline script/style) | Low | open | | path-specific CSP |
@@ -46,7 +46,7 @@ This is the shared list of changes Dust Almanac needs from Portiko (`github.com/
 
 **Done when.** WoodDust can delete the gate and still pass `TestSignInToAdmin` plus an "unenrolled email can't register" test.
 
-**Portiko's fix, as reported by the Portiko session on 2026-11-08 (not committed yet):**
+**Portiko's fix (`c79d308`, pushed 2026-11-09):**
 - When set, the code gates **every** new account, not only the first.
 - The code is sent in a new `bootstrap_code` field on `POST /accounts/v1/register/start`.
 - A wrong or missing code still returns `202 code_sent`, but no pending row is created and no mail goes out.

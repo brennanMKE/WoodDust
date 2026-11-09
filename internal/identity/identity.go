@@ -8,15 +8,18 @@
 package identity
 
 import (
+	"bytes"
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
 	"crypto/subtle"
 	"encoding/base64"
 	"encoding/hex"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"html/template"
+	"io"
 	"log/slog"
 	"net/http"
 	"net/http/httptest"
@@ -25,14 +28,12 @@ import (
 	"strings"
 	"time"
 
-	portikomigrations "github.com/Kolonnade/Portiko/migrations"
 	"github.com/Kolonnade/Portiko/provider"
 	"github.com/Kolonnade/Portiko/rp"
 	"github.com/Kolonnade/Portiko/rp/session"
 	"github.com/Kolonnade/Portiko/server"
 
 	"github.com/brennanMKE/WoodDust/internal/config"
-	"github.com/brennanMKE/WoodDust/internal/db"
 	"github.com/brennanMKE/WoodDust/internal/middleware"
 )
 
@@ -65,6 +66,9 @@ func ProviderConfig(cfg config.Config) (*provider.Config, error) {
 	if err != nil {
 		return nil, fmt.Errorf("IDENTITY_CRYPTO_KEY %w", err)
 	}
+	if c := cfg.Identity.BootstrapCode; c != "" && len(c) < minBootstrapCode {
+		return nil, fmt.Errorf("IDENTITY_BOOTSTRAP_CODE must be at least %d characters (openssl rand -hex 32)", minBootstrapCode)
+	}
 	trusted, err := middleware.ParseTrustedProxies(cfg.TrustedProxies)
 	if err != nil {
 		return nil, fmt.Errorf("TRUSTED_PROXIES: %w", err)
@@ -82,6 +86,7 @@ func ProviderConfig(cfg config.Config) (*provider.Config, error) {
 		EmailFrom:         cfg.Identity.EmailFrom,
 		TemplateDir:       cfg.Identity.TemplateDir,
 		BootstrapCode:     cfg.Identity.BootstrapCode,
+		Registration:      registrationMode(cfg.Identity.BootstrapCode),
 		DevInsecure:       cfg.DevInsecure,
 		CryptoKey:         key,
 		TrustedProxies:    trusted,
@@ -105,10 +110,36 @@ func decode32(s string) ([32]byte, error) {
 	return out, nil
 }
 
-// Migrate applies Portiko's embedded migrations to the identity database.
-// Portiko leaves this to the operator; the site does it on every start.
-func Migrate(databaseURL string) error {
-	return db.MigrateUpFS(databaseURL, portikomigrations.FS)
+// registrationMode sets Portiko's REGISTRATION explicitly: new accounts need
+// the bootstrap code, and with no code set nobody can create one. Left empty,
+// Portiko would treat a missing code as open sign-up.
+func registrationMode(bootstrapCode string) string {
+	if bootstrapCode == "" {
+		return "closed"
+	}
+	return "code"
+}
+
+// Migrate applies Portiko's migrations to the identity database. It is
+// advisory-locked and safe on every start; the site does it before New.
+func Migrate(ctx context.Context, databaseURL string) error {
+	_, err := provider.Migrate(ctx, databaseURL)
+	return err
+}
+
+// Client is this site's declaration as the provider's only first-party
+// client. New registers it on every start, so a changed BASE_URL or secret
+// takes effect on restart; an operator who disabled it keeps it disabled.
+func Client(cfg config.Config) provider.Client {
+	return provider.Client{
+		ID:                   cfg.Identity.ClientID,
+		Secret:               cfg.Identity.ClientSecret,
+		Audience:             cfg.BaseURL,
+		DisplayName:          cfg.SiteName,
+		RedirectURIs:         []string{cfg.BaseURL + "/auth/callback"},
+		FirstParty:           true,
+		BackchannelLogoutURI: cfg.BaseURL + "/auth/backchannel-logout",
+	}
 }
 
 // Options are the site's hooks into sign-in.
@@ -139,12 +170,16 @@ func New(ctx context.Context, cfg config.Config, o Options) (*Identity, error) {
 	if err != nil {
 		return nil, err
 	}
-	if err := Migrate(cfg.Identity.DatabaseURL); err != nil {
+	if err := Migrate(ctx, cfg.Identity.DatabaseURL); err != nil {
 		return nil, fmt.Errorf("identity migrate: %w", err)
 	}
 	p, err := provider.New(ctx, pcfg, provider.Options{})
 	if err != nil {
 		return nil, fmt.Errorf("identity provider: %w", err)
+	}
+	if err := p.RegisterClient(ctx, Client(cfg)); err != nil {
+		p.Close()
+		return nil, fmt.Errorf("identity client: %w", err)
 	}
 	id := &Identity{cfg: cfg, provider: p, log: o.Logger,
 		enroll: newEnrollment(cfg.Identity.BootstrapCode, pcfg.CryptoKey[:], !cfg.DevInsecure)}
@@ -304,18 +339,24 @@ func MountDisabled(mux *http.ServeMux, reason string) {
 
 // ---- enrollment gate ------------------------------------------------------------
 
-// Portiko defines BOOTSTRAP_CODE but (at the pinned commit) never reads it:
-// anyone who can receive email could enroll. Only the owner may sign in
-// here, so the site gates Portiko's registration endpoints itself. Visiting
-// /auth/enroll and entering IDENTITY_BOOTSTRAP_CODE sets a short-lived
-// signed cookie; without it, register/start|verify|finish answer 403.
-// Existing passkeys sign in without it.
+// Portiko now requires BOOTSTRAP_CODE for new accounts (REGISTRATION=code)
+// but, by design, lets an existing account recover by email in every mode.
+// Only the owner may sign in here, so the site keeps a stricter gate in
+// front: visiting /auth/enroll and entering IDENTITY_BOOTSTRAP_CODE sets a
+// short-lived signed cookie; without it, register/start|verify|finish (which
+// also carry recovery) answer 403. With the cookie, the gate fills in
+// Portiko's bootstrap_code field, so the code is entered once. Existing
+// passkeys sign in without it.
 type enrollment struct {
 	code   string
 	key    []byte
 	secure bool
 	tries  *middleware.RateLimiter
 }
+
+// minBootstrapCode matches the minimum Portiko's own config loader enforces,
+// which ProviderConfig bypasses.
+const minBootstrapCode = 16
 
 const (
 	enrollCookie = "da_enroll"
@@ -359,8 +400,38 @@ func (e *enrollment) gate(next http.Handler) http.Handler {
 			_, _ = w.Write([]byte(`{"error":"registration_closed","error_description":"enrollment needs the bootstrap code at /auth/enroll"}` + "\n"))
 			return
 		}
+		if r.Method == http.MethodPost && r.URL.Path == "/accounts/v1/register/start" {
+			if err := e.fillCode(r); err != nil {
+				http.Error(w, "bad request", http.StatusBadRequest)
+				return
+			}
+		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+// fillCode sets bootstrap_code in a register/start body that lacks it. The
+// gate has already checked the cookie, which only the right code can mint.
+func (e *enrollment) fillCode(r *http.Request) error {
+	raw, err := io.ReadAll(io.LimitReader(r.Body, 64<<10))
+	r.Body.Close()
+	if err != nil {
+		return err
+	}
+	var body map[string]any
+	if err := json.Unmarshal(raw, &body); err != nil || body == nil {
+		return errors.New("register/start body is not a JSON object")
+	}
+	if c, _ := body["bootstrap_code"].(string); c == "" {
+		body["bootstrap_code"] = e.code
+		if raw, err = json.Marshal(body); err != nil {
+			return err
+		}
+	}
+	r.Body = io.NopCloser(bytes.NewReader(raw))
+	r.ContentLength = int64(len(raw))
+	r.Header.Set("Content-Length", strconv.Itoa(len(raw)))
+	return nil
 }
 
 var enrollTmpl = template.Must(template.New("enroll").Parse(`<!doctype html>
@@ -427,14 +498,14 @@ func ServerMain(cfg config.Config, args []string) int {
 		return 2
 	}
 	if len(args) > 0 && args[0] == "migrate" {
-		if err := Migrate(cfg.Identity.DatabaseURL); err != nil {
+		if err := Migrate(context.Background(), cfg.Identity.DatabaseURL); err != nil {
 			fmt.Fprintln(os.Stderr, "identity migrate:", err)
 			return 1
 		}
 		fmt.Println("identity database migrated")
 		return 0
 	}
-	if err := Migrate(cfg.Identity.DatabaseURL); err != nil {
+	if err := Migrate(context.Background(), cfg.Identity.DatabaseURL); err != nil {
 		fmt.Fprintln(os.Stderr, "identity migrate:", err)
 		return 1
 	}
@@ -457,6 +528,7 @@ func ServerMain(cfg config.Config, args []string) int {
 		"WEBAUTHN_RP_ORIGINS": cfg.BaseURL,
 		"CRYPTO_KEY":          cfg.Identity.CryptoKey,
 		"BOOTSTRAP_CODE":      cfg.Identity.BootstrapCode,
+		"REGISTRATION":        registrationMode(cfg.Identity.BootstrapCode),
 		"DEV_INSECURE":        insecure,
 		"SMTP_HOST":           cfg.Identity.SMTPHost,
 		"SMTP_PORT":           strconv.Itoa(cfg.Identity.SMTPPort),

@@ -103,15 +103,8 @@ fi
 sudo rm -rf \$R.old
 echo \"✓  \$UNIT healthy: \$(curl -fsS http://127.0.0.1:\$PORT/api/v1/health)\"
 
-# First deploy only: register this site as its embedded provider's client.
-if ! sudo test -f \$ETC/.client-registered; then
-  sudo systemd-run --pipe --wait --quiet -p User=\$UNIT -p EnvironmentFile=\$ETC/config.env \
-    -p WorkingDirectory=\$ROOT/current \$ROOT/current/bin/wooddust identity register-site >/dev/null
-  sudo touch \$ETC/.client-registered
-  sudo systemctl restart \$UNIT
-  sleep 3
-  echo '✓  sign-in client registered'
-fi
+# The site registers itself as its provider's client on every start
+# (identity.New → RegisterClient), so there is no first-deploy step.
 
 # Prune: keep the newest \$KEEP_RELEASES, never the live or previous one.
 cd \$ROOT/releases

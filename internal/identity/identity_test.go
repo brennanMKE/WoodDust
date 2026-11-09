@@ -71,19 +71,17 @@ func TestSignInToAdmin(t *testing.T) {
 	cfg := config.Config{
 		SiteName: "Dust Almanac", BaseURL: base, TrustedProxies: "127.0.0.1,::1", DevInsecure: true,
 		Identity: config.Identity{
-			DatabaseURL: idURL, CryptoKey: key(), BootstrapCode: "let-me-in", ClientID: "wooddust",
+			DatabaseURL: idURL, CryptoKey: key(), BootstrapCode: "let-me-in-0123456789", ClientID: "wooddust",
 			ClientSecret: "test-secret", CookieKey: cookieKey, SMTPPort: 587,
 		},
 	}
 	// ServerMain sets Portiko's variables in the process environment.
 	for _, k := range []string{"ISSUER", "DATABASE_URL", "PORT", "SERVICE_NAME", "WEBAUTHN_RP_ID", "WEBAUTHN_RP_ORIGINS",
 		"CRYPTO_KEY", "BOOTSTRAP_CODE", "DEV_INSECURE", "SMTP_HOST", "SMTP_PORT", "SMTP_USERNAME", "SMTP_PASSWORD",
-		"EMAIL_FROM", "TEMPLATE_DIR", "TRUSTED_PROXIES"} {
+		"EMAIL_FROM", "TEMPLATE_DIR", "TRUSTED_PROXIES", "REGISTRATION"} {
 		t.Setenv(k, os.Getenv(k))
 	}
-	if code := ServerMain(cfg, []string{"register-site"}); code != 0 {
-		t.Fatalf("register-site exited %d", code)
-	}
+	// No register-site: identity.New registers the client on start.
 
 	log := slog.New(slog.NewTextHandler(io.Discard, nil))
 	ds, err := data.Load("../../data")
@@ -147,7 +145,19 @@ func TestSignInToAdmin(t *testing.T) {
 		t.Fatalf("register without code: %d", r.StatusCode)
 	}
 	owner.enroll("wrong", http.StatusForbidden)
-	owner.enroll("let-me-in", http.StatusSeeOther)
+	owner.enroll("let-me-in-0123456789", http.StatusSeeOther)
+
+	// Behind the gate, Portiko checks the code itself: a wrong
+	// bootstrap_code is answered 202 but stores and mails nothing.
+	if r := owner.postJSON("/accounts/v1/register/start",
+		map[string]string{"email": "owner@example.com", "bootstrap_code": "not-the-code-at-all"}); r.StatusCode != http.StatusAccepted {
+		t.Fatalf("register with a wrong code: %d", r.StatusCode)
+	}
+	var pending int
+	if err := idPool.QueryRow(context.Background(),
+		`SELECT count(*) FROM pending_registrations WHERE email = 'owner@example.com'`).Scan(&pending); err != nil || pending != 0 {
+		t.Fatalf("pending registrations after a wrong code: %d (%v)", pending, err)
+	}
 
 	// 3. Enroll a passkey, then sign in to the site.
 	owner.register("owner@example.com")
@@ -182,7 +192,7 @@ func TestSignInToAdmin(t *testing.T) {
 
 	// 5. Somebody else who enrolls and signs in is not an admin.
 	other := newBrowser(t, base, idPool)
-	other.enroll("let-me-in", http.StatusSeeOther)
+	other.enroll("let-me-in-0123456789", http.StatusSeeOther)
 	other.register("other@example.com")
 	if r := other.get("/auth/login?return=/admin", true); r.StatusCode != http.StatusForbidden || r.Request.URL.Path != "/admin" {
 		t.Errorf("second person on /admin: %d at %s", r.StatusCode, r.Request.URL)

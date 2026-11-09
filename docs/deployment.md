@@ -99,39 +99,28 @@ Sign-in uses the Portiko provider embedded in the binary (PLAN §5, `docs/portik
    | `IDENTITY_CLIENT_SECRET` | The site's client secret with its own provider |
    | `COOKIE_KEY` | Protects the sign-in redirect cookies (state, PKCE, nonce) |
    | `FORM_TOKEN_KEY` | Signs submit-form tokens; also derives the daily IP-hash salt unless `IP_HASH_KEY` is set |
-   | `IDENTITY_BOOTSTRAP_CODE` | Opens passkey enrollment at `/auth/enroll`. Use another long random value |
+   | `IDENTITY_BOOTSTRAP_CODE` | Opens passkey enrollment at `/auth/enroll`. At least 16 characters, or the service won't start; use another long random value. Unset means Portiko's registration is `closed` |
    | `SETTINGS_KEY` | Encrypts secret operator settings in the database (the ShortLinks key). Exactly 32 bytes. Losing it means setting those again |
 
    Also set `IDENTITY_DATABASE_URL`, and the `IDENTITY_SMTP_*`/`IDENTITY_EMAIL_FROM` settings for one-time codes; see Email (Amazon SES) below. Without SMTP, codes go to the journal. Do **not** set `DEV_INSECURE` in production. `TRUSTED_PROXIES=127.0.0.1,::1` is shared with Portiko's rate limits.
 
-3. Register the site as the provider's single first-party client. This is a one-time command, run as the service user with the service's environment file (`systemd-run` reads it exactly as the unit does, including values with spaces):
+3. Nothing to register: on every start the site registers itself as the provider's single first-party client (`identity.Client`: redirect `BASE_URL/auth/callback`, back-channel logout `BASE_URL/auth/backchannel-logout`). Operator commands below use this helper, which runs as the service user with the service's environment file (`systemd-run` reads it exactly as the unit does, including values with spaces):
 
    ```sh
    wd() { sudo systemd-run --pipe --wait --quiet -p User=wooddust \
      -p EnvironmentFile=/etc/wooddust/config.env -p WorkingDirectory=/opt/wooddust/current \
      /opt/wooddust/current/bin/wooddust "$@"; }
-   wd identity register-site
    ```
 
-   The `wd` helper is used for the other operator commands below too.
-
-   `register-site` is shorthand for Portiko's own command with this site's values:
-
-   ```sh
-   wooddust identity register-client -first-party wooddust https://wooddust.sstools.co \
-     https://wooddust.sstools.co/auth/callback "$IDENTITY_CLIENT_SECRET"
-   ```
-
-   Optional, so a sign-out at the provider also ends the site session:
-   `wooddust identity set-logout-uri wooddust https://wooddust.sstools.co/auth/backchannel-logout`.
+   `wd identity register-site` still exists for re-registering by hand, but isn't needed.
 
 4. Restart the service. The log should say `sign-in enabled`.
 
 5. **Enroll the owner** (once, from your own browser):
    1. Open `https://wooddust.sstools.co/auth/enroll` and enter `IDENTITY_BOOTSTRAP_CODE`. That sets a 30-minute cookie that opens Portiko's registration endpoints for this browser only. Without it they answer 403, so nobody else can create an account.
-   2. You are sent to sign in. Choose "sign in with your email", enter the code from the email (or from `journalctl -u wooddust` before SMTP is set up), and create a passkey.
+   2. You are sent to sign in. Choose "sign in with your email" and leave the invitation-code field empty (the site fills it in from the cookie). Enter the code from the email (or from `journalctl -u wooddust` before SMTP is set up), and create a passkey.
    3. You land on `/admin`. **The first subject ever to sign in becomes the admin** (the local `users.is_admin`). Anyone who signs in later gets 403 on every admin route.
-   4. Check with `wd users list`. Afterwards you may remove `IDENTITY_BOOTSTRAP_CODE`, which closes enrollment completely. Keep it in your password manager to re-open enrollment for a new device or recovery.
+   4. Check with `wd users list`. Afterwards you may remove `IDENTITY_BOOTSTRAP_CODE`, which closes enrollment completely (the site gate and Portiko's `REGISTRATION=closed`). Keep it in your password manager to re-open enrollment for a new device or recovery.
 
    If the wrong subject became admin: `wd users unadmin <subject>` and `wd users admin <subject>`.
 
@@ -143,7 +132,7 @@ Sign-in uses the Portiko provider embedded in the binary (PLAN §5, `docs/portik
    wd apikey revoke <prefix>
    ```
 
-The RP ID is the host of `BASE_URL`. A passkey is bound to it forever, so moving to a purchased domain means enrolling again (PLAN §10), and re-running `register-site` for the new `BASE_URL`.
+The RP ID is the host of `BASE_URL`. A passkey is bound to it forever, so moving to a purchased domain means enrolling again (PLAN §10); the client registration follows the new `BASE_URL` on restart.
 
 Backups: once submissions exist, dump both `wooddust` and `wooddust_identity` nightly.
 
@@ -153,7 +142,7 @@ Plaque posters get their own QR code link from the go.dustalmanac.com ShortLinks
 
 1. Make sure `SETTINGS_KEY` is in `config.env` (`make provision-<env>` adds it) and the unit was restarted.
 2. On go.dustalmanac.com, create an API token under Account › API tokens: **not** read-only, 12-month expiry, one per environment. Create the `posters` campaign there too.
-3. From this Mac: `scripts/set-setting.sh preprod shortlinks_api_key`. It asks for the token with hidden input (or reads it from a pipe; prod then needs `--yes`) and sends it over ssh stdin to `wooddust settings set shortlinks_api_key --stdin`, run with `systemd-run` as the service user and its `config.env`, like `register-site`. The token never appears in arguments, the environment or any output; the command prints only `slk_AbCdEfGh…`.
+3. From this Mac: `scripts/set-setting.sh preprod shortlinks_api_key`. It asks for the token with hidden input (or reads it from a pipe; prod then needs `--yes`) and sends it over ssh stdin to `wooddust settings set shortlinks_api_key --stdin`, run with `systemd-run` as the service user and its `config.env`, like the `wd` helper. The token never appears in arguments, the environment or any output; the command prints only `slk_AbCdEfGh…`.
 4. If go.dustalmanac.com doesn't listen on the default loopback port, set it the same way: `scripts/set-setting.sh <env> shortlinks_api_url` (e.g. `http://127.0.0.1:<port>` from `/etc/photon/ports.conf`).
 5. Open `/admin/settings` and press **Test connection**. The dashboard shows a banner until it says OK.
 

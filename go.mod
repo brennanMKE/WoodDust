@@ -3,7 +3,7 @@ module github.com/brennanMKE/WoodDust
 go 1.26.0
 
 require (
-	github.com/Kolonnade/Portiko v0.0.0-20261106224428-4d9d3082a998
+	github.com/Kolonnade/Portiko v0.0.0-20261109082047-74783e489c6b
 	github.com/descope/virtualwebauthn v1.0.5
 	github.com/golang-migrate/migrate/v4 v4.20.1
 	github.com/jackc/pgx/v5 v5.12.0

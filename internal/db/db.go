@@ -74,21 +74,6 @@ func MigrateUp(databaseURL string) error {
 	return nil
 }
 
-// MigrateUpFS applies every pending migration in fsys (golang-migrate
-// NNNNNN_name.up.sql files). It migrates the separate identity database
-// with Portiko's embedded migrations, which Portiko does not apply itself.
-func MigrateUpFS(databaseURL string, fsys fs.FS) error {
-	m, err := newMigrateFS(databaseURL, fsys)
-	if err != nil {
-		return err
-	}
-	defer m.Close()
-	if err := m.Up(); err != nil && !errors.Is(err, migrate.ErrNoChange) {
-		return err
-	}
-	return nil
-}
-
 // MigrateDown rolls back steps migrations (all of them when steps <= 0).
 func MigrateDown(databaseURL string, steps int) error {
 	m, err := newMigrate(databaseURL)
