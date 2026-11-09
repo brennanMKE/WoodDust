@@ -47,6 +47,8 @@ utm_source=flyer&utm_medium=print&utm_campaign=poster-<id>&utm_content=stock-v1 
                                                        …&utm_content=custom     (plaque)
 ```
 
+ShortLinks redirects to `destination_url` exactly as stored. The `utm_*` fields on a link are only labels for its reports, so the tags must also be written into `destination_url`. ShortLinks' own UI does this; for links created through the API, the client has to do it (`internal/posters/links.go`).
+
 A poster with a plaque gets its own random-code link, minted on download. The shop name stays in the browser unless the off-by-default opt-in is ticked; then it's stored only as the ShortLinks link's `placement`, never in a URL.
 
 Abuse limits match the submissions form. Without the key, the download falls back to the stock link.
@@ -56,7 +58,7 @@ Abuse limits match the submissions form. Without the key, the download falls bac
 | Piece | Where | State |
 |---|---|---|
 | Catalog of the five posters, slogans, destinations, stock aliases | `internal/posters/catalog.go` | Shave and Sunbeam published; the other three hidden |
-| Stock QR codes (`go.dustalmanac.com/u/<alias>`, aliases `shave`, `sunbeam`, `talltale`, `sweep`, `almanac`: ShortLinks aliases allow no hyphens) | `posters/qr/<id>.svg`, from `go run ./cmd/posterbuild qr`; embedded in the binary | Built. The aliases still have to be created in ShortLinks (campaign `posters`, `utm_content=stock-v1`) |
+| Stock QR codes (`go.dustalmanac.com/u/<alias>`, aliases `shave`, `sunbeam`, `talltale`, `sweep`, `almanac`: ShortLinks aliases allow no hyphens) | `posters/qr/<id>.svg`, from `go run ./cmd/posterbuild qr`; embedded in the binary | Built. `shave` and `sunbeam` exist (campaign `posters`, 2026-11-09); the other three are created when those posters ship |
 | SVG templates, presentation attributes only, slots marked `data-slot` | `posters/src/shave.svg`, `posters/src/sunbeam.svg` | QR and slogan placed on the round-4 art. The QR is ~32 mm on Shave (the card won't hold more) and ~34.5 mm on Sunbeam: check on the printed proof |
 | Print files: Letter, A4, greyscale PDFs, 300 dpi PNG, SVG source | `scripts/posters.sh` (`make posters`) → `images/posters/`; `--proof` writes `tmp/posters/` and allows missing art | Works with `rsvg-convert`. Not generated into `images/posters/` until the art is approved. The 2:3 art fills the sheet's height; the sides take the art's paper colour |
 | Fonts | `web/public/fonts/` (Alfa Slab One, Source Sans 3 variable, OFL texts); the script points fontconfig at them | Self-hosted |

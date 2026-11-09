@@ -218,7 +218,7 @@ func TestMintCustomLink(t *testing.T) {
 		t.Fatalf("created %d links", len(e.sl.created))
 	}
 	lr := e.sl.created[0]
-	if lr.DestinationURL != "https://www.dustalmanac.com/protection/respirators" || lr.CampaignSlug != "posters" ||
+	if lr.DestinationURL != "https://www.dustalmanac.com/protection/respirators?utm_campaign=poster-shave&utm_content=custom&utm_medium=print&utm_source=flyer" || lr.CampaignSlug != "posters" ||
 		lr.UTMSource != "flyer" || lr.UTMMedium != "print" || lr.UTMCampaign != "poster-shave" || lr.UTMContent != "custom" {
 		t.Errorf("link request %+v", lr)
 	}

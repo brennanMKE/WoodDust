@@ -11,6 +11,7 @@ import (
 	"math"
 	"math/big"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"unicode"
@@ -224,15 +225,24 @@ func (s *Service) mint(ctx context.Context, p Poster, shop string) Link {
 	if !ok {
 		return fallback
 	}
+	// ShortLinks redirects to destination_url as stored: the utm_* fields
+	// are only labels for its reports. Its own UI bakes the same values into
+	// the URL, so do the same here or the visit arrives untagged.
+	utm := url.Values{
+		"utm_source":   {"flyer"},
+		"utm_medium":   {"print"},
+		"utm_campaign": {"poster-" + p.ID},
+		"utm_content":  {"custom"},
+	}
 	key, err := c.CreateLink(ctx, LinkRequest{
-		DestinationURL: strings.TrimRight(s.SiteBase, "/") + p.Destination,
+		DestinationURL: strings.TrimRight(s.SiteBase, "/") + p.Destination + "?" + utm.Encode(),
 		Key:            newKey(),
 		Title:          "Poster: " + p.Title + " (plaque)",
 		CampaignSlug:   campaign,
-		UTMSource:      "flyer",
-		UTMMedium:      "print",
-		UTMCampaign:    "poster-" + p.ID,
-		UTMContent:     "custom",
+		UTMSource:      utm.Get("utm_source"),
+		UTMMedium:      utm.Get("utm_medium"),
+		UTMCampaign:    utm.Get("utm_campaign"),
+		UTMContent:     utm.Get("utm_content"),
 		Placement:      shop,
 	})
 	if err != nil {
