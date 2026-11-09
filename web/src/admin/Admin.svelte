@@ -8,6 +8,7 @@
   import Submissions from './Submissions.svelte';
   import SubmissionDetail from './SubmissionDetail.svelte';
   import ApiKeys from './ApiKeys.svelte';
+  import Settings from './Settings.svelte';
 
   let { data, section, id }: { data: MeResponse | null; section: string; id?: string } = $props();
 
@@ -16,6 +17,7 @@
     { href: '/admin', label: 'Dashboard', section: 'dashboard' },
     { href: '/admin/submissions', label: 'Submissions', section: 'submissions' },
     { href: '/admin/api-keys', label: 'API keys', section: 'api-keys' },
+    { href: '/admin/settings', label: 'Settings', section: 'settings' },
   ];
   const activeTab = $derived(section === 'submission' ? 'submissions' : section);
 
@@ -62,6 +64,8 @@
     <SubmissionDetail id={id} />
   {:else if section === 'api-keys'}
     <ApiKeys />
+  {:else if section === 'settings'}
+    <Settings />
   {/if}
 </div>
 

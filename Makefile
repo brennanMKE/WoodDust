@@ -1,6 +1,7 @@
 .PHONY: build web go test check dev dev-memory seed seed-check clean \
 	provision-preprod provision-prod deploy-preprod deploy-prod status-preprod status-prod \
-	logs-preprod logs-prod rollback-preprod rollback-prod
+	logs-preprod logs-prod rollback-preprod rollback-prod \
+	posters shortlinks-key-preprod shortlinks-key-prod
 
 BIN := bin/wooddust
 
@@ -37,6 +38,10 @@ seed-check:
 clean:
 	rm -rf bin
 
+# Shop posters: stock QR codes and print files (docs/posters.md). Local only.
+posters:
+	./scripts/posters.sh
+
 # ---- photon (docs/deployment.md). preprod = wooddust.sstools.co, prod = www.dustalmanac.com
 provision-preprod: ; ./scripts/provision.sh preprod
 provision-prod:    ; ./scripts/provision.sh prod
@@ -48,3 +53,6 @@ logs-preprod:      ; ./scripts/status.sh preprod --logs 100
 logs-prod:         ; ./scripts/status.sh prod --logs 100
 rollback-preprod:  ; ./scripts/rollback.sh preprod
 rollback-prod:     ; ./scripts/rollback.sh prod
+# Store the ShortLinks API token (prompts, input hidden; docs/deployment.md).
+shortlinks-key-preprod: ; ./scripts/set-setting.sh preprod shortlinks_api_key
+shortlinks-key-prod:    ; ./scripts/set-setting.sh prod shortlinks_api_key

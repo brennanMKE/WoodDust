@@ -36,6 +36,11 @@ type Config struct {
 
 	Identity    Identity
 	Submissions Submissions
+
+	// SettingsKey (SETTINGS_KEY, exactly 32 bytes hex or base64) encrypts
+	// secret operator settings at rest (internal/settings). Nil: secret
+	// settings cannot be set or used.
+	SettingsKey []byte
 }
 
 // Identity configures the embedded Portiko provider and the site's own
@@ -173,6 +178,15 @@ func Load() (Config, error) {
 	}
 	s.MinFill, s.MaxAge = time.Duration(minFill)*time.Second, time.Duration(maxAge)*time.Hour
 	c.Submissions = s
+
+	if v := strings.TrimSpace(os.Getenv("SETTINGS_KEY")); v != "" {
+		if c.SettingsKey, err = decodeKey(v); err != nil {
+			return c, fmt.Errorf("SETTINGS_KEY: %w", err)
+		}
+		if len(c.SettingsKey) != 32 {
+			return c, fmt.Errorf("SETTINGS_KEY must be exactly 32 bytes (openssl rand -hex 32), got %d", len(c.SettingsKey))
+		}
+	}
 	return c, nil
 }
 

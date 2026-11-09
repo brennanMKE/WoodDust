@@ -12,9 +12,13 @@
   import Submit from './views/Submit.svelte';
   import SubmissionStatus from './views/SubmissionStatus.svelte';
   import NotFound from './views/NotFound.svelte';
+  import Posters from './views/Posters.svelte';
+  import PosterPrint from './views/PosterPrint.svelte';
   import type {
     ContentPage,
     MeResponse,
+    PosterData,
+    PostersData,
     SourcesResponse,
     SpeciesDetail,
     SpeciesList,
@@ -78,6 +82,10 @@
       <Submit slug={app.match.params.slug} data={app.data as SubmitData | null} />
     {:else if app.match.id === 'submission_status'}
       <SubmissionStatus data={app.data as SubmissionStatusData} />
+    {:else if app.match.id === 'posters'}
+      <Posters data={app.data as PostersData} />
+    {:else if app.match.id === 'poster_print'}
+      <PosterPrint data={app.data as PosterData} />
     {:else if app.match.id === 'admin'}
       {#await loadAdmin()}
         <div class="wrap"><p class="muted">Loading admin…</p></div>

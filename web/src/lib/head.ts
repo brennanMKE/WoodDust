@@ -1,5 +1,5 @@
 import type { RouteMatch } from './router';
-import type { ContentPage, SiteInfo, SpeciesDetail, SubmitData } from './types';
+import type { ContentPage, PosterData, SiteInfo, SpeciesDetail, SubmitData } from './types';
 import { hazardName } from './labels';
 
 export interface HeadInfo {
@@ -78,6 +78,23 @@ export function headFor(match: RouteMatch, data: unknown, site: SiteInfo, search
       return { title: t('Submission status'), description: DEFAULT_DESC, canonical, noindex: true };
     case 'admin':
       return { title: t('Admin'), description: DEFAULT_DESC, canonical, noindex: true };
+    case 'posters':
+      return {
+        title: t('Shop posters'),
+        description:
+          'Free printable posters for wood shops: Paul Bunyan and Babe on dust and respirators, with a QR code to the facts. Letter and A4 PDFs.',
+        canonical: base + '/posters',
+        noindex: false,
+      };
+    case 'poster_print': {
+      const p = (data as PosterData | null)?.poster;
+      return {
+        title: t(p ? `Print: ${p.title} poster` : 'Print a poster'),
+        description: DEFAULT_DESC,
+        canonical: base + '/posters',
+        noindex: true,
+      };
+    }
   }
   return { title: t('Page not found'), description: DEFAULT_DESC, canonical, noindex: true };
 }

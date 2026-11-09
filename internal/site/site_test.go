@@ -1,6 +1,8 @@
 package site
 
 import (
+	posterfiles "github.com/brennanMKE/WoodDust/posters"
+
 	"encoding/json"
 	"io"
 	"log/slog"
@@ -97,7 +99,8 @@ func newEnv(t *testing.T, dist fstest.MapFS) testEnv {
 	srv := New(Options{
 		Catalog: memstore.New(fixtureData()), Pages: pages, SiteName: "Dust Almanac",
 		BaseURL: "https://example.test", ImagesDir: images, Dist: distFS,
-		Logger: slog.New(slog.NewTextHandler(io.Discard, nil)),
+		Logger:   slog.New(slog.NewTextHandler(io.Discard, nil)),
+		PosterFS: posterfiles.FS,
 	})
 	return testEnv{srv: srv, h: srv.Routes(), images: images}
 }

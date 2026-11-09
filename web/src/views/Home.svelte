@@ -81,6 +81,7 @@
     <p class="links">
       <a class="button" href="/risks">Why wood dust is a risk</a>
       <a class="button primary" href="/protection">How to protect yourself</a>
+      <a class="button" href="/posters">Free shop posters</a>
     </p>
   </div>
 </section>

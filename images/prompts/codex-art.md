@@ -11,6 +11,7 @@ Generate the illustrations below and save each one at the exact path given. The 
 1. **Round 1:** the character sheet (A0), then the home hero (A1). Stop and show both.
 2. **Round 2:** the emblem and favicon (A2, A3), the share image (A4), and the 404 and no-results mascots (A5, A6). Stop and show them.
 3. **Round 3:** the page headers (B1–B11), the spot illustrations (C1–C6), the border (C7) and the poster header (C8).
+4. **Round 4:** the shop posters D2 and D3 (Shave, Sunbeam). Stop and show them. D1, D4 and D5 come later. See `docs/posters.md`.
 
 ## Rules
 
@@ -23,7 +24,7 @@ Generate the illustrations below and save each one at the exact path given. The 
 - **Size every file down** to the final size listed, using macOS `sips`:
   - Resize a PNG and keep its alpha: `sips -Z <longest-edge> in.png --out out.png`
   - Crop to 1200×630 JPEG from 1536×1024: `sips -c 806 1536 in.png --out tmp.png && sips -z 630 1200 -s format jpeg -s formatOptions 85 tmp.png --out out.jpg`
-- **Only write files** under `images/art/`, `images/mascots/`, `images/pages/` and `images/og-default.jpg`. Do not edit code, data or content. Do not commit, push or touch any server.
+- **Only write files** under `images/art/` (including `images/art/posters/`), `images/mascots/`, `images/pages/` and `images/og-default.jpg`. Do not edit code, data or content. Do not commit, push or touch any server.
 - **When done, print a table** with path, pixel size, file size, alpha (yes or no), and a pass/redo note.
 
 ## STYLE block
@@ -127,6 +128,36 @@ The `/print/shop-poster` page has no header of its own; it uses C8.
 - **Generate:** 1536×1024 on cream. Keep it full size; it prints.
 - **Scene:** Paul Bunyan standing in full shop gear (half-face respirator, safety glasses, earmuffs, gloves) giving a confident thumbs-up, with Babe the Blue Ox beside him wearing a comically oversized pair of safety goggles pushed up on his forehead. Bold enough to print well in black and red on a home printer. Cream paper background.
 
+## D. Shop posters
+
+Full-page portrait posters for printing (`docs/posters.md`). The layout adds the slogan, the QR code and the object frame around it in vector, so each scene must leave two plain areas: **a slogan area** and **a flat, blank, square surface facing the viewer** about one-sixth of the image width, where the QR code goes.
+
+- **Generate:** 1024×1536 on cream, no transparency. Keep it full size; it is upscaled 2× before printing.
+- **Build each prompt** as STYLE, then CHARACTERS, then the poster line below, then the Scene.
+- **Poster line:** "Composed as a full-page poster: one bold scene, strong silhouettes, large shapes that read from across a room, woodcut and linocut texture in the hatching, limited palette of warm black ink, brick red and Babe blue on aged cream paper."
+- **Check:** the mustache is trimmed and the chin is clean in every view, including reflections. Gear is worn correctly. There are no letters or fake writing on pages, labels, tags or crates. The blank QR surface is present and roughly square to the viewer.
+- **Proof:** print a Letter copy before approving. Hatching can fill in on a laser printer.
+
+### D1. Tall Tale (later)
+- **Save:** `images/art/posters/tall-tale.png`.
+- **Scene:** a tall-tale-scale lumber-camp scene in a pine forest with a low horizon. Paul Bunyan, giant, strides toward the viewer carrying an enormous barrel-style dust collector on one shoulder like a felled log, its flexible hose coiled over his other shoulder like rope. He wears work gloves and his safety glasses down over his eyes, and no respirator, because he is outdoors and not making dust. Babe the Blue Ox, lower right, leans into the traces of a wooden wagon stacked with sawn boards. The front of the wagon carries one plain square wooden crate facing the viewer squarely, with a blank, flat, light-coloured label area about one-sixth of the image width. The upper sixth of the image is open sky left plain for a title. No text anywhere.
+
+### D2. Shave
+- **Save:** `images/art/posters/shave.png`.
+- **Scene:** a bunkhouse interior with plank walls, a peg rail and morning light. A round shaving mirror hangs on the wall at upper centre and reflects Paul Bunyan's face: his chin and jaw are covered in shaving lather, his short trimmed mustache is carefully kept clear of the lather, and his expression is calm and purposeful. Paul himself is seen from behind at three-quarter view, suspenders hanging down, a towel over one shoulder, a safety razor raised in his right hand. Beside the mirror a half-face respirator with two round filter cartridges hangs on a wooden peg. Babe the Blue Ox stands at the right holding a folded towel in his mouth like an attentive valet. Tucked into the mirror's frame at its right edge is a plain blank square card, flat and facing the viewer, about one-sixth of the image width. The lowest fifth of the image is plain cream wall left empty for a title. No text anywhere.
+
+### D3. Sunbeam
+- **Save:** `images/art/posters/sunbeam.png`.
+- **Scene:** a dark, quiet timber-framed woodshop drawn mostly in dense cross-hatching, with one small window at the upper left. A single shaft of light crosses the room diagonally to the lower right, thick with floating fine dust motes, and it is the only light in the scene. Paul Bunyan sits on a sawhorse at the lower right wearing his half-face respirator with two round cartridges and wraparound safety glasses, hands on his knees, simply watching the beam. Babe the Blue Ox lies on the floor at the lower left with his nose resting in the light. At the foot of the beam a log round lies on its side so its end grain faces the viewer squarely, brightly lit, plain and uncluttered, about one-sixth of the image width. The upper right of the image is plain dark hatching left empty for a title. No text anywhere.
+
+### D4. Sweep (later)
+- **Save:** `images/art/posters/sweep.png`.
+- **Scene:** a woodshop floor with a workbench and lumber rack behind. Babe the Blue Ox sits squarely in the centre like a big dog on a heap of push brooms, their wooden handles sticking out from beneath him in all directions, looking straight at the viewer with wide innocent eyes. A flat square wooden tag hangs from his leather halter against his chest, facing the viewer squarely, blank and light-coloured, about one-sixth of the image width. Paul Bunyan stands at the right wearing his half-face respirator with two round cartridges, safety glasses and gloves, one elbow resting on a canister shop vacuum with a wide floor nozzle, one eyebrow raised at Babe. The upper left third of the image is plain cream wall left empty for a title. No text anywhere.
+
+### D5. Almanac (later)
+- **Save:** `images/art/posters/almanac.png`.
+- **Scene:** night in a clearing with a pine forest silhouette along the top. A giant hardbound almanac with a ribbon bookmark lies open and fills the middle of the image, its two pages plain blank cream with no writing, no lines and no decoration. Below it Paul Bunyan sits on a broad stump holding the book, and Babe the Blue Ox leans in over his shoulder wearing small round spectacles; a lantern on the stump lights both faces warmly. A single wood shaving curls off the book's gutter. The lower right corner is plain cream, left empty for a small seal. No text anywhere, including on the pages.
+
 ---
 
 ## Checklist: 26 files
@@ -146,3 +177,5 @@ images/art/spot-axe-and-saw.png        images/pages/methodology.jpg
 images/art/spot-almanac.png            images/art/border-forest.png
 images/art/spot-babe-hoofprint.png     images/art/poster-header.png
 ```
+
+Posters (§D), round 4: `images/art/posters/shave.png`, `images/art/posters/sunbeam.png`.

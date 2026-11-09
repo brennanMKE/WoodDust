@@ -2,13 +2,18 @@
   import { onMount } from 'svelte';
   import { formatDateTime } from '../lib/format';
   import { kindLabel, statusLabel } from '../lib/submission';
-  import { adminRequest, errorText, STATUSES, type Stats } from './api';
+  import { adminRequest, errorText, getSettings, SHORTLINKS_STATUS, STATUSES, type ShortLinksView, type Stats } from './api';
 
   let stats = $state<Stats | null>(null);
   let error = $state('');
+  let shortlinks = $state<ShortLinksView | null>(null);
 
   onMount(() => {
     const ctl = new AbortController();
+    // The banner is a nudge; if settings can't load, the Settings tab says why.
+    getSettings(ctl.signal)
+      .then((s) => (shortlinks = s.shortlinks))
+      .catch(() => undefined);
     adminRequest<Stats>('GET', '/api/v1/stats', undefined, ctl.signal)
       .then((s) => (stats = s))
       .catch((e) => {
@@ -29,6 +34,16 @@
 </script>
 
 <h1>Dashboard</h1>
+
+{#if shortlinks && shortlinks.status !== 'ok'}
+  <div class="notice banner" role="status">
+    <p>
+      <strong>Poster links: {SHORTLINKS_STATUS[shortlinks.status]}.</strong>
+      {#if shortlinks.status === 'failing'}{shortlinks.key.check_error}{:else if shortlinks.status === 'untested'}Run Test connection to check the ShortLinks key.{:else}Plaque posters use the stock QR code until the ShortLinks key is set.{/if}
+      <a href="/admin/settings">Open Settings</a>.
+    </p>
+  </div>
+{/if}
 
 {#if error}
   <p class="error" role="alert">{error}</p>
@@ -86,6 +101,10 @@
 {/if}
 
 <style>
+  .banner {
+    margin: 0.5rem 0 1rem;
+  }
+
   .tiles {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));

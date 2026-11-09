@@ -206,3 +206,6 @@ func (a *Auth) Me(r *http.Request) (*User, error) {
 	}
 	return u, nil
 }
+
+// WriteAuthError writes a refusal from Authorize (for handlers in other packages).
+func WriteAuthError(w http.ResponseWriter, err error) { writeAuthError(w, err) }

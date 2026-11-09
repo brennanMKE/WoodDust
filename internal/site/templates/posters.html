@@ -1,0 +1,22 @@
+{{define "body_posters"}}{{template "header" .}}
+<main id="main">
+{{template "breadcrumbs" .Breadcrumbs}}
+  <h1>Shop posters</h1>
+  <p class="lede">Free posters for your shop wall: Paul Bunyan and Babe on wood dust. Each one has a QR code that opens the facts and the sources behind them.</p>
+  {{range .Body.Posters}}<section aria-labelledby="poster-{{.ID}}">
+    <h2 id="poster-{{.ID}}">{{.Title}}: “{{.Slogan}}”</h2>
+    <p>The QR code opens <a href="{{.Destination}}">{{.Destination}}</a>.</p>
+    {{if .Downloads}}<ul>{{range .Downloads}}<li><a href="{{.URL}}" download>{{.Label}}</a></li>{{end}}</ul>
+    {{else}}<p>Print files are on their way.</p>{{end}}
+  </section>
+  {{end}}
+  <p>Add your shop’s name on a “Posted by” plaque with the poster builder, which needs JavaScript. The name stays in your browser unless you choose to share it.</p>
+</main>
+{{template "footer" .}}{{end}}
+
+{{define "body_poster_print"}}{{template "header" .}}
+<main id="main">
+  <h1>{{.Body.Title}} poster</h1>
+  <p>This print layout needs JavaScript. You can also download the <a href="/posters">ready-made print files</a>.</p>
+</main>
+{{template "footer" .}}{{end}}

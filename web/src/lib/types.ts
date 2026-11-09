@@ -203,3 +203,44 @@ export interface AdminUser {
 export interface MeResponse {
   user: AdminUser;
 }
+
+// --- Shop posters (contract §2, §3) -------------------------------------------
+
+export interface PosterLink {
+  short_url: string;
+  /** SVG markup of the QR code (pure black on white, quiet zone included). */
+  qr_svg: string;
+  /** true: the stock link, because a separate one couldn't be made. */
+  fallback?: boolean;
+}
+
+export interface PosterDownload {
+  label: string;
+  format: 'pdf' | 'png' | 'svg';
+  url: string;
+}
+
+export interface PosterView {
+  id: string;
+  title: string;
+  slogan: string;
+  destination: string;
+  art: { url: string; available: boolean; width: number; height: number };
+  /** posters/src/<id>.svg with comments stripped; slots marked data-slot. */
+  template: string;
+  stock: PosterLink;
+  downloads: PosterDownload[];
+}
+
+/** `/posters` initial data and GET /api/v1/posters. */
+export interface PostersData {
+  posters: PosterView[];
+  form_token: string;
+  /** The server can mint a plaque's own link (POST /api/v1/posters/links). */
+  custom: boolean;
+}
+
+/** `/posters/{id}/print` initial data and GET /api/v1/posters/{id}. */
+export interface PosterData {
+  poster: PosterView;
+}

@@ -102,3 +102,16 @@ describe('isSpaLink', () => {
     expect(isSpaLink(new URL('https://other.test/wood/oak'), origin)).toBe(false);
   });
 });
+
+describe('posters routes', () => {
+  it('matches /posters and the print route', () => {
+    expect(matchRoute('/posters')).toMatchObject({ id: 'posters', api: '/api/v1/posters' });
+    expect(matchRoute('/posters/shave/print')).toMatchObject({
+      id: 'poster_print',
+      params: { id: 'shave' },
+      api: '/api/v1/posters/shave',
+    });
+    expect(matchRoute('/posters/shave').id).toBe('not_found');
+    expect(matchRoute('/admin/settings')).toMatchObject({ id: 'admin', params: { section: 'settings' } });
+  });
+});

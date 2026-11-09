@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shop poster: Sunbeam (docs/posters.md), the one dark sheet. Same template
+  rules as shave.svg: art pixel space (1024 x 1536), presentation attributes
+  only, slots marked with data-slot.
+
+  The slogan sits in the plain dark hatching at the upper right, in cream.
+  The QR code goes on the log's end grain in the beam: 190 px, about 34.5 mm
+  on Letter (target 35-42 mm). Placed on round-4 art; move qr-frame and qr
+  together if the art changes.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" data-poster="sunbeam" data-bg="#fde0ae">
+  <defs>
+    <pattern id="sunbeam-hatch" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+      <line x1="0" y1="0" x2="0" y2="20" stroke="#4a3d33" stroke-width="5"/>
+    </pattern>
+  </defs>
+  <g data-slot="art-placeholder">
+    <rect width="1024" height="1536" fill="#2b211b"/>
+    <rect x="48" y="48" width="928" height="1440" fill="url(#sunbeam-hatch)" stroke="#6b5a4a" stroke-width="4" stroke-dasharray="18 12"/>
+    <polygon points="90,120 250,120 1000,1400 700,1488" fill="#f1e6cf" fill-opacity="0.18"/>
+  </g>
+  <image data-slot="art" href="art.png" x="0" y="0" width="1024" height="1536" preserveAspectRatio="xMidYMid slice"/>
+
+  <text data-slot="slogan" x="976" y="150" text-anchor="end" font-family="'Alfa Slab One', 'Rockwell', serif" font-size="88" fill="#f3e9d2">
+    <tspan x="976" y="150">You can't see</tspan>
+    <tspan x="976" y="246">what you're</tspan>
+    <tspan x="976" y="342">breathing.</tspan>
+  </text>
+
+  <!-- The log's end grain, lit by the beam. -->
+  <rect data-slot="qr-frame" x="466" y="1182" width="210" height="210" rx="4" fill="#ffffff" stroke="#2b211b" stroke-width="4"/>
+  <image data-slot="qr" href="qr.svg" x="476" y="1192" width="190" height="190" preserveAspectRatio="xMidYMid meet"/>
+
+  <g data-slot="plaque" display="none">
+    <rect x="232" y="1450" width="560" height="54" rx="6" fill="#f6eedb" stroke="#2b211b" stroke-width="3"/>
+    <text x="262" y="1486" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#8a2f22">POSTED BY</text>
+    <text data-slot="plaque-name" x="400" y="1487" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="26" font-weight="600" fill="#2b211b">________________________</text>
+  </g>
+</svg>

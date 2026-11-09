@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shop poster: Shave (docs/posters.md). Hand-made template in the art's own
+  pixel space (1024 x 1536). Presentation attributes only: no style="" and
+  no <style>, so the page can inline it under the strict CSP.
+
+  Slots (data-slot), filled by scripts/posters.sh and the /posters page:
+    art      href="art.png"  -> images/art/posters/shave.png (missing: the placeholder shows)
+    qr       href="qr.svg"   -> the stock or plaque QR code (pure black on white, quiet zone included)
+    plaque   display="none"  -> shown for a customized poster; plaque-name holds the shop name
+
+  QR size: 176 px of 1536 is about 32 mm on a Letter sheet, the most the card
+  in the mirror holds (target 35-42 mm; check it on the printed proof).
+  Placed on the blank card in round-4 art; move qr-frame and qr together if
+  the art changes.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1536" viewBox="0 0 1024 1536" data-poster="shave" data-bg="#fbeacd">
+  <defs>
+    <pattern id="shave-hatch" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="24" stroke="#d8c8a6" stroke-width="6"/>
+    </pattern>
+  </defs>
+  <g data-slot="art-placeholder">
+    <rect width="1024" height="1536" fill="#f1e6cf"/>
+    <rect x="48" y="48" width="928" height="1132" fill="url(#shave-hatch)" stroke="#b9a37a" stroke-width="4" stroke-dasharray="18 12"/>
+  </g>
+  <image data-slot="art" href="art.png" x="0" y="0" width="1024" height="1536" preserveAspectRatio="xMidYMid slice"/>
+
+  <!-- The card tucked into the mirror frame. -->
+  <rect data-slot="qr-frame" x="599" y="196" width="188" height="188" rx="4" fill="#ffffff" stroke="#2b211b" stroke-width="4"/>
+  <image data-slot="qr" href="qr.svg" x="605" y="202" width="176" height="176" preserveAspectRatio="xMidYMid meet"/>
+
+  <text data-slot="slogan" x="512" y="1335" text-anchor="middle" font-family="'Alfa Slab One', 'Rockwell', serif" font-size="96" fill="#2b211b">
+    <tspan x="512" y="1335">Paul shaves</tspan>
+    <tspan x="512" y="1432">for a reason.</tspan>
+  </text>
+
+  <g data-slot="plaque" display="none">
+    <rect x="232" y="1462" width="560" height="54" rx="6" fill="#f6eedb" stroke="#2b211b" stroke-width="3"/>
+    <text x="262" y="1498" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#8a2f22">POSTED BY</text>
+    <text data-slot="plaque-name" x="400" y="1499" font-family="'Source Sans 3', 'Source Sans Pro', sans-serif" font-size="26" font-weight="600" fill="#2b211b">________________________</text>
+  </g>
+</svg>

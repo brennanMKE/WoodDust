@@ -10,10 +10,12 @@ export type RouteId =
   | 'submit'
   | 'submission_status'
   | 'admin'
+  | 'posters'
+  | 'poster_print'
   | 'not_found';
 
 /** Admin screens under /admin (contract §2): params.section is one of these. */
-export type AdminSection = 'dashboard' | 'submissions' | 'submission' | 'api-keys';
+export type AdminSection = 'dashboard' | 'submissions' | 'submission' | 'api-keys' | 'settings';
 
 export interface RouteMatch {
   id: RouteId;
@@ -65,9 +67,21 @@ export function matchRoute(rawPath: string): RouteMatch {
     const admin = (params: Record<string, string>): RouteMatch => ({ id: 'admin', path, params, api: '/api/v1/me' });
     if (!second && !rest.length) return admin({ section: 'dashboard' });
     if (second === 'api-keys' && !rest.length) return admin({ section: 'api-keys' });
+    if (second === 'settings' && !rest.length) return admin({ section: 'settings' });
     if (second === 'submissions' && !rest.length) return admin({ section: 'submissions' });
     if (second === 'submissions' && rest.length === 1 && /^\d+$/.test(rest[0]))
       return admin({ section: 'submission', id: rest[0] });
+    return notFound;
+  }
+  if (first === 'posters') {
+    if (!second) return { id: 'posters', path, params: {}, api: '/api/v1/posters' };
+    if (rest.length === 1 && rest[0] === 'print')
+      return {
+        id: 'poster_print',
+        path,
+        params: { id: second },
+        api: `/api/v1/posters/${encodeURIComponent(second)}`,
+      };
     return notFound;
   }
   if (rest.length > 0) return notFound;

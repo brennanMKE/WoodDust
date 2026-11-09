@@ -38,6 +38,16 @@ Abuse controls (PLAN §6), all server-side:
 - Size limits: details are 20–4000 characters with at most 5 links. At most 10 citations. No uploads.
 - Privacy: the IP is stored only as an HMAC under a salt that rotates daily (`FORM_TOKEN_KEY`/`IP_HASH_KEY`). The status token is 32 random bytes, and only its SHA-256 is stored. The email is set to null when the status becomes `rejected`, `merged` or `spam`.
 
+### Shop posters
+
+| Method and path | Notes |
+|---|---|
+| `GET /posters` | `{ "posters": [...], "form_token", "custom" }`: the published posters with their SVG template, stock link and QR code, and any print files |
+| `GET /posters/{id}` | `{ "poster": {...} }`; 404 for an unknown or unpublished id |
+| `POST /posters/links` | `{ "poster", "shop"?, "form_token", "website": "" }`. `200 { short_url, qr_svg }`, or `200 { fallback: true, short_url, qr_svg }` with the stock link when ShortLinks isn't set up or fails. `422` with `fields`, `429` with `Retry-After` |
+
+The link endpoint mints one ShortLinks link per plaque poster (`docs/posters.md`). Its limits mirror submissions: 3 per hashed IP per hour, 10 per day, 100 per day site-wide, the same min-time form token and the `website` honeypot, and a 4 KiB body. `shop` is sent only when the visitor opts in; it's trimmed to 40 characters and stored only as the link's ShortLinks `placement`. Full shapes: contract §3, "Shop posters".
+
 ## Authenticated
 
 Send an API key as `Authorization: Bearer da_<prefix>_<secret>`, or use the owner's signed-in session (the admin console). Session requests with unsafe methods must carry a same-origin `Origin` header. API-key requests need none.
@@ -51,6 +61,7 @@ Send an API key as `Authorization: Bearer da_<prefix>_<secret>`, or use the owne
 | `GET /stats` | `stats:read` |
 | `GET /admin/api-keys` → `{ "keys": [...] }`, `POST /admin/api-keys`, `DELETE /admin/api-keys/{prefix}` | session only |
 | `GET /me` → `{ "user": { "display_name", "is_admin" } }` | session |
+| `GET /admin/settings`, `PUT /admin/settings/{key}` `{ "value" }`, `DELETE /admin/settings/{key}`, `POST /admin/settings/shortlinks/test` → `{ "shortlinks": {...} }` | session only |
 
 Notes:
 
@@ -97,6 +108,27 @@ From the admin console (`/admin/api-keys`) or the CLI:
 wooddust apikey create -name home-assistant -scopes stats:read [-expires 2027-12-31]
 wooddust apikey list
 wooddust apikey revoke <prefix>
+```
+
+## Settings
+
+Operator settings live in the `settings` table, not in `config.env`, so they change without a deploy. The keys are allowlisted:
+
+| Key | Kind | Default |
+|---|---|---|
+| `shortlinks_api_key` | secret: a ShortLinks v0.4.0 API token, `slk_` + 43 characters, not read-only | none |
+| `shortlinks_api_url` | where to reach ShortLinks (loopback on photon) | `http://127.0.0.1:8084` (placeholder until go.dustalmanac.com's port is registered) |
+| `shortlinks_public_base` | the host the short links are printed under; must equal ShortLinks' `base_url` | `https://go.dustalmanac.com` |
+| `shortlinks_campaign` | the ShortLinks campaign the links go in | `posters` |
+
+A secret is encrypted with AES-256-GCM under `SETTINGS_KEY`, with the key name as additional data. Only its first 12 characters (`slk_AbCdEfGh…`) are kept in clear, for display. Nothing reads it back out: the server decrypts it only to call ShortLinks, and the client redacts it in logs.
+
+Set it from `/admin/settings` (Replace, a password field) or from a terminal: `scripts/set-setting.sh <env> shortlinks_api_key` (see `deployment.md`). On the host:
+
+```sh
+wooddust settings set shortlinks_api_key --stdin   # value on stdin only; prints the hint
+wooddust settings show shortlinks_api_key          # hint, who set it and when, last test
+wooddust settings clear shortlinks_api_key
 ```
 
 ## Home Assistant

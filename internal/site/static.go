@@ -82,6 +82,7 @@ func (s *Server) robots(w http.ResponseWriter, r *http.Request) {
 		"Disallow: /oauth/\n" +
 		"Disallow: /accounts/\n" +
 		"Disallow: /api/\n" +
+		"Disallow: /posters/*/print\n" +
 		"Disallow: /*?q=\n" +
 		"\nSitemap: " + s.absURL("/sitemap.xml") + "\n"))
 }
@@ -115,6 +116,7 @@ func (s *Server) sitemap(w http.ResponseWriter, r *http.Request) {
 		sitemapURL{Loc: s.absURL("/"), LastMod: latest},
 		sitemapURL{Loc: s.absURL("/browse"), LastMod: latest},
 		sitemapURL{Loc: s.absURL("/sources")},
+		sitemapURL{Loc: s.absURL("/posters")},
 	)
 	for _, p := range s.pages.All() {
 		if _, ok := s.lookupPage(p.Slug); ok {

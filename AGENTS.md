@@ -12,6 +12,7 @@ Binding guidance for any agent (Claude, Codex, others) working in this repositor
 | Hosting, environments, scripts | [`docs/deployment.md`](docs/deployment.md); photon itself: `~/Developer/AWS` (`AddSite.md`, `AccessLogs.md`, port registry) |
 | Embedded Portiko sign-in and its workarounds | [`docs/portiko-integration.md`](docs/portiko-integration.md); upstream asks: [`docs/portiko-requests.md`](docs/portiko-requests.md) |
 | REST API and keys | [`docs/api.md`](docs/api.md) |
+| Shop posters, QR tracking via go.dustalmanac.com | [`docs/posters.md`](docs/posters.md) |
 | Illustration and photo prompts | [`images/prompts/site-art.md`](images/prompts/site-art.md), [`images/prompts/codex-art.md`](images/prompts/codex-art.md), species `image_prompt` in `data/species/*.json` |
 
 ## 1. What this is

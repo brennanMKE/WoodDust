@@ -201,6 +201,7 @@ rest:
 5. **Portiko sign-in + submissions**: embed the provider, mount its routes, `identity` subcommands, register the client, `rp` integration, bootstrap the admin, then forms, account page, moderation queue, `export`.
 6. **API keys + Home Assistant**: key management, `/stats`, the HA config above, `docs/api.md`.
 7. **Deploy**: Apache vhost, systemd unit, deploy script, backups, then a Lighthouse/a11y pass.
+8. **Shop posters**: printable Paul and Babe posters with QR codes tracked through go.dustalmanac.com (ShortLinks), the "Posted by" plaque, and the ShortLinks key in admin Settings. Decisions and phases in `docs/posters.md`.
 
 ## 10. Open questions
 

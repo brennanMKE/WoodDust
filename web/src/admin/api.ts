@@ -5,7 +5,7 @@ import { ApiError } from '../lib/api';
 import { loginURL } from '../lib/nav.svelte';
 
 export async function adminRequest<T>(
-  method: 'GET' | 'POST' | 'PATCH' | 'DELETE',
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
   path: string,
   body?: unknown,
   signal?: AbortSignal,
@@ -112,3 +112,40 @@ export interface Stats {
 }
 
 export const STATUSES = ['new', 'triaging', 'needs_info', 'accepted', 'rejected', 'exported', 'merged', 'spam'] as const;
+
+// --- Settings (contract §7): the ShortLinks key for poster links. Never the key itself. ---
+
+export interface SettingInfo {
+  key: string;
+  secret: boolean;
+  set: boolean;
+  /** Secret: display prefix (slk_AbCdEfGh…). Plain: the value, or the default. */
+  hint: string;
+  is_default: boolean;
+  set_by?: string;
+  set_at?: string;
+  checked_at?: string;
+  check_ok?: boolean;
+  check_error?: string;
+}
+
+export type ShortLinksStatus = 'not_configured' | 'untested' | 'ok' | 'failing';
+
+export interface ShortLinksView {
+  status: ShortLinksStatus;
+  encryption_available: boolean;
+  key: SettingInfo;
+  api_url: SettingInfo;
+  public_base: SettingInfo;
+  campaign: SettingInfo;
+}
+
+export const SHORTLINKS_STATUS: Record<ShortLinksStatus, string> = {
+  not_configured: 'Not configured',
+  untested: 'Configured, untested',
+  ok: 'OK',
+  failing: 'Failing',
+};
+
+export const getSettings = (signal?: AbortSignal) =>
+  adminRequest<{ shortlinks: ShortLinksView }>('GET', '/api/v1/admin/settings', undefined, signal);

@@ -25,10 +25,12 @@ Each environment has its own secrets, sign-in provider and passkeys: enroll sepa
 | Deploy a specific commit | `scripts/deploy.sh prod --ref <sha>` |
 | What is live | `make status-prod`, `make logs-prod` |
 | Roll back | `make rollback-prod` (previous release) or `scripts/rollback.sh prod <sha>` |
+| Store an operator setting (the ShortLinks key) | `scripts/set-setting.sh <env> <key>`, or `make shortlinks-key-preprod` / `make shortlinks-key-prod` |
+| Build the poster print files (local) | `make posters` (`scripts/posters.sh`, needs `rsvg-convert`) |
 
 `deploy.sh` builds from `git archive` of the commit (never the working tree), runs the data integrity check, cross-compiles for arm64, uploads, switches `current`, restarts and waits for health, rolling back automatically if the new release does not come up. The first deploy also registers the site's sign-in client. It keeps the last 5 releases.
 
-`provision.sh` is idempotent: Route 53 records (prod, `admin` profile), user, databases, `config.env` (secrets generated on the host and never printed), port registry, systemd unit (rendered from `deploy/systemd/site.service.in`), log directories, vhosts (config-tested, reverted on failure) and the certificate.
+`provision.sh` is idempotent: Route 53 records (prod, `admin` profile), user, databases, `config.env` (secrets generated on the host and never printed), port registry, systemd unit (rendered from `deploy/systemd/site.service.in`), log directories, vhosts (config-tested, reverted on failure) and the certificate. On a host that already has `config.env`, it leaves the file alone except for generated keys added since (today `SETTINGS_KEY`), which it appends without printing; restart the unit afterwards.
 
 Why HTTP-01 for prod: photon's instance role may only write the six zones in the AWS repo's `terraform/variables.tf` (`certbot_zones`). Adding `dustalmanac.com` there would allow dns-route53 and a wildcard, but needs that Terraform state.
 
@@ -98,6 +100,7 @@ Sign-in uses the Portiko provider embedded in the binary (PLAN §5, `docs/portik
    | `COOKIE_KEY` | Protects the sign-in redirect cookies (state, PKCE, nonce) |
    | `FORM_TOKEN_KEY` | Signs submit-form tokens; also derives the daily IP-hash salt unless `IP_HASH_KEY` is set |
    | `IDENTITY_BOOTSTRAP_CODE` | Opens passkey enrollment at `/auth/enroll`. Use another long random value |
+   | `SETTINGS_KEY` | Encrypts secret operator settings in the database (the ShortLinks key). Exactly 32 bytes. Losing it means setting those again |
 
    Also set `IDENTITY_DATABASE_URL`, and the `IDENTITY_SMTP_*`/`IDENTITY_EMAIL_FROM` settings for one-time codes; see Email (Amazon SES) below. Without SMTP, codes go to the journal. Do **not** set `DEV_INSECURE` in production. `TRUSTED_PROXIES=127.0.0.1,::1` is shared with Portiko's rate limits.
 
@@ -143,6 +146,18 @@ Sign-in uses the Portiko provider embedded in the binary (PLAN §5, `docs/portik
 The RP ID is the host of `BASE_URL`. A passkey is bound to it forever, so moving to a purchased domain means enrolling again (PLAN §10), and re-running `register-site` for the new `BASE_URL`.
 
 Backups: once submissions exist, dump both `wooddust` and `wooddust_identity` nightly.
+
+## Poster links: the ShortLinks key
+
+Plaque posters get their own QR code link from the go.dustalmanac.com ShortLinks instance (`docs/posters.md`). Without a key, they use the stock link, so this is optional.
+
+1. Make sure `SETTINGS_KEY` is in `config.env` (`make provision-<env>` adds it) and the unit was restarted.
+2. On go.dustalmanac.com, create an API token under Account › API tokens: **not** read-only, 12-month expiry, one per environment. Create the `posters` campaign there too.
+3. From this Mac: `scripts/set-setting.sh preprod shortlinks_api_key`. It asks for the token with hidden input (or reads it from a pipe; prod then needs `--yes`) and sends it over ssh stdin to `wooddust settings set shortlinks_api_key --stdin`, run with `systemd-run` as the service user and its `config.env`, like `register-site`. The token never appears in arguments, the environment or any output; the command prints only `slk_AbCdEfGh…`.
+4. If go.dustalmanac.com doesn't listen on the default loopback port, set it the same way: `scripts/set-setting.sh <env> shortlinks_api_url` (e.g. `http://127.0.0.1:<port>` from `/etc/photon/ports.conf`).
+5. Open `/admin/settings` and press **Test connection**. The dashboard shows a banner until it says OK.
+
+To rotate: create the new token, run step 3 again, test, then revoke the old token in ShortLinks.
 
 ## Email (Amazon SES)
 

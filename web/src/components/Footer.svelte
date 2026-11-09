@@ -31,6 +31,7 @@
         <li><a href="/symptoms">Symptoms to watch for</a></li>
         <li><a href="/limits">Exposure limits</a></li>
         <li><a href="/glossary">Glossary</a></li>
+        <li><a href="/posters">Shop posters</a></li>
       </ul>
     </nav>
   </div>

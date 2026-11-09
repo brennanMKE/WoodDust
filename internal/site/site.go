@@ -21,6 +21,7 @@ import (
 	"github.com/brennanMKE/WoodDust/internal/content"
 	"github.com/brennanMKE/WoodDust/internal/contrib"
 	"github.com/brennanMKE/WoodDust/internal/model"
+	"github.com/brennanMKE/WoodDust/internal/posters"
 )
 
 // Catalog is the read-only published data the handlers need.
@@ -49,6 +50,11 @@ type Options struct {
 	// Contrib serves submissions, admin and API keys (contract §6–7). Nil
 	// leaves those routes unregistered (tests of the public site).
 	Contrib *contrib.API
+	// Posters: the link endpoint and admin Settings (internal/posters).
+	// Nil leaves them unregistered; /posters still renders with stock links.
+	Posters *posters.Service
+	// PosterFS is posterfiles.FS (templates and stock QR codes).
+	PosterFS fs.FS
 }
 
 // Server serves the site.
@@ -65,6 +71,8 @@ type Server struct {
 	shell         shell
 	log           *slog.Logger
 	contrib       *contrib.API
+	posterLinks   *posters.Service
+	posterFS      fs.FS
 }
 
 // New builds a Server.
@@ -73,14 +81,16 @@ func New(o Options) *Server {
 		o.Logger = slog.Default()
 	}
 	s := &Server{
-		cat:       o.Catalog,
-		pages:     o.Pages,
-		siteName:  o.SiteName,
-		baseURL:   strings.TrimRight(o.BaseURL, "/"),
-		imagesDir: o.ImagesDir,
-		dist:      o.Dist,
-		log:       o.Logger,
-		contrib:   o.Contrib,
+		cat:         o.Catalog,
+		pages:       o.Pages,
+		siteName:    o.SiteName,
+		baseURL:     strings.TrimRight(o.BaseURL, "/"),
+		imagesDir:   o.ImagesDir,
+		dist:        o.Dist,
+		log:         o.Logger,
+		contrib:     o.Contrib,
+		posterLinks: o.Posters,
+		posterFS:    o.PosterFS,
 	}
 	if s.siteName == "" {
 		s.siteName = DefaultSiteName
@@ -136,8 +146,17 @@ func (s *Server) Routes() *http.ServeMux {
 	mux.HandleFunc("GET /admin/submissions", s.pageAdmin)
 	mux.HandleFunc("GET /admin/submissions/{id}", s.pageAdmin)
 	mux.HandleFunc("GET /admin/api-keys", s.pageAdmin)
+	mux.HandleFunc("GET /admin/settings", s.pageAdmin)
 	if s.contrib != nil {
 		s.contrib.Register(mux)
+	}
+	// Shop posters (docs/posters.md).
+	mux.HandleFunc("GET /posters", s.pagePosters)
+	mux.HandleFunc("GET /posters/{id}/print", s.pagePosterPrint)
+	mux.HandleFunc("GET /api/v1/posters", s.apiPosters)
+	mux.HandleFunc("GET /api/v1/posters/{id}", s.apiPoster)
+	if s.posterLinks != nil {
+		s.posterLinks.Register(mux)
 	}
 
 	// SEO and static.

@@ -5,6 +5,7 @@
 //	wooddust migrate up|down [N]|version
 //	wooddust apikey create|list|revoke
 //	wooddust users list|admin|unadmin
+//	wooddust settings set KEY --stdin | show KEY | clear KEY
 //	wooddust identity <portiko command>
 //
 // Configuration comes from the environment; see .env.example.
@@ -16,6 +17,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"io"
 	"log/slog"
 	"net/http"
 	"os"
@@ -34,8 +36,11 @@ import (
 	"github.com/brennanMKE/WoodDust/internal/identity"
 	"github.com/brennanMKE/WoodDust/internal/memstore"
 	"github.com/brennanMKE/WoodDust/internal/middleware"
+	"github.com/brennanMKE/WoodDust/internal/posters"
+	"github.com/brennanMKE/WoodDust/internal/settings"
 	"github.com/brennanMKE/WoodDust/internal/site"
 	"github.com/brennanMKE/WoodDust/internal/store"
+	posterfiles "github.com/brennanMKE/WoodDust/posters"
 	"github.com/brennanMKE/WoodDust/web"
 
 	"github.com/Kolonnade/Portiko/rp/session"
@@ -61,6 +66,14 @@ commands:
   users list            local users (Portiko subjects) and who is admin
   users admin SUBJECT   make a signed-in subject an admin
   users unadmin SUBJECT remove admin
+
+  settings set KEY --stdin
+                        read a value from stdin, validate, encrypt (secrets)
+                        and store it; prints only its hint. Keys:
+                        shortlinks_api_key (secret), shortlinks_api_url,
+                        shortlinks_public_base, shortlinks_campaign
+  settings show KEY     hint, who set it and when, last connection test
+  settings clear KEY    remove it (plain settings return to their default)
 
   identity <cmd>        Portiko operator commands against IDENTITY_DATABASE_URL:
                         register-site (this site as the first-party client),
@@ -96,6 +109,8 @@ func main() {
 		err = apikeyCmd(ctx, cfg, os.Args[2:])
 	case "users":
 		err = usersCmd(ctx, cfg, os.Args[2:])
+	case "settings":
+		err = settingsCmd(ctx, cfg, os.Args[2:], os.Stdin)
 	case "identity":
 		os.Exit(identity.ServerMain(cfg, os.Args[2:]))
 	case "-h", "--help", "help":
@@ -123,6 +138,11 @@ func pagesDir(cfg config.Config) string { return filepath.Join(cfg.ContentDir, "
 func serve(ctx context.Context, cfg config.Config, log *slog.Logger) error {
 	var cat site.Catalog
 	var cstore *contrib.Store
+	var sstore *settings.Store
+	cipher, err := settings.NewCipher(cfg.SettingsKey)
+	if err != nil {
+		return fmt.Errorf("SETTINGS_KEY: %w", err)
+	}
 	if cfg.DatabaseURL == "" {
 		log.Warn("DATABASE_URL is unset: serving data/ from memory (development only); submissions and admin are unavailable", "data_dir", cfg.DataDir)
 		ds, err := data.Load(cfg.DataDir)
@@ -141,6 +161,10 @@ func serve(ctx context.Context, cfg config.Config, log *slog.Logger) error {
 		defer pool.Close()
 		cat = store.New(pool)
 		cstore = contrib.NewStore(pool)
+		sstore = settings.NewStore(pool, cipher)
+		if cipher == nil {
+			log.Warn("SETTINGS_KEY is unset: the ShortLinks key cannot be stored, so custom posters use the stock link")
+		}
 	}
 
 	pages, err := content.Load(pagesDir(cfg))
@@ -183,9 +207,20 @@ func serve(ctx context.Context, cfg config.Config, log *slog.Logger) error {
 		IPs: contrib.NewIPHasher(ipKey), Limiter: submitLimiter, Species: cat.GetSpecies, ClientIP: middleware.IP, Log: log,
 	}
 
+	// Shop posters: one link per plaque through ShortLinks (docs/posters.md).
+	posterLimiter := contrib.NewSubmitLimiter(posters.LinksPerIPHour, posters.LinksPerIPDay, posters.LinksGlobalDay)
+	posterSvc := &posters.Service{
+		SiteBase: cfg.BaseURL, Auth: auth, Tokens: api.Tokens, IPs: api.IPs, Limiter: posterLimiter,
+		ClientIP: middleware.IP, Stock: posterfiles.FS, Log: log,
+	}
+	if sstore != nil {
+		posterSvc.Settings = sstore
+	}
+
 	srv := site.New(site.Options{
 		Catalog: cat, Pages: pages, SiteName: cfg.SiteName, BaseURL: cfg.BaseURL,
 		ImagesDir: cfg.ImagesDir, Dist: web.DistFS(), Logger: log, Contrib: api,
+		Posters: posterSvc, PosterFS: posterfiles.FS,
 	})
 	mux := srv.Routes()
 
@@ -245,6 +280,7 @@ func serve(ctx context.Context, cfg config.Config, log *slog.Logger) error {
 			case <-t.C:
 				limiter.Sweep()
 				submitLimiter.Sweep()
+				posterLimiter.Sweep()
 			}
 		}
 	}()
@@ -498,4 +534,83 @@ func usersCmd(ctx context.Context, cfg config.Config, args []string) error {
 		return st.SetAdmin(ctx, args[1], args[0] == "admin", "cli:"+os.Getenv("USER"))
 	}
 	return fmt.Errorf("unknown users command %q", args[0])
+}
+
+// settingsCmd is `wooddust settings`. A value only ever arrives on stdin
+// (scripts/set-setting.sh pipes it over ssh), never in argv or the
+// environment, and nothing here prints a secret back out.
+func settingsCmd(ctx context.Context, cfg config.Config, args []string, stdin io.Reader) error {
+	if len(args) < 2 {
+		usage()
+		return errors.New("usage: settings set KEY --stdin | show KEY | clear KEY")
+	}
+	cmd, key := args[0], args[1]
+	def, ok := settings.Lookup(key)
+	if !ok {
+		return fmt.Errorf("unknown setting %q (known: %s)", key, strings.Join(settings.Names(), ", "))
+	}
+	if cfg.DatabaseURL == "" {
+		return errors.New("DATABASE_URL is required")
+	}
+	if err := db.MigrateUp(cfg.DatabaseURL); err != nil {
+		return fmt.Errorf("migrate: %w", err)
+	}
+	pool, err := db.Open(ctx, cfg.DatabaseURL)
+	if err != nil {
+		return err
+	}
+	defer pool.Close()
+	cipher, err := settings.NewCipher(cfg.SettingsKey)
+	if err != nil {
+		return fmt.Errorf("SETTINGS_KEY: %w", err)
+	}
+	st := settings.NewStore(pool, cipher)
+	actor := "cli:" + os.Getenv("USER")
+	switch cmd {
+	case "set":
+		if len(args) != 3 || args[2] != "--stdin" {
+			return errors.New("usage: settings set KEY --stdin (the value is read from stdin, never from arguments)")
+		}
+		raw, err := io.ReadAll(io.LimitReader(stdin, 4<<10))
+		if err != nil {
+			return err
+		}
+		in, err := st.Set(ctx, key, string(raw), actor)
+		if err != nil {
+			return err
+		}
+		fmt.Printf("set %s: %s\n", key, in.Hint)
+		return nil
+	case "show":
+		in, err := st.Info(ctx, key)
+		if err != nil {
+			return err
+		}
+		switch {
+		case !in.Set && def.Secret:
+			fmt.Printf("%s: not set\n", key)
+		case !in.Set:
+			fmt.Printf("%s: %s (default)\n", key, in.Hint)
+		default:
+			fmt.Printf("%s: %s\nset by %s at %s\n", key, in.Hint, in.UpdatedBy, in.UpdatedAt.UTC().Format(time.RFC3339))
+		}
+		if in.CheckedAt != nil && in.CheckOK != nil {
+			result := "ok"
+			if !*in.CheckOK {
+				result = "failed: " + in.CheckError
+			}
+			fmt.Printf("last check %s: %s\n", in.CheckedAt.UTC().Format(time.RFC3339), result)
+		}
+		if def.Secret && !st.CanSeal() {
+			fmt.Println("warning: SETTINGS_KEY is not set, so this secret cannot be stored or used")
+		}
+		return nil
+	case "clear":
+		if err := st.Clear(ctx, key, actor); err != nil {
+			return err
+		}
+		fmt.Printf("cleared %s\n", key)
+		return nil
+	}
+	return fmt.Errorf("unknown settings command %q", cmd)
 }

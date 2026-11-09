@@ -34,7 +34,9 @@ Vite builds `web/dist/index.html`. It contains three markers that Go replaces on
 | `/sources` | `sources` | `GET /api/v1/sources` |
 | `/submit`, `/submit/{slug}` | `submit` | `{ "form_token": "...", "kinds": [...], "target": <species summary or null>, "prefill_name": "..." }`, `noindex`. Query `?kind=` preselects; `?name=` pre-fills new species |
 | `/submit/status/{token}` | `submission_status` | `GET /api/v1/submissions/status/{token}`, `noindex`; 404 if the token is unknown |
-| `/admin`, `/admin/submissions`, `/admin/submissions/{id}`, `/admin/api-keys` | `admin` | `{ "user": {...} }`. **Requires a session.** Without one, Go 302s to `/auth/login?return=<path>`. `noindex` |
+| `/posters` | `posters` | `GET /api/v1/posters` (carries a fresh `form_token`; `Cache-Control: no-store`) |
+| `/posters/{id}/print` | `poster_print` | `GET /api/v1/posters/{id}`, `noindex`. One poster full-page for the print dialog; a plaque built on `/posters` is passed in memory only. 404 for an unknown or unpublished id |
+| `/admin`, `/admin/submissions`, `/admin/submissions/{id}`, `/admin/api-keys`, `/admin/settings` | `admin` | `{ "user": {...} }`. **Requires a session.** Without one, Go 302s to `/auth/login?return=<path>`. `noindex` |
 | anything else | `not_found` | `{}` with HTTP 404 |
 
 - Alias URLs (any normalized common name, trade name, botanical name or synonym, e.g. `/wood/wrc`, `/wood/thuja-plicata`) get a **301** to `/wood/{slug}`, from Go.
@@ -90,6 +92,34 @@ Footnote markers `[^KEY]` in the Markdown render as `<sup><a href="#src-KEY">n</
 
 ### `GET /health`
 `{"status":"ok","species":51,"sources":155}`
+
+### Shop posters (docs/posters.md)
+
+`GET /posters` returns the published posters (Shave and Sunbeam for now):
+```json
+{ "posters": [ {
+    "id": "shave", "title": "Shave", "slogan": "Paul shaves for a reason.", "destination": "/protection/respirators",
+    "art": { "url": "/images/art/posters/shave.png?v=…", "available": true, "width": 1024, "height": 1536 },
+    "template": "<svg …>",
+    "stock": { "short_url": "https://go.dustalmanac.com/u/shave", "qr_svg": "<svg …>" },
+    "downloads": [ { "label": "Letter PDF", "format": "pdf", "url": "/images/posters/shave-letter.pdf?v=…" } ] } ],
+  "form_token": "…", "custom": true }
+```
+- `template` is `posters/src/<id>.svg` without comments. Its slots are marked `data-slot`: `art`, `art-placeholder`, `qr`, `qr-frame`, `slogan`, `plaque` (starts `display="none"`) and `plaque-name`. Presentation attributes only, so the SPA may inline it. With `art.available` false the SPA removes the `art` slot and the placeholder block shows.
+- `downloads` lists only the files `scripts/posters.sh` has written under `images/posters/`: `<id>-letter.pdf`, `<id>-a4.pdf`, `<id>-grey.pdf`, `<id>.png`, `<id>.svg`.
+- `custom` is true when the server can be asked for a plaque's own link.
+
+`GET /posters/{id}` returns `{ "poster": {…same shape…} }`; 404 for an unknown or unpublished id.
+
+`POST /posters/links` (public, rate-limited) mints the plaque's own link:
+```json
+{ "poster": "shave", "shop": "Brennan's Shop", "form_token": "…", "website": "" }
+```
+- `shop` is sent only when the visitor ticks the opt-in. The server trims it to one line of at most 40 characters and stores it only as the ShortLinks link's `placement`, never in a URL.
+- `200 { "short_url": "https://go.dustalmanac.com/u/<random>", "qr_svg": "<svg …>" }`, or `200 { "fallback": true, "short_url": "<stock>", "qr_svg": "<stock>" }` when the ShortLinks key is not set or ShortLinks fails. ShortLinks trouble never produces a 5xx.
+- `422` for an unknown or unpublished `poster` (`fields.poster`) or an expired/forged `form_token` (`fields.form_token`); `429` with `Retry-After` over the limits; `400` for a body that isn't JSON or is over 4 KiB.
+- Abuse controls mirror submissions: 3 per hour and 10 per day per hashed client IP, 100 per day site-wide, the same signed min-time `form_token` (also from `GET /submissions/form-token`), and the `website` honeypot. A honeypot hit or a too-fast token gets a normal-looking `200` with the stock link and no `fallback`; nothing is minted.
+- The link: `destination_url` = `BASE_URL` + the poster's path, a random 10-character custom key (ShortLinks deduplicates generated keys per destination), campaign `shortlinks_campaign`, `utm_source=flyer`, `utm_medium=print`, `utm_campaign=poster-<id>`, `utm_content=custom`.
 
 ## 4. Images
 
@@ -152,6 +182,23 @@ Session auth comes from Portiko `rp` (owner only). Unsafe methods with a session
 | `POST /api/v1/admin/api-keys` | session only | `{ name, scopes[], expires_at? }` returns `{ ..., "key": "da_<prefix>_<secret>" }`. The full key is shown **once** |
 | `DELETE /api/v1/admin/api-keys/{prefix}` | session only | Revokes the key |
 | `GET /api/v1/me` | session | `{ "user": { "display_name", "is_admin" } }`, or 401 |
+| `GET /api/v1/admin/settings` | session only | `{ "shortlinks": ShortLinksView }` (below) |
+| `PUT /api/v1/admin/settings/{key}` | session only | `{ "value": "…" }` for an allowlisted key. Returns the view; `422` with `fields.value` for a bad value; `409 no_settings_key` when `SETTINGS_KEY` is unset |
+| `DELETE /api/v1/admin/settings/{key}` | session only | Clears it (plain settings return to their default). Returns the view |
+| `POST /api/v1/admin/settings/shortlinks/test` | session only | Test connection; stores and returns the result in the view. `409 not_configured` without a key |
+
+`ShortLinksView` never contains the key:
+```json
+{ "status": "not_configured|untested|ok|failing", "encryption_available": true,
+  "key":         { "key": "shortlinks_api_key", "secret": true, "set": true, "hint": "slk_AbCdEfGh…", "is_default": false,
+                   "set_by": "user:…", "set_at": "…", "checked_at": "…", "check_ok": false, "check_error": "…" },
+  "api_url":     { "key": "shortlinks_api_url", "hint": "http://127.0.0.1:8084", "is_default": true, … },
+  "public_base": { "key": "shortlinks_public_base", "hint": "https://go.dustalmanac.com", … },
+  "campaign":    { "key": "shortlinks_campaign", "hint": "posters", … } }
+```
+- `not_configured`: no key, or no `SETTINGS_KEY`. `untested`: set but not checked since. `failing`: the last test or the last real call failed. `ok`: it passed.
+- Test connection: `GET /api/me` with the token must answer with an `api_token` that is not `read_only`, a `base_url` equal to `shortlinks_public_base`, and `GET /api/campaigns/{campaign}` must exist. ShortLinks errors are shown plainly (401 bad/revoked/expired token, 403 `api_token_read_only` or `api_token_not_permitted`, 429 with `Retry-After`).
+- Every set, clear and test writes a `settings_audit` row (never the value).
 
 Key format: `da_` + an 8-character prefix + `_` + 32 random bytes in base62. Only the SHA-256 of the full key is stored, compared in constant time.
 

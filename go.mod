@@ -7,6 +7,7 @@ require (
 	github.com/descope/virtualwebauthn v1.0.5
 	github.com/golang-migrate/migrate/v4 v4.20.1
 	github.com/jackc/pgx/v5 v5.12.0
+	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/yuin/goldmark v1.8.7
 	golang.org/x/text v0.43.0
 	gopkg.in/yaml.v3 v3.0.1
